@@ -46,7 +46,7 @@ async def get_readable_time(seconds: int) -> str:
     return up_time
 
 
-@register(outgoing=True, pattern=r"^\.sping$")
+@register(outgoing=True, pattern=r"^\$sping$")
 async def sping(pong):
     """For .ping command, ping the userbot from any chat."""
     await get_readable_time((time.time() - StartTime))
@@ -70,7 +70,7 @@ async def sping(pong):
                     f"**╰━━━━━━━━━━━━━━━━━╯** \n" % (duration))
 
 
-@register(outgoing=True, pattern=r"^\.lping$")
+@register(outgoing=True, pattern=r"^\$lping$")
 async def lping(pong):
     """For .ping command, ping the userbot from any chat."""
     uptime = await get_readable_time((time.time() - StartTime))
@@ -87,7 +87,7 @@ async def lping(pong):
                     f"**`{DEFAULTUSER}`**" % (duration))
 
 
-@register(outgoing=True, pattern=r"^\.xping$")
+@register(outgoing=True, pattern=r"^\$xping$")
 async def xping(pong):
     """For .ping command, ping the userbot from any chat."""
     uptime = await get_readable_time((time.time() - StartTime))
@@ -110,7 +110,7 @@ async def xping(pong):
                     f"`{uptime}` \n" % (duration))
 
 
-@register(outgoing=True, pattern=r"^\.ping$")
+@register(outgoing=True, pattern=r"^\$ping$")
 async def ping(pong):
     """For .ping command, ping the userbot from any chat."""
     uptime = await get_readable_time((time.time() - StartTime))
@@ -140,7 +140,7 @@ async def ping(pong):
 
 
 # Port WeebProject
-@register(outgoing=True, pattern=r"^\.speedtest$")
+@register(outgoing=True, pattern=r"^\$speedtest$")
 async def speedtst(spd):
     """For .speed command, use SpeedTest to check server speeds."""
     await spd.edit("`Running speed test...`")
@@ -175,9 +175,9 @@ async def speedtst(spd):
     )
 
 
-@register(outgoing=True, pattern=r"^\.dc$")
+@register(outgoing=True, pattern=r"^\$dc$")
 async def neardc(event):
-    """For .dc command, get the nearest datacenter information."""
+    """For $dc command, get the nearest datacenter information."""
     result = await event.client(functions.help.GetNearestDcRequest())
     await event.edit(
         f"Country : `{result.country}`\n"
@@ -186,9 +186,9 @@ async def neardc(event):
     )
 
 
-@register(outgoing=True, pattern=r"^\.pong$")
+@register(outgoing=True, pattern=r"^\$pong$")
 async def pingme(pong):
-    """For .ping command, ping the userbot from any chat."""
+    """For $ping command, ping the userbot from any chat."""
     start = datetime.now()
     await pong.edit("⚡")
     await asyncio.sleep(1)
@@ -200,11 +200,11 @@ async def pingme(pong):
 
 CMD_HELP.update({
     "speedtest": "✘ Pʟᴜɢɪɴ : `Speed Test`\
-         \n\n⚡𝘾𝙈𝘿⚡: `.ping` | `.lping` | `.xping` | `.sping`\
+         \n\n⚡𝘾𝙈𝘿⚡: `$ping` | `$lping` | `$xping` | `$sping`\
          \n↳ : Untuk Menunjukkan Ping Bot Anda.\
-         \n\n⚡𝘾𝙈𝘿⚡: `.pong`\
+         \n\n⚡𝘾𝙈𝘿⚡: `$pong`\
          \n↳ : Sama Seperti Perintah Ping.\
-         \n\n⚡𝘾𝙈𝘿⚡: `.speedtest`\
+         \n\n⚡𝘾𝙈𝘿⚡: `$speedtest`\
          \n↳ : Untuk Menunjukkan Kecepatan Jaringan Anda.\
-         \n\n⚡𝘾𝙈𝘿⚡: `.dc`\
+         \n\n⚡𝘾𝙈𝘿⚡: `$dc`\
          \n↳ : Menemukan Server Dari Datacenter Kamu."})
