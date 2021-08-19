@@ -1,6 +1,6 @@
-# Copyright (C) 2019 The Raphielscape Company LLC.
+# Copyright (C) 2019 GNU AFFERO GENERAL PUBLIC LICENSE.
 #
-# Licensed under the Raphielscape Public License, Version 1.c (the "License");
+# Licensed under the GNU AFFERO GENERAL PUBLIC LICENSE, Version 3.0 (the "License");
 # you may not use this file except in compliance with the License.
 #
 # The entire source code is OSSRPL except 'whois' which is MPL
