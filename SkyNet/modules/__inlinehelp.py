@@ -18,8 +18,8 @@
 
 import logging
 
-from userbot import BOT_USERNAME, BOT_TOKEN
-from userbot.events import register
+from SkyNet import BOT_USERNAME, BOT_TOKEN
+from SkyNet.events import register
 from telethon.errors.rpcerrorlist import BotInlineDisabledError
 
 
@@ -28,14 +28,14 @@ logging.basicConfig(
     level=logging.WARNING)
 
 
-@register(outgoing=True, pattern=r"^\.helpme")
+@register(outgoing=True, pattern=r"^\$helpme")
 async def yardim(event):
-    lynxbotusername = BOT_USERNAME
-    if lynxbotusername and BOT_TOKEN:
+    skynetbotusername = BOT_USERNAME
+    if skynetbotusername and BOT_TOKEN:
         try:
             results = await event.client.inline_query(
-                lynxbotusername,
-                "@LynxRobot"
+                skynetbotusername,
+                "@CyberSupportGroup"
             )
         except BotInlineDisabledError:
             return await event.edit("`Bot can't be used in inline mode.\nMake sure to turn on inline mode!`")
@@ -50,14 +50,14 @@ async def yardim(event):
                                 "\n`The module has been stopped.`")
 
 
-@register(outgoing=True, pattern=r"^\.alynx")
+@register(outgoing=True, pattern=r"^\$alynx")
 async def alyynx(event):
     botusername = BOT_USERNAME
     if botusername and BOT_TOKEN:
         try:
             resullt = await event.client.inline_query(
                 botusername,
-                "@LynxAliveRobot"
+                "@CyberSupportGroup"
             )
         except BotInlineDisabledError:
             return await event.edit("`Bot can't be used in inline mode.\nMake sure to turn on inline mode!`")
