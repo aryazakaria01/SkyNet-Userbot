@@ -1,16 +1,16 @@
 from datetime import datetime
 
 from pytz import timezone
-from userbot.events import register
-from userbot import CMD_HELP, bot, LOGS, CLEAN_WELCOME, BOTLOG_CHATID
+from SkyNet.events import register
+from SkyNet import CMD_HELP, bot, LOGS, CLEAN_WELCOME, BOTLOG_CHATID
 from telethon.events import ChatAction
 
 
 @bot.on(ChatAction)
 async def welcome_to_chat(event):
     try:
-        from userbot.modules.sql_helper.welcome_sql import get_current_welcome_settings
-        from userbot.modules.sql_helper.welcome_sql import update_previous_welcome
+        from SkyNet.modules.sql_helper.welcome_sql import get_current_welcome_settings
+        from SkyNet.modules.sql_helper.welcome_sql import update_previous_welcome
     except AttributeError:
         return
     cws = get_current_welcome_settings(event.chat_id)
@@ -101,7 +101,7 @@ async def welcome_to_chat(event):
             update_previous_welcome(event.chat_id, current_message.id)
 
 
-@register(outgoing=True, pattern=r"^.setwelcome(?: |$)(.*)")
+@register(outgoing=True, pattern=r"^$setwelcome(?: |$)(.*)")
 async def save_welcome(event):
     try:
         from userbot.modules.sql_helper.welcome_sql import add_welcome_setting
@@ -137,7 +137,7 @@ async def save_welcome(event):
         await event.edit(success.format('Disini'))
 
 
-@register(outgoing=True, pattern="^.checkwelcome$")
+@register(outgoing=True, pattern="^$checkwelcome$")
 async def show_welcome(event):
     try:
         from userbot.modules.sql_helper.welcome_sql import get_current_welcome_settings
@@ -158,7 +158,7 @@ async def show_welcome(event):
         await event.reply(cws.reply)
 
 
-@register(outgoing=True, pattern="^.rmwelcome$")
+@register(outgoing=True, pattern="^$rmwelcome$")
 async def del_welcome(event):
     try:
         from userbot.modules.sql_helper.welcome_sql import rm_welcome_setting
@@ -172,14 +172,14 @@ async def del_welcome(event):
 
 CMD_HELP.update({
     "welcome": "✘ Pʟᴜɢɪɴ : `Welcome`"
-    "\n\n⚡𝘾𝙈𝘿⚡: `.setwelcome` <Reply Text/Sticker>"
+    "\n\n⚡𝘾𝙈𝘿⚡: `$setwelcome` <Reply Text/Sticker>"
     "\n↳ : Menyimpan Pesan Welcome Di Group."
     "\n\nFormat Variabel Yang Bisa Digunakan Sebagai Berikut :"
     "\n`{mention}, {title}, {count}, {first}, {last}, {fullname}, "
     "{userid}, {username}, {my_first}, {my_fullname}, {my_last}, "
     "{my_mention}, {my_username}`"
-    "\n\n⚡𝘾𝙈𝘿⚡: `.checkwelcome`"
+    "\n\n⚡𝘾𝙈𝘿⚡: `$checkwelcome`"
     "\n↳ : Check Pesan Welcome Yang Anda Simpan Di Group."
-    "\n\n⚡𝘾𝙈𝘿⚡: `.rmwelcome`"
+    "\n\n⚡𝘾𝙈𝘿⚡: `$rmwelcome`"
     "\n↳ : Menghapus pesan welcome yang anda simpan."
 })
