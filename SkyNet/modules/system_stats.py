@@ -68,7 +68,7 @@ async def get_readable_time(seconds: int) -> str:
     return up_time
 
 
-@register(outgoing=True, pattern=r"^\.spc")
+@register(outgoing=True, pattern=r"^\$spc")
 async def psu(event):
     uname = platform.uname()
     softw = "💻 **Informasi Sistem**\n"
@@ -126,7 +126,7 @@ def get_size(bytes, suffix="B"):
         bytes /= factor
 
 
-@register(outgoing=True, pattern=r"^\.sysd$")
+@register(outgoing=True, pattern=r"^\$sysd$")
 async def sysdetails(sysd):
     if not sysd.text[0].isalpha() and sysd.text[0] not in ("/", "#", "@", "!"):
         try:
@@ -146,7 +146,7 @@ async def sysdetails(sysd):
             await sysd.edit("`Install neofetch first !!`")
 
 
-@register(outgoing=True, pattern=r"^\.botver$")
+@register(outgoing=True, pattern=r"^\$botver$")
 async def bot_ver(event):
     """For .botver command, get the bot version."""
     if not event.text[0].isalpha() and event.text[0] not in (
@@ -185,7 +185,7 @@ async def bot_ver(event):
             )
 
 
-@register(outgoing=True, pattern=r"^\.pip(?: |$)(.*)")
+@register(outgoing=True, pattern=r"^\$pip(?: |$)(.*)")
 async def pipcheck(pip):
     if pip.text[0].isalpha() or pip.text[0] in ("/", "#", "@", "!"):
         return
@@ -230,12 +230,12 @@ async def pipcheck(pip):
                 "`\n**Result: **\n`No Result Returned/False`"
             )
     else:
-        await pip.edit("Gunakan `.help pip` Untuk Melihat Contoh")
+        await pip.edit("Gunakan `$help pip` Untuk Melihat Contoh")
 
 
-@register(outgoing=True, pattern=r"^\.(?:sky|xon)\s?(.)?")
+@register(outgoing=True, pattern=r"^\$(?:sky|xon)\s?($)?")
 async def ireallyalive(event):
-    """For .sky command, check if the bot is running."""
+    """For $sky command, check if the bot is running."""
     uname = platform.uname()
     cpufreq = psutil.cpu_freq()
     logo = ALIVE_LOGO
@@ -264,7 +264,7 @@ async def ireallyalive(event):
         await alive.edit(output)
 
 
-@register(outgoing=True, pattern=r"^\.(?:alive|on)\s?(.)?")
+@register(outgoing=True, pattern=r"^\$(?:alive|on)\s?($)?")
 async def amireallyalive(alive):
     await bot.get_me()
     uptime = await get_readable_time((time.time() - StartTime))
@@ -303,9 +303,9 @@ async def amireallyalive(alive):
         await alive.edit(output)
 
 
-@register(outgoing=True, pattern=r"^\.dealiveu")
+@register(outgoing=True, pattern=r"^\$dealiveu")
 async def amireallyaliveuser(username):
-    """For .dealiveu command, change the username in the .alive command."""
+    """For $dealiveu command, change the username in the .alive command."""
     message = username.text
     output = ".dealiveu [new user without brackets] nor can it be empty"
     if not (message == ".dealiveu" or message[7:8] != " "):
@@ -317,31 +317,31 @@ async def amireallyaliveuser(username):
     await username.edit("`" f"{output}" "`")
 
 
-@register(outgoing=True, pattern=r"^\.resetalive$")
+@register(outgoing=True, pattern=r"^\$resetalive$")
 async def amireallyalivereset(ureset):
-    """For .resetalive command, reset the username in the .alive command."""
+    """For $resetalive command, reset the username in the $alive command."""
     DEFAULTUSER = str(ALIVE_NAME) if ALIVE_NAME else uname().node
     await ureset.edit("`" "Successfully reset user for alive!" "`")
 
 
 CMD_HELP.update({
     "system": "✘ Pʟᴜɢɪɴ : System Stats"
-    "\n\n⚡𝘾𝙈𝘿⚡: `.sysd`"
+    "\n\n⚡𝘾𝙈𝘿⚡: `$sysd`"
     "\n↳ : Shows system information using neofetch."
-    "\n\n⚡𝘾𝙈𝘿⚡: `.db`"
+    "\n\n⚡𝘾𝙈𝘿⚡: `$db`"
     "\n↳ : Shows database related info."
-    "\n\n⚡𝘾𝙈𝘿⚡: `.spc`"
+    "\n\n⚡𝘾𝙈𝘿⚡: `$spc`"
     "\n↳ : Show system specification.",
     "alive": "✘ Pʟᴜɢɪɴ : Alive"
-    "\n\n⚡𝘾𝙈𝘿⚡: `.sky` or `.xon` | `.alive` or `.on`"
+    "\n\n⚡𝘾𝙈𝘿⚡: `$sky` or `$xon` | `$alive` or `$on`"
     "\n↳ : To see whether your bot is working or not."
-    "\n\n⚡𝘾𝙈𝘿⚡: `.dealiveu` <New Username>"
+    "\n\n⚡𝘾𝙈𝘿⚡: `$dealiveu` <New Username>"
     "\n↳ : Changes the 'user' in alive to the text you want."
-    "\n\n⚡𝘾𝙈𝘿⚡: `.restalive`"
+    "\n\n⚡𝘾𝙈𝘿⚡: `$restalive`"
     "\n↳ : Resets the User to Default.",
     "botversion": "✘ Pʟᴜɢɪɴ : Robot Version"
-    "\n\n⚡𝘾𝙈𝘿⚡: `.botver`"
+    "\n\n⚡𝘾𝙈𝘿⚡: `$botver`"
     "\n↳ : Shows the userbot version."
-    "\n\n⚡𝘾𝙈𝘿⚡: `.pip` <module(s)>"
+    "\n\n⚡𝘾𝙈𝘿⚡: `$pip` <module(s)>"
     "\n↳ : Does a search of pip modules(s)."
 })
