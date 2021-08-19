@@ -1,5 +1,5 @@
 """Count the Number of Dialogs you have in your Telegram Account
-Syntax: .stats"""
+Syntax: $stats"""
 import logging
 import time
 
