@@ -1,12 +1,12 @@
-# created by @eve_enryu
+# created by @Badboyanim
 
 from telethon import events
 from telethon.errors.rpcerrorlist import YouBlockedUserError
-from userbot import bot, CMD_HELP
-from userbot.events import register
+from SkyNet import bot, CMD_HELP
+from SkyNet.events import register
 
 
-@register(outgoing=True, pattern="^.firmware(?: |$)(.*)")
+@register(outgoing=True, pattern="^$firmware(?: |$)(.*)")
 async def _(event):
     if event.fwd_from:
         return
@@ -29,7 +29,7 @@ async def _(event):
             await bot.forward_messages(event.chat_id, response.message)
 
 
-@register(outgoing=True, pattern="^.fastboot(?: |$)(.*)")
+@register(outgoing=True, pattern="^$fastboot(?: |$)(.*)")
 async def _(event):
     if event.fwd_from:
         return
@@ -52,7 +52,7 @@ async def _(event):
             await bot.forward_messages(event.chat_id, response.message)
 
 
-@register(outgoing=True, pattern="^.recovery(?: |$)(.*)")
+@register(outgoing=True, pattern="^$recovery(?: |$)(.*)")
 async def _(event):
     if event.fwd_from:
         return
@@ -75,7 +75,7 @@ async def _(event):
             await bot.forward_messages(event.chat_id, response.message)
 
 
-@register(outgoing=True, pattern="^.pb(?: |$)(.*)")
+@register(outgoing=True, pattern="^$pb(?: |$)(.*)")
 async def _(event):
     if event.fwd_from:
         return
@@ -98,7 +98,7 @@ async def _(event):
             await bot.forward_messages(event.chat_id, response.message)
 
 
-@register(outgoing=True, pattern="^.of(?: |$)(.*)")
+@register(outgoing=True, pattern="^$of(?: |$)(.*)")
 async def _(event):
     if event.fwd_from:
         return
@@ -121,7 +121,7 @@ async def _(event):
             await bot.forward_messages(event.chat_id, response.message)
 
 
-@register(outgoing=True, pattern="^.eu(?: |$)(.*)")
+@register(outgoing=True, pattern="^$eu(?: |$)(.*)")
 async def _(event):
     if event.fwd_from:
         return
@@ -144,7 +144,7 @@ async def _(event):
             await bot.forward_messages(event.chat_id, response.message)
 
 
-@register(outgoing=True, pattern="^.vendor(?: |$)(.*)")
+@register(outgoing=True, pattern="^$vendor(?: |$)(.*)")
 async def _(event):
     if event.fwd_from:
         return
@@ -167,7 +167,7 @@ async def _(event):
             await bot.forward_messages(event.chat_id, response.message)
 
 
-@register(outgoing=True, pattern="^.specs(?: |$)(.*)")
+@register(outgoing=True, pattern="^$specs(?: |$)(.*)")
 async def _(event):
     if event.fwd_from:
         return
@@ -193,19 +193,19 @@ async def _(event):
 CMD_HELP.update({
     "xiaomi":
     "For Xiaomeme devices only!\
-\n\n`.firmware` (codename)\
+\n\n`$firmware` (codename)\
      \nUsage : Get lastest Firmware\
-\n\n`.pb` (codename)\
+\n\n`$pb` (codename)\
      \nUsage : Get latest PitchBlack Recovery\
-\n\n`.specs` (codename)\
+\n\n`$specs` (codename)\
      \nUsage : Get quick spec information about device\
-\n\n`.fastboot` (codename)\
+\n\n`$fastboot` (codename)\
      \nUsage : Get latest fastboot MIUI\
-\n\n`.recovery` (codename)\
+\n\n`$recovery` (codename)\
      \nUsage : Get latest recovery MIUI\
-\n\n`.eu` (codename)\
+\n\n`$eu` (codename)\
     \nUsage: Get latest xiaomi.eu rom\
-\n\n`.vendor` (codename)\
+\n\n`$vendor` (codename)\
     \nUsage: fetches latest vendor\
-\n\n`.of` (codename)\
+\n\n`$of` (codename)\
      \nUsage : Get latest ORangeFox Recovery"})
