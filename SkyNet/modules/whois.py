@@ -14,11 +14,11 @@ from telethon.tl.functions.users import GetFullUserRequest
 from telethon.tl.types import MessageEntityMentionName
 from telethon.utils import get_input_location
 
-from userbot import CMD_HELP, TEMP_DOWNLOAD_DIRECTORY
-from userbot.events import register
+from SkyNet import CMD_HELP, TEMP_DOWNLOAD_DIRECTORY
+from SkyNet.events import register
 
 
-@register(pattern=r"^\.whois(?: |$)(.*)", outgoing=True)
+@register(pattern=r"^\$whois(?: |$)(.*)", outgoing=True)
 async def who(event):
 
     await event.edit(
@@ -164,7 +164,7 @@ async def fetch_info(replied_user, event):
 CMD_HELP.update(
     {
         "whois": "✘ Pʟᴜɢɪɴ : Who is"
-        "\n\n⚡𝘾𝙈𝘿⚡: `.whois <Username/Reply> to someones text with .whois`"
+        "\n\n⚡𝘾𝙈𝘿⚡: `$whois <Username/Reply> to someones text with $whois`"
         "\n↳ : Gets info of an user."
     }
 )
