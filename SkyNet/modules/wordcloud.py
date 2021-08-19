@@ -14,11 +14,11 @@ from scipy.ndimage import gaussian_gradient_magnitude
 from telethon.tl.types import DocumentAttributeFilename
 from wordcloud import ImageColorGenerator, WordCloud
 
-from userbot import CMD_HELP, bot
-from userbot.events import register
+from SkyNet import CMD_HELP, bot
+from SkyNet.events import register
 
 
-@register(outgoing=True, pattern=r"^\.(wc)$")
+@register(outgoing=True, pattern=r"^\$(wc)$")
 async def _(event):
     if not event.reply_to_msg_id:
         await event.edit("`Reply to Any media..`")
@@ -93,5 +93,5 @@ async def _(event):
 
 
 CMD_HELP.update({"wordcloud": "✘ Pʟᴜɢɪɴ : WordCloud"
-                 "\n\n⚡𝘾𝙈𝘿⚡: `.wc` <Reply Any Media>"
+                 "\n\n⚡𝘾𝙈𝘿⚡: `$wc` <Reply Any Media>"
                  "\n↳ : Create Wordcloud Art From Media\n\n"})
