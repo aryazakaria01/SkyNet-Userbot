@@ -2,10 +2,10 @@ from telethon.tl.types import (
     ChannelParticipantsKicked,
 )
 
-from userbot.events import register
+from SkyNet.events import register
 
 
-@register(outgoing=True, pattern=r"^\.allunban(?: |$)(.*)", groups_only=True)
+@register(outgoing=True, pattern=r"^\$allunban(?: |$)(.*)", groups_only=True)
 async def _(event):
     await event.edit("Sedang Mencari List Banning...")
     p = 0
