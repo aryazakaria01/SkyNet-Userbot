@@ -13,11 +13,11 @@ from telethon.errors import ChatAdminRequiredError
 from telethon.events import ChatAction
 from telethon.tl.types import ChannelParticipantsAdmins
 
-from userbot.modules.sql_helper.globalban_sql import get_gbanuser, is_gbanned
-from userbot.utils import edit_or_reply
-from userbot.events import register
+from SkyNet.modules.sql_helper.globalban_sql import get_gbanuser, is_gbanned
+from SkyNet.utils import edit_or_reply
+from SkyNet.events import register
 
-from userbot import (
+from SkyNet import (
     ANTISPAMBOT_BAN,
     BOTLOG,
     BOTLOG_CHATID,
@@ -147,7 +147,7 @@ if ANTISPAMBOT_BAN:
             )
 
 
-@register(outgoing=True, groups_only=True, pattern=r"^\.cascheck$")
+@register(outgoing=True, groups_only=True, pattern=r"^\$cascheck$")
 async def caschecker(event):
     "Searches For CAS (Combot Antispam Service) Banned Users in Group and Shows You The List."
     text = ""
@@ -184,7 +184,7 @@ async def caschecker(event):
     await lynxevent.edit(text)
 
 
-@register(outgoing=True, groups_only=True, pattern=r"^\.spamcheck$")
+@register(outgoing=True, groups_only=True, pattern=r"^\$spamcheck$")
 async def caschecker(event):
     "Searches for Spamwatch Federation Banned Users in Group and Shows You The List"
     text = ""
@@ -242,11 +242,11 @@ def spamchecker(user_id):
 CMD_HELP.update(
     {
         "anti_spambot": "✘ Pʟᴜɢɪɴ : Anti Spammer(s)"
-        "\n\n⚡𝘾𝙈𝘿⚡: `.caschecker`"
+        "\n\n⚡𝘾𝙈𝘿⚡: `$caschecker`"
         "\n↳ : To check the users who are banned in cas."
         "\n\n**Note:** When you use this cmd it will check every user in the group where you used whether"
         "he is banned in cas (combat antispam service) and will show there names if they are flagged in cas"
-        "\n\n⚡𝘾𝙈𝘿⚡: `.spamcheck`"
+        "\n\n⚡𝘾𝙈𝘿⚡: `$spamcheck`"
         "\n↳ : To check the users who are banned in spamwatch."
         "\n\n**Note:** When you use this command it will check every user in the group where you used whether"
         "he is banned in spamwatch federation and will show there names if they are banned in spamwatch federation"
