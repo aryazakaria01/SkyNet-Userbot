@@ -50,7 +50,7 @@ async def yardim(event):
                                 "\n`The module has been stopped.`")
 
 
-@register(outgoing=True, pattern=r"^\$alynx")
+@register(outgoing=True, pattern=r"^\$asky")
 async def alyynx(event):
     botusername = BOT_USERNAME
     if botusername and BOT_TOKEN:
