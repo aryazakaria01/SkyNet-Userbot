@@ -5,15 +5,15 @@
 #
 
 from time import sleep
-from userbot import CMD_HELP, bot
-from userbot.events import register
+from SkyNet import CMD_HELP, bot
+from SkyNet.events import register
 from telethon import events
 import asyncio
 
 
 # ------------------------------------------------- TEXT ART ------------------------------------------------- #
 
-ARTLYNX = """
+ARTSKYNET = """
  __    _       _  _ _ _    __  __      __
 |  |  \\  \\   /  /|     \\  |  |\\   \\  /   /
 |  |   \\  \\_/  / |   \\  \\ |  | \\   \\/   /
@@ -24,7 +24,7 @@ ARTLYNX = """
 """
 
 
-ASCIILYNX = """
+ASCIISKYNET = """
 ██╗░░░██╗░░░██╗███╗░░██╗██╗░░██╗
 ██║░░░╚██╗░██╔╝████╗░██║╚██╗██╔╝
 ██║░░░░╚████╔╝░██╔██╗██║░╚███╔╝░
@@ -37,17 +37,17 @@ ASCIILYNX = """
 # ------------------------------------------------- TEXT ART ------------------------------------------------- #
 
 
-@register(outgoing=True, pattern="^\\.1D$")
+@register(outgoing=True, pattern="^\\$1D$")
 async def artlynx(event):
-    await event.edit(ARTLYNX)
+    await event.edit(ARTSKYNET)
 
 
-@register(outgoing=True, pattern="^\\.3D$")
+@register(outgoing=True, pattern="^\\$3D$")
 async def asciilynx(event):
-    await event.edit(ASCIILYNX)
+    await event.edit(ASCIISKYNET)
 
 
-@register(outgoing=True, pattern="^\\.hua$")
+@register(outgoing=True, pattern="^\\$hua$")
 async def koc(e):
     if not e.text[0].isalpha() and e.text[0] not in ("/", "#", "@", "!"):
         await e.edit("أ‿أ")
@@ -82,7 +82,7 @@ async def koc(e):
         await e.edit("༼ ༎ຶ ෴ ༎ຶ༽")
 
 
-@register(outgoing=True, pattern='^\\.huh(?: |$)(.*)')
+@register(outgoing=True, pattern='^\\$huh(?: |$)(.*)')
 async def typewriter(typew):
     typew.pattern_match.group(1)
     await typew.edit("`\n(\\_/)`"
@@ -170,7 +170,7 @@ async def _(event):
             await event.edit(animation_chars[i % 11])
 
 
-@register(outgoing=True, pattern='^\\.nah(?: |$)(.*)')
+@register(outgoing=True, pattern='^\\$nah(?: |$)(.*)')
 async def typewriter(typew):
     typew.pattern_match.group(1)
     await typew.edit("`\n(\\_/)`"
@@ -217,16 +217,16 @@ async def _(event):
 
 CMD_HELP.update({
     "animasi3": "✘ Pʟᴜɢɪɴ : Animasi 3\
-    \n\n⚡𝘾𝙈𝘿⚡: `.nah` ; `.huh` ; `.owner`\
+    \n\n⚡𝘾𝙈𝘿⚡: `$nah` ; `$huh` ; `$owner`\
     \n↳ : Cobain Aja Sendiri.\
-    \n\n⚡𝘾𝙈𝘿⚡: `.bunga` ; `.buah`\
+    \n\n⚡𝘾𝙈𝘿⚡: `$bunga` ; `$buah`\
     \n↳ : Coba saja ketik su.\
-    \n\n⚡𝘾𝙈𝘿⚡: `.waktu`\
+    \n\n⚡𝘾𝙈𝘿⚡: `$waktu`\
     \n↳ : Ketik Sendiri.\
-    \n\n⚡𝘾𝙈𝘿⚡: `.hua`\
+    \n\n⚡𝘾𝙈𝘿⚡: `$hua`\
     \n↳ : Nangis.\
-    \n\n⚡𝘾𝙈𝘿⚡: `.ceritacinta` & `.canda`\
+    \n\n⚡𝘾𝙈𝘿⚡: `$ceritacinta` & `$canda`\
     \n↳ : lihat sendiri.\
-    \n\n⚡𝘾𝙈𝘿⚡: `.1D or .3D`\
-    \n↳ : Art Text Lynx."
+    \n\n⚡𝘾𝙈𝘿⚡: `$1D or $3D`\
+    \n↳ : Art Text SkyNet."
 })
