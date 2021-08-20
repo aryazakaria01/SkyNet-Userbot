@@ -3,15 +3,15 @@ import os
 from PIL import Image
 from telegraph import Telegraph, exceptions, upload_file
 
-from userbot import CMD_HELP, TEMP_DOWNLOAD_DIRECTORY, bot
-from userbot.events import register
+from SkyNet import CMD_HELP, TEMP_DOWNLOAD_DIRECTORY, bot
+from SkyNet.events import register
 
 telegraph = Telegraph()
 r = telegraph.create_account(short_name="telegraph")
 auth_url = r["auth_url"]
 
 
-@register(outgoing=True, pattern=r"^\.tg (m|t)$")
+@register(outgoing=True, pattern=r"^\$tg (m|t)$")
 async def telegraphs(graph):
     """For .telegraph command, upload media & text to telegraph site."""
     await graph.edit("`Processing...`")
@@ -77,5 +77,5 @@ def resize_image(image):
     im.save(image, "PNG")
 
 
-CMD_HELP.update({"telegraph": "⚡𝘾𝙈𝘿⚡: `.tg` <m or t>"
+CMD_HELP.update({"telegraph": "⚡𝘾𝙈𝘿⚡: `$tg` <m or t>"
                  "\n↳ : Mengunggah t(Teks) Atau m(Media) Ke Telegraph."})
