@@ -4,15 +4,15 @@ import asyncio
 from telethon.tl.functions.users import GetFullUserRequest
 from telethon.tl.types import ChannelParticipantsAdmins
 #from userbot.utils import admin_cmd
-from userbot.events import register
-from userbot import ALIVE_NAME, CMD_HELP, bot
+from SkyNet.events import register
+from SkyNet import ALIVE_NAME, CMD_HELP, bot
 
 # ================= CONSTANT =================
 DEFAULTUSER = str(ALIVE_NAME) if ALIVE_NAME else uname().node
 # ============================================
 
 
-@register(outgoing=True, pattern="^.fgban(?: |$)(.*)")
+@register(outgoing=True, pattern="^$fgban(?: |$)(.*)")
 async def gbun(event):
     if event.fwd_from:
         return
@@ -64,7 +64,7 @@ async def gbun(event):
 # Installing in Lynx-Userbot
 
 
-@register(outgoing=True, pattern="^.ftyping(?: |$)(.*)")
+@register(outgoing=True, pattern="^$ftyping(?: |$)(.*)")
 async def _(event):
     t = event.pattern_match.group(1)
     if not (t or t.isdigit()):
@@ -82,7 +82,7 @@ async def _(event):
         await asyncio.sleep(t)
 
 
-@register(outgoing=True, pattern="^.faudio(?: |$)(.*)")
+@register(outgoing=True, pattern="^$faudio(?: |$)(.*)")
 async def _(event):
     t = event.pattern_match.group(1)
     if not (t or t.isdigit()):
@@ -100,7 +100,7 @@ async def _(event):
         await asyncio.sleep(t)
 
 
-@register(outgoing=True, pattern="^.fvideo(?: |$)(.*)")
+@register(outgoing=True, pattern="^$fvideo(?: |$)(.*)")
 async def _(event):
     t = event.pattern_match.group(1)
     if not (t or t.isdigit()):
@@ -118,7 +118,7 @@ async def _(event):
         await asyncio.sleep(t)
 
 
-@register(outgoing=True, pattern="^.fgame(?: |$)(.*)")
+@register(outgoing=True, pattern="^$fgame(?: |$)(.*)")
 async def _(event):
     t = event.pattern_match.group(1)
     if not (t or t.isdigit()):
@@ -138,13 +138,13 @@ async def _(event):
 
 CMD_HELP.update({
     "fakeaction": "✘ Pʟᴜɢɪɴ : Fake Action\
-    \n\n⚡𝘾𝙈𝘿⚡: `.fgban` <Reply> & <Alasan/Reason>\
+    \n\n⚡𝘾𝙈𝘿⚡: `$fgban` <Reply> & <Alasan/Reason>\
     \n↳ : Melakukan Fake Global Banned.\
-    \n\n⚡𝘾𝙈𝘿⚡: `.ftyping`\
+    \n\n⚡𝘾𝙈𝘿⚡: `$ftyping`\
     \n↳ : Seolah-olah Anda Sedang Mengetik Di Dalam Group, Padahal Tidak.\
-    \n\n⚡𝘾𝙈𝘿⚡: `.faudio`\
+    \n\n⚡𝘾𝙈𝘿⚡: `$faudio`\
     \n↳ : Seolah-olah Anda Sedang Mengirim Audio Di Dalam Group, Padahal Tidak.\
-    \n\n⚡𝘾𝙈𝘿⚡: `.fvideo`\
+    \n\n⚡𝘾𝙈𝘿⚡: `$fvideo`\
     \n↳ : Seolah-olah Anda Sedang Mengirim Video Di Dalam Group, Padahal Tidak.\
-    \n\n⚡𝘾𝙈𝘿⚡: `.fgame`\
+    \n\n⚡𝘾𝙈𝘿⚡: `$fgame`\
     \n↳ : Seolah-olah Anda Sedang Memainkan Game Di Dalam Group, Padahal Tidak."})
