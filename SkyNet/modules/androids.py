@@ -15,9 +15,9 @@ from aiohttp import ClientSession
 from bs4 import BeautifulSoup
 from requests import get
 
-from userbot import CMD_HELP, TEMP_DOWNLOAD_DIRECTORY
-from userbot.events import register
-from userbot.utils import chrome, human_to_bytes, humanbytes, md5, time_formatter
+from SkyNet import CMD_HELP, TEMP_DOWNLOAD_DIRECTORY
+from SkyNet.events import register
+from SkyNet.utils import chrome, human_to_bytes, humanbytes, md5, time_formatter
 
 GITHUB = "https://github.com"
 DEVICES_DATA = (
@@ -26,7 +26,7 @@ DEVICES_DATA = (
 )
 
 
-@register(outgoing=True, pattern=r"^\.magisk$")
+@register(outgoing=True, pattern=r"^\$magisk$")
 async def magisk(request):
     """magisk latest releases"""
     magisk_dict = {
@@ -50,7 +50,7 @@ async def magisk(request):
     await request.edit(releases)
 
 
-@register(outgoing=True, pattern=r"^\.device(?: |$)(\S*)")
+@register(outgoing=True, pattern=r"^\$device(?: |$)(\S*)")
 async def device_info(request):
     """get android device basic info from its codename"""
     textx = await request.get_reply_message()
@@ -80,7 +80,7 @@ async def device_info(request):
     await request.edit(reply)
 
 
-@register(outgoing=True, pattern=r"^\.codename(?: |)([\S]*)(?: |)([\s\S]*)")
+@register(outgoing=True, pattern=r"^\$codename(?: |)([\S]*)(?: |)([\s\S]*)")
 async def codename_info(request):
     """search for android codename"""
     textx = await request.get_reply_message()
@@ -117,7 +117,7 @@ async def codename_info(request):
     await request.edit(reply)
 
 
-@register(outgoing=True, pattern=r"^\.pixeldl(?: |$)(.*)")
+@register(outgoing=True, pattern=r"^\$pixeldl(?: |$)(.*)")
 async def download_api(dl):
     await dl.edit("`Collecting information...`")
     URL = dl.pattern_match.group(1)
@@ -167,7 +167,7 @@ async def download_api(dl):
     complete = False
     start = time.time()
     while complete is False:
-        if os.path.isfile(file_path + ".crdownload"):
+        if os.path.isfile(file_path + "$crdownload"):
             try:
                 downloaded = os.stat(file_path + ".crdownload").st_size
                 status = "Downloading"
@@ -224,7 +224,7 @@ async def download_api(dl):
     return
 
 
-@register(outgoing=True, pattern=r"^\.specs(?: |)([\S]*)(?: |)([\s\S]*)")
+@register(outgoing=True, pattern=r"^\$specs(?: |)([\S]*)(?: |)([\s\S]*)")
 async def devices_specifications(request):
     """Mobile devices specifications"""
     textx = await request.get_reply_message()
@@ -283,7 +283,7 @@ async def devices_specifications(request):
     await request.edit(reply)
 
 
-@register(outgoing=True, pattern=r"^\.twrp(?: |$)(\S*)")
+@register(outgoing=True, pattern=r"^\$twrp(?: |$)(\S*)")
 async def twrp(request):
     """get android device twrp"""
     textx = await request.get_reply_message()
@@ -293,7 +293,7 @@ async def twrp(request):
     elif textx:
         device = textx.text.split(" ")[0]
     else:
-        return await request.edit("`Usage: .twrp <codename>`")
+        return await request.edit("`Usage: $twrp <codename>`")
     url = get(f"https://dl.twrp.me/{device}/")
     if url.status_code == 404:
         reply = f"`Couldn't find twrp downloads for {device}!`\n"
@@ -315,17 +315,17 @@ async def twrp(request):
 CMD_HELP.update(
     {
         "android": "✘ Pʟᴜɢɪɴ : Android"
-        "\n\n⚡𝘾𝙈𝘿⚡: `.magisk`"
+        "\n\n⚡𝘾𝙈𝘿⚡: `$magisk`"
         "\nGet latest Magisk releases"
-        "\n\n⚡𝘾𝙈𝘿⚡: `.device <codename>`"
+        "\n\n⚡𝘾𝙈𝘿⚡: `$device <codename>`"
         "\n↳ : Get info about android device codename or model."
-        "\n\n⚡𝘾𝙈𝘿⚡: `.codename <brand> <device>`"
+        "\n\n⚡𝘾𝙈𝘿⚡: `$codename <brand> <device>`"
         "\n↳ : Search for android device codename."
-        "\n\n⚡𝘾𝙈𝘿⚡: `.pixeldl` **<download.pixelexperience.org>**"
+        "\n\n⚡𝘾𝙈𝘿⚡: `$pixeldl` **<download.pixelexperience.org>**"
         "\n↳ : Download pixel experience ROM into your userbot server."
-        "\n\n⚡𝘾𝙈𝘿⚡: `.specs <brand> <device>`"
+        "\n\n⚡𝘾𝙈𝘿⚡: `$specs <brand> <device>`"
         "\n↳ : Get device specifications info."
-        "\n\n⚡𝘾𝙈𝘿⚡: `.twrp <codename>`"
+        "\n\n⚡𝘾𝙈𝘿⚡: `$twrp <codename>`"
         "\n↳ : Get latest twrp download for android device."
     }
 )
