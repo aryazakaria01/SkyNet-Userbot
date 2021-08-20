@@ -3,14 +3,14 @@
 
 import os
 from PIL import Image, ImageOps
-from userbot import CMD_HELP, TEMP_DOWNLOAD_DIRECTORY, bot
-from userbot.events import register
-from userbot.utils.tools import check_media
+from SkyNet import CMD_HELP, TEMP_DOWNLOAD_DIRECTORY, bot
+from SkyNet.events import register
+from SkyNet.utils.tools import check_media
 
 Converted = TEMP_DOWNLOAD_DIRECTORY + "sticker.webp"
 
 
-@register(outgoing=True, pattern=r"^\.(mirror|flip|ghost|bw|poster)$")
+@register(outgoing=True, pattern=r"^\$(mirror|flip|ghost|bw|poster)$")
 async def transform(event):
     if not event.reply_to_msg_id:
         await event.edit("`Reply to Any media..`")
@@ -55,7 +55,7 @@ async def transform(event):
         return
 
 
-@register(outgoing=True, pattern=r"^\.rotate(?: |$)(.*)")
+@register(outgoing=True, pattern=r"^\$rotate(?: |$)(.*)")
 async def rotate(event):
     if not event.reply_to_msg_id:
         await event.edit("`Reply to any media..`")
@@ -96,17 +96,17 @@ async def rotate(event):
 CMD_HELP.update(
     {
         "transform": "✘ Pʟᴜɢɪɴ : Transform"
-        "\n\n⚡𝘾𝙈𝘿⚡: `.ghost`"
+        "\n\n⚡𝘾𝙈𝘿⚡: `$ghost`"
         "\n↳ : Enchance your image to become a ghost!."
-        "\n\n⚡𝘾𝙈𝘿⚡: `.flip`"
+        "\n\n⚡𝘾𝙈𝘿⚡: `$flip`"
         "\n↳ : To flip your image"
-        "\n\n⚡𝘾𝙈𝘿⚡: `.mirror`"
+        "\n\n⚡𝘾𝙈𝘿⚡: `$mirror`"
         "\n↳ : To mirror your image"
-        "\n\n⚡𝘾𝙈𝘿⚡: `.bw`"
+        "\n\n⚡𝘾𝙈𝘿⚡: `$bw`"
         "\n↳ : To Change your colorized image to b/w image!"
-        "\n\n⚡𝘾𝙈𝘿⚡: `.poster`"
+        "\n\n⚡𝘾𝙈𝘿⚡: `$poster`"
         "\n↳ : To posterize your image!"
-        "\n\n⚡𝘾𝙈𝘿⚡: `.rotate <value>`"
+        "\n\n⚡𝘾𝙈𝘿⚡: `$rotate <value>`"
         "\n↳ : To rotate your image\n* The value is range 1-360 if not it'll give default value which is 90"
     }
 )
