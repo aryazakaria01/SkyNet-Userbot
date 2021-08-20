@@ -26,8 +26,8 @@ from telethon.tl.functions.users import GetFullUserRequest
 from telethon.tl.types import MessageEntityMentionName
 from telethon.utils import get_input_location
 
-from userbot import bot, CMD_HELP, TEMP_DOWNLOAD_DIRECTORY, DEFAULTUSER
-from userbot.events import register
+from SkyNet import bot, CMD_HELP, TEMP_DOWNLOAD_DIRECTORY, DEFAULTUSER
+from SkyNet.events import register
 
 # ====================== CONSTANT ===============================
 INVALID_MEDIA = "```Mohon Maaf, Media Tidak Valid.```"
@@ -43,7 +43,7 @@ USERNAME_TAKEN = "```Mohon Maaf, Username Itu Sudah Ada Yang Menggunakannya.```"
 # ===============================================================
 
 
-@register(outgoing=True, pattern="^.reserved$")
+@register(outgoing=True, pattern="^$reserved$")
 async def mine(event):
     """ For .reserved command, get a list of your reserved usernames. """
     result = await bot(GetAdminedPublicChannelsRequest())
@@ -53,7 +53,7 @@ async def mine(event):
     await event.edit(output_str)
 
 
-@register(outgoing=True, pattern="^.name")
+@register(outgoing=True, pattern="^$name")
 async def update_name(name):
     """ For .name command, change your name in Telegram. """
     newname = name.text[6:]
@@ -70,7 +70,7 @@ async def update_name(name):
     await name.edit(NAME_OK)
 
 
-@register(outgoing=True, pattern="^.setpfp$")
+@register(outgoing=True, pattern="^$setpfp$")
 async def set_profilepic(propic):
     """ For .profilepic command, change your profile picture in Telegram. """
     replymsg = await propic.get_reply_message()
@@ -98,7 +98,7 @@ async def set_profilepic(propic):
             await propic.edit(INVALID_MEDIA)
 
 
-@register(outgoing=True, pattern="^.setbio (.*)")
+@register(outgoing=True, pattern="^$setbio (.*)")
 async def set_biograph(setbio):
     """ For .setbio command, set a new bio for your profile in Telegram. """
     newbio = setbio.pattern_match.group(1)
@@ -106,7 +106,7 @@ async def set_biograph(setbio):
     await setbio.edit(BIO_SUCCESS)
 
 
-@register(outgoing=True, pattern="^.username (.*)")
+@register(outgoing=True, pattern="^$username (.*)")
 async def update_username(username):
     """ For .username command, set a new username in Telegram. """
     newusername = username.pattern_match.group(1)
@@ -117,7 +117,7 @@ async def update_username(username):
         await username.edit(USERNAME_TAKEN)
 
 
-@register(outgoing=True, pattern="^.count$")
+@register(outgoing=True, pattern="^$count$")
 async def count(event):
     """ For .count command, get profile stats. """
     u = 0
@@ -155,7 +155,7 @@ async def count(event):
     await event.edit(result)
 
 
-@register(outgoing=True, pattern=r"^.delpfp")
+@register(outgoing=True, pattern=r"^$delpfp")
 async def remove_profilepic(delpfp):
     """ For .delpfp command, delete your current profile picture in Telegram. """
     group = delpfp.text[8:]
@@ -182,7 +182,7 @@ async def remove_profilepic(delpfp):
         f"☑️`Berhasil Menghapus {len(input_photos)} Foto Profile.`")
 
 
-@register(pattern=".data(?: |$)(.*)", outgoing=True)
+@register(pattern="$data(?: |$)(.*)", outgoing=True)
 async def who(event):
 
     await event.edit(
@@ -313,20 +313,20 @@ async def fetch_info(replied_user, event):
 
 CMD_HELP.update({
     "profile": "✘ Pʟᴜɢɪɴ : Profile\
-\n\n⚡𝘾𝙈𝘿⚡: `.username` <Username Baru>\
+\n\n⚡𝘾𝙈𝘿⚡: `$username` <Username Baru>\
 \n↳ : Ganti Username Telegram.\
-\n\n⚡𝘾𝙈𝘿⚡: `.name` <NamaDepan> Atau `.name` <NamaDepan> <NamaBelakang>\
+\n\n⚡𝘾𝙈𝘿⚡: `$name` <NamaDepan> Atau `.name` <NamaDepan> <NamaBelakang>\
 \n↳ : Ganti Nama Telegram Anda\
-\n\n⚡𝘾𝙈𝘿⚡: `.setpfp`\
+\n\n⚡𝘾𝙈𝘿⚡: `$setpfp`\
 \n↳ : Balas Ke Gambar Ketik .setpfp Untuk Mengganti Foto Profile Telegram.\
-\n\n⚡𝘾𝙈𝘿⚡: `.setbio` <New Bio>\
+\n\n⚡𝘾𝙈𝘿⚡: `$setbio` <New Bio>\
 \n↳ : Untuk Mengganti Bio Telegram.\
-\n\n⚡𝘾𝙈𝘿⚡: `.delpfp` Atau `.delpfp` <Count>/<all>\
+\n\n⚡𝘾𝙈𝘿⚡: `$delpfp` Atau `$delpfp` <Count>/<all>\
 \n↳ : Menghapus Foto Profile Telegram.\
-\n\n⚡𝘾𝙈𝘿⚡: `.reserved`\
+\n\n⚡𝘾𝙈𝘿⚡: `$reserved`\
 \n↳ : Menampilkan Data Yang Anda Simpan atau Buat.\
-\n\n⚡𝘾𝙈𝘿⚡: `.count`\
+\n\n⚡𝘾𝙈𝘿⚡: `$count`\
 \n↳ : Menghitung Grup, Chat, Bot etc...\
-\n\n⚡𝘾𝙈𝘿⚡: `.data` <Username> Atau Reply Ke Pesan Ketik `.data`\
+\n\n⚡𝘾𝙈𝘿⚡: `$data` <Username> Atau Reply Ke Pesan Ketik `$data`\
 \n↳ : Mendapatkan Informasi Pengguna."
 })
