@@ -6,11 +6,11 @@
 import asyncio
 from asyncio import sleep
 
-from userbot import BOTLOG, BOTLOG_CHATID, CMD_HELP
-from userbot.events import register
+from SkyNet import BOTLOG, BOTLOG_CHATID, CMD_HELP
+from SkyNet.events import register
 
 
-@register(outgoing=True, pattern=r"^\.cspam (.*)")
+@register(outgoing=True, pattern=r"^\$cspam (.*)")
 async def tmeme(e):
     cspam = str(e.pattern_match.group(1))
     message = cspam.replace(" ", "")
@@ -23,7 +23,7 @@ async def tmeme(e):
         )
 
 
-@register(outgoing=True, pattern=r"^\.wspam (.*)")
+@register(outgoing=True, pattern=r"^\$wspam (.*)")
 async def t_meme(e):
     wspam = str(e.pattern_match.group(1))
     message = wspam.split()
@@ -36,7 +36,7 @@ async def t_meme(e):
         )
 
 
-@register(outgoing=True, pattern=r"^\.spam (.*)")
+@register(outgoing=True, pattern=r"^\$spam (.*)")
 async def spammers(e):
     counter = int(e.pattern_match.group(1).split(" ", 1)[0])
     spam_message = str(e.pattern_match.group(1).split(" ", 1)[1])
@@ -48,7 +48,7 @@ async def spammers(e):
         )
 
 
-@register(outgoing=True, pattern=r"^\.picspam")
+@register(outgoing=True, pattern=r"^\$picspam")
 async def tiny_pic_spam(e):
     message = e.text
     text = message.split()
@@ -63,7 +63,7 @@ async def tiny_pic_spam(e):
         )
 
 
-@register(outgoing=True, pattern=r"^\.delayspam (.*)")
+@register(outgoing=True, pattern=r"^\$delayspam (.*)")
 async def spammer(e):
     spamDelay = float(e.pattern_match.group(1).split(" ", 2)[0])
     counter = int(e.pattern_match.group(1).split(" ", 2)[1])
@@ -81,15 +81,15 @@ async def spammer(e):
 CMD_HELP.update(
     {
         "spam": "✘ Pʟᴜɢɪɴ : Spamming"
-        "\n\n⚡𝘾𝙈𝘿⚡: `.cspam <Text>`"
+        "\n\n⚡𝘾𝙈𝘿⚡: `$cspam <Text>`"
         "\n↳ : Spam the text letter by letter."
-        "\n\n⚡𝘾𝙈𝘿⚡: `.spam <Count> <Text>`"
+        "\n\n⚡𝘾𝙈𝘿⚡: `$spam <Count> <Text>`"
         "\n↳ : Floods text in the chat !!"
-        "\n\n⚡𝘾𝙈𝘿⚡: `.wspam <Text>`"
+        "\n\n⚡𝘾𝙈𝘿⚡: `$wspam <Text>`"
         "\n↳ : Spam the text word by word."
-        "\n\n⚡𝘾𝙈𝘿⚡: `.picspam <Count> <Link to Image/gif>`"
+        "\n\n⚡𝘾𝙈𝘿⚡: `$picspam <Count> <Link to Image/gif>`"
         "\n↳ : As if text spam was not enough !!"
-        "\n\n⚡𝘾𝙈𝘿⚡: `.delayspam <Delay> <Count> <Text>`"
+        "\n\n⚡𝘾𝙈𝘿⚡: `$delayspam <Delay> <Count> <Text>`"
         "\n↳ : .bigspam but with custom delay."
         "\n\n\n**NOTE :** Spam at your own risk !!"
     }
