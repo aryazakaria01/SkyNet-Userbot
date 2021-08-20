@@ -27,9 +27,9 @@ from telethon import functions, types
 from telethon.errors.rpcerrorlist import YouBlockedUserError
 from telethon.tl.types import DocumentAttributeFilename
 
-from userbot import CMD_HELP, TEMP_DOWNLOAD_DIRECTORY, bot
-from userbot.events import register
-from userbot.utils import progress
+from SkyNet import CMD_HELP, TEMP_DOWNLOAD_DIRECTORY, bot
+from SkyNet.events import register
+from SkyNet.utils import progress
 
 Glitched = TEMP_DOWNLOAD_DIRECTORY + "glitch.gif"
 
@@ -50,7 +50,7 @@ EMOJI_PATTERN = re.compile(
 )
 
 
-@register(outgoing=True, pattern=r"^\.glitch(?: |$)(.*)")
+@register(outgoing=True, pattern=r"^\$glitch(?: |$)(.*)")
 async def glitch(event):
     if not event.reply_to_msg_id:
         await event.edit("`I Wont Glitch A Ghost!`")
@@ -136,7 +136,7 @@ async def glitch(event):
     os.system("rm *.tgs *.mp4")
 
 
-@register(outgoing=True, pattern=r"^\.mmf (.*)")
+@register(outgoing=True, pattern=r"^\$mmf (.*)")
 async def memify(event):
     reply_msg = await event.get_reply_message()
     input_str = event.pattern_match.group(1)
@@ -275,7 +275,7 @@ async def take_screen_shot(
     return thumb_image_path if os.path.exists(thumb_image_path) else err
 
 
-@register(outgoing=True, pattern=r"^\.df(:? |$)([1-8])?")
+@register(outgoing=True, pattern=r"^\$df(:? |$)([1-8])?")
 async def fryerrr(fry):
     await fry.edit("`Sending information...`")
     level = fry.pattern_match.group(2)
@@ -335,7 +335,7 @@ async def fryerrr(fry):
         await fry.client.delete_messages(conv.chat_id, [msg.id])
 
 
-@register(pattern=r"^\.deepfry(?: |$)(.*)", outgoing=True)
+@register(pattern=r"^\$deepfry(?: |$)(.*)", outgoing=True)
 async def deepfryer(event):
     try:
         frycount = int(event.pattern_match.group(1))
@@ -433,10 +433,10 @@ async def deepfry(img: Image) -> Image:
 CMD_HELP.update(
     {
         "deepfry": "✘ Pʟᴜɢɪɴ : Deepfry"
-        "\n\n⚡𝘾𝙈𝘿⚡: `.df` or `.df` [level(1-8)]"
+        "\n\n⚡𝘾𝙈𝘿⚡: `$df` or `$df` [level(1-8)]"
         "\n↳ : deepfry image/sticker from the reply."
         "\n\n Use @image_deepfrybot"
-        "\n⚡𝘾𝙈𝘿⚡: `.deepfry`"
+        "\n⚡𝘾𝙈𝘿⚡: `$deepfry`"
         "\n↳ : Deepfry image"
     }
 )
@@ -444,7 +444,7 @@ CMD_HELP.update(
 CMD_HELP.update(
     {
         "glitch": "✘ Pʟᴜɢɪɴ : Glitch"
-        "\n\n⚡𝘾𝙈𝘿⚡: `.glitch <1-8>`"
+        "\n\n⚡𝘾𝙈𝘿⚡: `$glitch <1-8>`"
         "\n↳ : Reply Ke Sticker/Gambar.\nGlitch Level 1-8. Jika Tidak Membuat Level Maka Otomatis Default Level 2"
     }
 )
@@ -452,7 +452,7 @@ CMD_HELP.update(
 CMD_HELP.update(
     {
         "memify": "✘ Pʟᴜɢɪɴ : Memify"
-        "\n\n⚡𝘾𝙈𝘿⚡: `.mmf [Text Atas] ; [Text Bawah`]"
+        "\n\n⚡𝘾𝙈𝘿⚡: `$mmf [Text Atas] ; [Text Bawah`]"
         "\n↳ : Reply Ke Sticker/Image/Gif."
     }
 )
