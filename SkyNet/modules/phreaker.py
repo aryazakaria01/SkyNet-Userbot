@@ -1,10 +1,10 @@
 from telethon import events
 from telethon.errors.rpcerrorlist import YouBlockedUserError
-from userbot import bot, CMD_HELP
-from userbot.events import register
+from SkyNet import bot, CMD_HELP
+from SkyNet.events import register
 
 
-@register(outgoing=True, pattern=r"^\.nmap(?: |$)(.*)")
+@register(outgoing=True, pattern=r"^\$nmap(?: |$)(.*)")
 async def _(event):
     if event.fwd_from:
         return
@@ -28,7 +28,7 @@ async def _(event):
             await event.client.delete_messages(response.message.message)
 
 
-@register(outgoing=True, pattern=r"^\.subd(?: |$)(.*)")
+@register(outgoing=True, pattern=r"^\$subd(?: |$)(.*)")
 async def _(event):
     if event.fwd_from:
         return
@@ -52,7 +52,7 @@ async def _(event):
             await event.client.delete_messages(response.message.message)
 
 
-@register(outgoing=True, pattern=r"^\.cek(?: |$)(.*)")
+@register(outgoing=True, pattern=r"^\$cek(?: |$)(.*)")
 async def _(event):
     if event.fwd_from:
         return
@@ -76,7 +76,7 @@ async def _(event):
             await event.client.delete_messages(httpheader, response.message.message)
 
 
-@register(outgoing=True, pattern=r"^\.bin(?: |$)(.*)")
+@register(outgoing=True, pattern=r"^\$bin(?: |$)(.*)")
 async def _(event):
     if event.fwd_from:
         return
@@ -100,7 +100,7 @@ async def _(event):
             await event.client.delete_messages(response.message.message)
 
 
-@register(outgoing=True, pattern=r"^\.cc(?: |$)(.*)")
+@register(outgoing=True, pattern=r"^\$cc(?: |$)(.*)")
 async def _(event):
     if event.fwd_from:
         return
@@ -126,14 +126,14 @@ async def _(event):
 
 CMD_HELP.update({
     "phreaker":
-    "`.nmap <bug hosts>`\
+    "`$nmap <bug hosts>`\
 \nUsage: to get info bug/host.\
-\n\n`.subd <bug hosts>`\
+\n\n`$subd <bug hosts>`\
 \nUsage: to get subdomain bug/host.\
-\n\n`.cek <bug hosts>`\
+\n\n`$cek <bug hosts>`\
 \nUsage: to cek respons bug/host.\
-    \n\n`.bin < bin number >`\
+    \n\n`$bin < bin number >`\
     \nUsage: to cek bin ip.\
-\n\n`.cc <mm|yy|cvv`\
+\n\n`$cc <mm|yy|cvv`\
 \nUsage: to cek Credits Card Stats."
 })
