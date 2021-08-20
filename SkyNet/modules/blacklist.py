@@ -1,13 +1,13 @@
 # Copyright (C) 2021 KenHV ( Weeb Project )
-# for Lynx-Userbot
+# for SkyNet-Userbot
 
 from sqlalchemy.exc import IntegrityError
 
-from userbot import CMD_HELP
-from userbot.events import register
+from SkyNet import CMD_HELP
+from SkyNet.events import register
 
 
-@register(outgoing=True, pattern=r"^\.blacklist (.*)")
+@register(outgoing=True, pattern=r"^\$blacklist (.*)")
 async def blacklist(event):
     """Adds given chat to blacklist."""
     try:
@@ -33,7 +33,7 @@ async def blacklist(event):
     await event.edit("**Blacklisted given chat!**")
 
 
-@register(outgoing=True, pattern=r"^\.unblacklist (.*)")
+@register(outgoing=True, pattern=r"^\$unblacklist (.*)")
 async def unblacklist(event):
     """Unblacklists given chat."""
     try:
@@ -68,7 +68,7 @@ async def unblacklist(event):
     await event.edit("**Un-blacklisted given chat!**")
 
 
-@register(outgoing=True, pattern=r"^\.blacklists$")
+@register(outgoing=True, pattern=r"^\$blacklists$")
 async def list_blacklist(event):
     """Lists all blacklisted chats."""
     try:
@@ -96,11 +96,11 @@ async def list_blacklist(event):
 
 CMD_HELP.update({"blacklist": "✘ Pʟᴜɢɪɴ : Blacklist"
                  "\nFunctions : **Disables ALL USERBOT Functions on Blacklisted Groups.**"
-                 "\n\n⚡𝘾𝙈𝘿⚡: `.blacklist <Username/ID>`"
+                 "\n\n⚡𝘾𝙈𝘿⚡: `$blacklist <Username/ID>`"
                  "\n↳ : Blacklists Provided Chat."
-                 "\n\n⚡𝘾𝙈𝘿⚡: `.unblacklist <Username/ID>`"
+                 "\n\n⚡𝘾𝙈𝘿⚡: `$unblacklist <Username/ID>`"
                  "\n↳ : Removes Provided Chat From Blacklist."
-                 "\n\n⚡𝘾𝙈𝘿⚡: `.unblacklist all`"
+                 "\n\n⚡𝘾𝙈𝘿⚡: `$unblacklist all`"
                  "\n↳ : Removes All Chats From Blacklist."
-                 "\n\n⚡𝘾𝙈𝘿⚡: `.blacklists`"
+                 "\n\n⚡𝘾𝙈𝘿⚡: `$blacklists`"
                  "\n↳ : Lists All Blacklisted Chats."})
