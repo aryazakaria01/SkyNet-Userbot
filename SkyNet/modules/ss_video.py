@@ -10,12 +10,12 @@ import time
 
 from telethon.tl.types import DocumentAttributeFilename
 
-from userbot import CMD_HELP, bot
-from userbot.events import register
-from userbot.utils import progress
+from SkyNet import CMD_HELP, bot
+from SkyNet.events import register
+from SkyNet.utils import progress
 
 
-@register(outgoing=True, pattern=r"^\.ssvideo(?: |$)(.*)")
+@register(outgoing=True, pattern=r"^\$ssvideo(?: |$)(.*)")
 async def ssvideo(event):
     if not event.reply_to_msg_id:
         await event.edit("`Reply to any media...`")
@@ -71,7 +71,7 @@ async def ssvideo(event):
 
 CMD_HELP.update(
     {"ssvideo": "✘ Pʟᴜɢɪɴ : Screenshot Video"
-     "\n\n⚡𝘾𝙈𝘿⚡: `.ssvideo` <Frame>"
+     "\n\n⚡𝘾𝙈𝘿⚡: `$ssvideo` <Frame>"
      "\n↳ : To Screenshot Video Frame Perframe"
      }
 )
