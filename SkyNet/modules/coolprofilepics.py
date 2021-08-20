@@ -12,8 +12,8 @@ from telethon.tl import functions
 import asyncio
 
 
-from userbot.events import register
-from userbot import CMD_HELP
+from SkyNet.events import register
+from SkyNet import CMD_HELP
 
 COLLECTION_STRING = [
     "epic-fantasy-wallpaper",
@@ -67,7 +67,7 @@ async def animepp():
     urllib.request.urlretrieve(fy, "donottouch.jpg")
 
 
-@register(outgoing=True, pattern="^.pprandom(?: |$)(.*)")
+@register(outgoing=True, pattern="^$pprandom(?: |$)(.*)")
 async def main(event):
     await event.edit("`Sedang Mengubah Photo Profile Anda...`")
 
@@ -81,5 +81,5 @@ async def main(event):
         await asyncio.sleep(3600)  # Edit this to your required needs
 
 CMD_HELP.update({
-    "randompp": "\n\n⚡𝘾𝙈𝘿⚡: `.pprandom`"
+    "randompp": "\n\n⚡𝘾𝙈𝘿⚡: `$pprandom`"
     "\n↳ : Mengubah Photo Profile Anda Secara Random."})
