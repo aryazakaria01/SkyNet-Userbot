@@ -5,14 +5,14 @@
 # Credits @Cat-Userbot by Alvin from Lord-Userbot
 
 
-from userbot.events import register
-from userbot import CMD_HELP, bot
+from SkyNet.events import register
+from SkyNet import CMD_HELP, bot
 from telethon.errors.rpcerrorlist import YouBlockedUserError
 
 # Ported by KENZO @TeamSecret_Kz
 
 
-@register(outgoing=True, pattern=r"^\.detect(?: |$)(.*)")
+@register(outgoing=True, pattern=r"^\$detect(?: |$)(.*)")
 async def detect(event):
     if event.fwd_from:
         return
@@ -23,16 +23,16 @@ async def detect(event):
         return
     if input_str:
         try:
-            lynxuser = int(input_str)
+            skynetuser = int(input_str)
         except ValueError:
             try:
                 u = await event.client.get_entity(input_str)
             except ValueError:
                 await edit.event("`Please Give ID/Username to Find History.`"
                                  )
-            lynxuser = u.id
+            skynetuser = u.id
     else:
-        lynxuser = reply_message.sender_id
+        skynetuser = reply_message.sender_id
     chat = "@tgscanrobot"
     event = await event.edit("`Currently Doing Account Detection...`")
     event = await event.edit("__Connecting to server telegram.__")
@@ -49,7 +49,7 @@ async def detect(event):
     event = await event.edit("__Connecting to server telegram...__")
     async with bot.conversation(chat) as conv:
         try:
-            await conv.send_message(f"{lynxuser}")
+            await conv.send_message(f"{skynetuser}")
         except YouBlockedUserError:
             await steal.reply(
                 "```Please Unblock @tgscanrobot And Try Again.```"
@@ -72,6 +72,6 @@ def user_full_name(user):
 
 CMD_HELP.update({
     "detection": "✘ Pʟᴜɢɪɴ : Detection\
-         \n\n⚡𝘾𝙈𝘿⚡: `.detect` <Reply/Username/ID>\
+         \n\n⚡𝘾𝙈𝘿⚡: `$detect` <Reply/Username/ID>\
          \n↳ : Melihat Riwayat Group Yang Pernah/Sedang Dimasuki."
 })
