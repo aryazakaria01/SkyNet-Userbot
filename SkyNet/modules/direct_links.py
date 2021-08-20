@@ -22,9 +22,9 @@ from bs4 import BeautifulSoup
 from humanize import naturalsize
 from js2py import EvalJs
 
-from userbot import CMD_HELP, USR_TOKEN
-from userbot.events import register
-from userbot.utils import time_formatter
+from SkyNet import CMD_HELP, USR_TOKEN
+from SkyNet.events import register
+from SkyNet.utils import time_formatter
 
 
 async def subprocess_run(cmd):
@@ -43,7 +43,7 @@ async def subprocess_run(cmd):
     return result
 
 
-@register(outgoing=True, pattern=r"^\.direct(?: |$)([\s\S]*)")
+@register(outgoing=True, pattern=r"^\$direct(?: |$)([\s\S]*)")
 async def direct_link_generator(request):
     """direct links generator"""
     await request.edit("`Processing...`")
@@ -390,7 +390,7 @@ async def useragent():
 CMD_HELP.update(
     {
         "direct": "✘ Pʟᴜɢɪɴ : Direct URL"
-        "\n\n⚡𝘾𝙈𝘿⚡: `.direct <URL>`"
+        "\n\n⚡𝘾𝙈𝘿⚡: `$direct <URL>`"
         "\n↳ : Reply to a Link or Paste a URL to\n"
         "Generate a Direct Download Link\n\n"
         "List of Supported URLs:\n"
