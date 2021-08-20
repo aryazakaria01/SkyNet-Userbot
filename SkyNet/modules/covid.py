@@ -4,11 +4,11 @@
 # you may not use this file except in compliance with the License.
 
 from covid import Covid
-from userbot import CMD_HELP
-from userbot.events import register
+from SkyNet import CMD_HELP
+from SkyNet.events import register
 
 
-@register(outgoing=True, pattern="^.covid (.*)")
+@register(outgoing=True, pattern="^$covid (.*)")
 async def corona(event):
     await event.edit("`Processing...`")
     country = event.pattern_match.group(1)
@@ -30,7 +30,7 @@ async def corona(event):
     await event.edit(f"`Corona Virus Info in {country}:`\n\n{output_text}")
 
 
-@register(outgoing=True, pattern="^.covid$")
+@register(outgoing=True, pattern="^$covid$")
 async def corona(event):
     await event.edit("`Processing...`")
     country = "World"
@@ -53,7 +53,7 @@ async def corona(event):
 
 
 CMD_HELP.update({"covid": "✘ Pʟᴜɢɪɴ : Covid"
-                 "\n\n⚡𝘾𝙈𝘿⚡: `.covid` <Country/Negara>"
+                 "\n\n⚡𝘾𝙈𝘿⚡: `$covid` <Country/Negara>"
                  "\n↳ : Get an Information About COVID-19 Data in Your Country."
-                 "\n\n⚡𝘾𝙈𝘿⚡: `.covid`"
+                 "\n\n⚡𝘾𝙈𝘿⚡: `$covid`"
                  "\n↳ : Get an Information About COVID-19 Data in Worldwide."})
