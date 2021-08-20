@@ -1,7 +1,7 @@
 
 from time import sleep
-from userbot import CMD_HELP, bot
-from userbot.events import register
+from SkyNet import CMD_HELP, bot
+from SkyNet.events import register
 from telethon import events
 import asyncio
 
@@ -64,7 +64,7 @@ async def _(event):
             await event.edit(animation_chars[i % 32])
 
 
-@register(outgoing=True, pattern='^.helikopter(?: |$)(.*)')
+@register(outgoing=True, pattern='^$helikopter(?: |$)(.*)')
 async def typewriter(typew):
     typew.pattern_match.group(1)
     await typew.edit("▬▬▬.◙.▬▬▬ \n"
@@ -85,7 +85,7 @@ async def typewriter(typew):
                      "╬═╬/ \\ \n")
 
 
-@register(outgoing=True, pattern='^.tembak(?: |$)(.*)')
+@register(outgoing=True, pattern='^$tembak(?: |$)(.*)')
 async def typewriter(typew):
     typew.pattern_match.group(1)
     await typew.edit("_/﹋\\_\n"
@@ -95,7 +95,7 @@ async def typewriter(typew):
                      "\n**Mau Jadi Pacarku Gak?!**")
 
 
-@register(outgoing=True, pattern='^.bundir(?: |$)(.*)')
+@register(outgoing=True, pattern='^$bundir(?: |$)(.*)')
 async def typewriter(typew):
     typew.pattern_match.group(1)
     await typew.edit("`Dadah Semuanya...`          \n　　　　　|"
@@ -114,7 +114,7 @@ async def typewriter(typew):
                      "　　　　　 Ｕ Ｕ\n")
 
 
-@register(outgoing=True, pattern='^.awkwok(?: |$)(.*)')
+@register(outgoing=True, pattern='^$awkwok(?: |$)(.*)')
 async def typewriter(typew):
     typew.pattern_match.group(1)
     await typew.edit("────██──────▀▀▀██\n"
@@ -124,7 +124,7 @@ async def typewriter(typew):
                      "─▀───────▀▀─▀───────▀▀\n`Awkwokwokwok..`")
 
 
-@register(outgoing=True, pattern='^.ular(?: |$)(.*)')
+@register(outgoing=True, pattern='^$ular(?: |$)(.*)')
 async def typewriter(typew):
     typew.pattern_match.group(1)
     await typew.edit("░░░░▓\n"
@@ -214,7 +214,7 @@ async def typewriter(typew):
                      "░░░░░░░░░░░░░░░░░░░\n")
 
 
-@register(outgoing=True, pattern='^.y(?: |$)(.*)')
+@register(outgoing=True, pattern='^$y(?: |$)(.*)')
 async def typewriter(typew):
     typew.pattern_match.group(1)
     await typew.edit("‡‡‡‡‡‡‡‡‡‡‡‡▄▄▄▄\n"
@@ -232,7 +232,7 @@ async def typewriter(typew):
                      "█████‡‡‡‡‡‡‡██████████\n")
 
 
-@register(outgoing=True, pattern='^.tank(?: |$)(.*)')
+@register(outgoing=True, pattern='^$tank(?: |$)(.*)')
 async def typewriter(typew):
     typew.pattern_match.group(1)
     await typew.edit("█۞███████]▄▄▄▄▄▄▄▄▄▄▃ \n"
@@ -241,7 +241,7 @@ async def typewriter(typew):
                      "◥⊙▲⊙▲⊙▲⊙▲⊙▲⊙▲⊙◤\n")
 
 
-@register(outgoing=True, pattern='^.babi(?: |$)(.*)')
+@register(outgoing=True, pattern='^$babi(?: |$)(.*)')
 async def typewriter(typew):
     typew.pattern_match.group(1)
     await typew.edit("┈┈┏━╮╭━┓┈╭━━━━╮\n"
@@ -254,7 +254,7 @@ async def typewriter(typew):
                      "┈┈┈┈┈┗┻┛┗┻┛┈┈┈┈\n")
 
 
-@register(outgoing=True, pattern='^.ajg(?: |$)(.*)')
+@register(outgoing=True, pattern='^$ajg(?: |$)(.*)')
 async def typewriter(typew):
     typew.pattern_match.group(1)
     await typew.edit("╥━━━━━━━━╭━━╮━━┳\n"
@@ -265,7 +265,7 @@ async def typewriter(typew):
                      "╨━━┗┛┗┛━━┗┛┗┛━━┻\n")
 
 
-@register(outgoing=True, pattern='^.bernyanyi(?: |$)(.*)')
+@register(outgoing=True, pattern='^$bernyanyi(?: |$)(.*)')
 async def typewriter(typew):
     typew.pattern_match.group(1)
     await typew.edit("**Ganteng Doang Gak Bernyanyi (ง˙o˙)ว**")
@@ -303,14 +303,14 @@ async def typewriter(typew):
 
 CMD_HELP.update({
     "animasi2": "✘ Pʟᴜɢɪɴ : Animasi 2\
-    \n\n⚡𝘾𝙈𝘿⚡: `.bulan` ; `.hati` ; `.bernyanyi`\
+    \n\n⚡𝘾𝙈𝘿⚡: `$bulan` ; `$hati` ; `$bernyanyi`\
     \n↳ : lihat saja.\
-    \n\n⚡𝘾𝙈𝘿⚡: `.helikopter` ; `.tank` ; `.tembak`\n`.bundir`\
+    \n\n⚡𝘾𝙈𝘿⚡: `$helikopter` ; `$tank` ; `$tembak`\n`$bundir`\
     \n↳ : lihat sendiri.\
-    \n\n⚡𝘾𝙈𝘿⚡: `.y`\
+    \n\n⚡𝘾𝙈𝘿⚡: `$y`\
     \n↳ : jempol\
-    \n\n⚡𝘾𝙈𝘿⚡: `.awkwok`\
+    \n\n⚡𝘾𝙈𝘿⚡: `$awkwok`\
     \n↳ : ketawa lari.\
-    \n\n⚡𝘾𝙈𝘿⚡: `.ular` ; `.babi` ; `.ajg`\
+    \n\n⚡𝘾𝙈𝘿⚡: `$ular` ; `$babi` ; `$ajg`\
     \n↳ : lihat sendiri."
 })
