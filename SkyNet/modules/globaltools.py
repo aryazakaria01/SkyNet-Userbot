@@ -5,8 +5,8 @@
 # Based On Plugins from Dark Cobra
 
 from telethon.events import ChatAction
-from userbot.events import register
-from userbot import (
+from SkyNet.events import register
+from SkyNet import (
     ALIVE_NAME,
     CMD_HELP,
     BOTLOG,
@@ -150,7 +150,7 @@ except BaseException:
     client2 = client3 = None
 
 
-@register(outgoing=True, pattern=r"^\.gkick(?: |$)(.*)")
+@register(outgoing=True, pattern=r"^\$gkick(?: |$)(.*)")
 async def gspide(rk):
     lazy = rk
     sender = await lazy.get_sender()
@@ -243,9 +243,9 @@ async def muter(moot):
             await moot.delete()
 
 
-@register(outgoing=True, disable_errors=True, pattern=r"^\.gmute(?: |$)(.*)")
+@register(outgoing=True, disable_errors=True, pattern=r"^\$gmute(?: |$)(.*)")
 async def gspider(gspdr):
-    """For .gmute command, globally mutes the replied/tagged person"""
+    """For $gmute command, globally mutes the replied/tagged person"""
     # Admin or creator check
     chat = await gspdr.get_chat()
     admin = chat.admin_rights
@@ -286,7 +286,7 @@ async def gspider(gspdr):
             )
 
 
-@register(outgoing=True, disable_errors=True, pattern=r"^\.ungmute(?: |$)(.*)")
+@register(outgoing=True, disable_errors=True, pattern=r"^\$ungmute(?: |$)(.*)")
 async def ungmoot(un_gmute):
     """For .ungmute command, ungmutes the target in the userbot"""
     # Admin or creator check
@@ -334,19 +334,19 @@ async def ungmoot(un_gmute):
 CMD_HELP.update({
     "globaltools":
     "✘ Pʟᴜɢɪɴ : Global Tools\
-\n\n⚡𝘾𝙈𝘿⚡: `.gban` <Username/Reply> <Reason>\
+\n\n⚡𝘾𝙈𝘿⚡: `$gban` <Username/Reply> <Reason>\
 \n↳ : Melakukan Banned Secara Global Ke Semua Group Dimana Anda Sebagai Admin.\
-\n\n⚡𝘾𝙈𝘿⚡: `.ungban` <Username/Reply> <Reason>\
+\n\n⚡𝘾𝙈𝘿⚡: `$ungban` <Username/Reply> <Reason>\
 \n↳ : Membatalkan Banned Secara Global.\
-\n\n⚡𝘾𝙈𝘿⚡: `.listgban`\
+\n\n⚡𝘾𝙈𝘿⚡: `$listgban`\
 \n↳ : Melihat Daftar Global Banned.\
-\n\n⚡𝘾𝙈𝘿⚡: `.gmute` <Username/Reply> <Alasan(Optional)>\
+\n\n⚡𝘾𝙈𝘿⚡: `$gmute` <Username/Reply> <Alasan(Optional)>\
 \n↳ : Membisukan Pengguna Ke Semua Group, Dimana Kamu Sebagai Admin Group.\
-\n\n⚡𝘾𝙈𝘿⚡: `.ungmute` <Username/Reply>\
+\n\n⚡𝘾𝙈𝘿⚡: `$ungmute` <Username/Reply>\
 \n↳ : Tag atau Reply Pesan Pengguna `.ungmute` Untuk Menghapus Pengguna Dari Daftar Global Mute.\
-\n\n⚡𝘾𝙈𝘿⚡: `.gkick` <Text>\
+\n\n⚡𝘾𝙈𝘿⚡: `$gkick` <Text>\
 \n↳ : Melakukan Kick Secara Global. Hampir Sama Dengan Global Ban, Tapi Ini Hanya Kick.\
-\n\n⚡𝘾𝙈𝘿⚡: `.ggcast` <Pesan>\
+\n\n⚡𝘾𝙈𝘿⚡: `$ggcast` <Pesan>\
 \n↳ : Global Group Broadcast. Mengirim Pesan ke Seluruh Group yang Anda Masuki.\
-\n\n⚡𝘾𝙈𝘿⚡: `.gucast` <Pesan>\
+\n\n⚡𝘾𝙈𝘿⚡: `$gucast` <Pesan>\
 \n↳ : Global Users Broadcast. Kirim Pesan itu Secara Global ke Semua Anggota Group Anda."})
