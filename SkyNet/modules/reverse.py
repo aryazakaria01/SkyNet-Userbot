@@ -16,9 +16,9 @@ import requests
 from bs4 import BeautifulSoup
 from PIL import Image
 
-from userbot import CMD_HELP, bot
-from userbot.events import register
-from userbot.utils import googleimagesdownload
+from SkyNet import CMD_HELP, bot
+from SkyNet.events import register
+from SkyNet.utils import googleimagesdownload
 
 opener = urllib.request.build_opener()
 useragent = (
@@ -29,7 +29,7 @@ useragent = (
 opener.addheaders = [("User-agent", useragent)]
 
 
-@register(outgoing=True, pattern=r"^\.reverse(?: |$)(\d*)")
+@register(outgoing=True, pattern=r"^\$r(?: |$)(\d*)")
 async def okgoogle(img):
     """For .reverse command, Google search images and stickers."""
     if os.path.isfile("okgoogle.png"):
@@ -161,7 +161,7 @@ async def ParseSauce(googleurl):
 
 
 CMD_HELP.update({"reverse": "✘ Pʟᴜɢɪɴ : Reverse"
-                 "\n\n⚡𝘾𝙈𝘿⚡: `.reverse [counter] <optional>`"
+                 "\n\n⚡𝘾𝙈𝘿⚡: `$r [counter] <optional>`"
                  "\n↳ : Reply to a pic/sticker to reverse-search it on Google Images."
                  "\nNumber of results can be specified, default is 3."
                  "\nIf counter is 0, only info and links will be provided."
