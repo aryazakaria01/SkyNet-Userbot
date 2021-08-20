@@ -8,8 +8,8 @@
 from asyncio import sleep
 from re import IGNORECASE, escape, search
 
-from userbot import BOTLOG, BOTLOG_CHATID, CMD_HELP
-from userbot.events import register
+from SkyNet import BOTLOG, BOTLOG_CHATID, CMD_HELP
+from SkyNet.events import register
 
 
 @register(incoming=True, disable_edited=True, disable_errors=True)
@@ -41,7 +41,7 @@ async def filter_incoming_handler(handler):
         pass
 
 
-@register(outgoing=True, pattern=r"^\.filter (.*)")
+@register(outgoing=True, pattern=r"^\$filter (.*)")
 async def add_new_filter(new_handler):
     """For .filter command, allows adding new filters in a chat"""
     try:
@@ -86,7 +86,7 @@ async def add_new_filter(new_handler):
         await new_handler.edit(success.format(keyword, "updated"))
 
 
-@register(outgoing=True, pattern=r"^\.stop (.*)")
+@register(outgoing=True, pattern=r"^\$stop (.*)")
 async def remove_a_filter(r_handler):
     """For .stop command, allows you to remove a filter from a chat."""
     try:
@@ -100,7 +100,7 @@ async def remove_a_filter(r_handler):
         await r_handler.edit(f"`Filter`  **{filt}**  `was deleted successfully`.")
 
 
-@register(outgoing=True, pattern=r"^\.rmbotfilters (.*)")
+@register(outgoing=True, pattern=r"^\$rmbotfilters (.*)")
 async def kick_marie_filter(event):
     """ For .rmfilters command, allows you to kick all \
         Marie(or her clones) filters from a chat. """
@@ -125,7 +125,7 @@ async def kick_marie_filter(event):
         )
 
 
-@register(outgoing=True, pattern=r"^\.filters$")
+@register(outgoing=True, pattern=r"^\$filters$")
 async def filters_active(event):
     """For .filters command, lists all of the active filters in a chat."""
     try:
@@ -146,14 +146,14 @@ async def filters_active(event):
 
 CMD_HELP.update({
     "filter": "✘ Pʟᴜɢɪɴ : Filter\
-    \n\n⚡𝘾𝙈𝘿⚡: `.filters`\
+    \n\n⚡𝘾𝙈𝘿⚡: `$filters`\
     \n↳ : Melihat Filter Userbot Yang Aktif di Obrolan.\
-    \n\n⚡𝘾𝙈𝘿⚡: `.filter` <Keyword> <Reply> atau Reply ke Pesan, Ketik: .filter <Keyword>\
+    \n\n⚡𝘾𝙈𝘿⚡: `$filter` <Keyword> <Reply> atau Reply ke Pesan, Ketik: .filter <Keyword>\
     \n↳ : Membuat Filter Di Obrolan.\
     \nBot Akan Membalas Jika Ada Yang Menyebut 'Keyword' Yang Dibuat.\
     \nBisa Dipakai ke Media/Sticker/VN/File.\
-    \n\n⚡𝘾𝙈𝘿⚡: `.stop` <Filer>\
+    \n\n⚡𝘾𝙈𝘿⚡: `$stop` <Filer>\
     \n↳ : Untuk Nonaktifkan Filter.\
-    \n\n⚡𝘾𝙈𝘿⚡: `.rmbotfilters <Marie/Rose>`\
+    \n\n⚡𝘾𝙈𝘿⚡: `$rmbotfilters <Marie/Rose>`\
     \n↳ : Menghapus Semua Filter Yang Ada di Bot Group (Support: Marie, Rose.) Dalam Obrolan."
 })
