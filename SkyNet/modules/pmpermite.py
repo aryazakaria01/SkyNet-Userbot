@@ -10,8 +10,8 @@ from sqlalchemy.exc import IntegrityError
 from telethon.tl.functions.contacts import BlockRequest, UnblockRequest
 from telethon.tl.functions.messages import ReportSpamRequest
 from telethon.tl.types import User
-from userbot.events import register
-from userbot import (
+from SkyNet.events import register
+from SkyNet import (
     BOTLOG,
     BOTLOG_CHATID,
     CMD_HELP,
@@ -49,7 +49,7 @@ DEF_UNAPPROVED_MSG = (
     "╰┈─────────────────────┈─➤\n"
     "▰▱▰▱▰▱▰▱▰▱▰▱▰▱▰▱▰▱\n"
     "┣[○› `PESAN OTOMATIS`\n"
-    f"┣[○› `BY` © @LynxUserbot\n"
+    f"┣[○› `BY` © @SkyNet\n"
     "▰▱▰▱▰▱▰▱▰▱▰▱▰▱▰▱▰▱")
 
 # ================================================================
@@ -195,9 +195,9 @@ async def auto_accept(event):
                     )
 
 
-@register(outgoing=True, pattern=r"^\.notifoff$")
+@register(outgoing=True, pattern=r"^\$ntof$")
 async def notifoff(noff_event):
-    """For .notifoff command, stop getting notifications from unapproved PMs."""
+    """For $ntof command, stop getting notifications from unapproved PMs."""
     try:
         from userbot.modules.sql_helper.globals import addgvar
     except AttributeError:
@@ -206,9 +206,9 @@ async def notifoff(noff_event):
     await noff_event.edit("#NOTIF OFF ❌\n`Notifikasi Dari Pesan Pribadi Telah Dinonaktifkan.`")
 
 
-@register(outgoing=True, pattern=r"^\.notifon$")
+@register(outgoing=True, pattern=r"^\$nton$")
 async def notifon(non_event):
-    """For .notifoff command, get notifications from unapproved PMs."""
+    """For $notn command, get notifications from unapproved PMs."""
     try:
         from userbot.modules.sql_helper.globals import delgvar
     except AttributeError:
@@ -217,9 +217,9 @@ async def notifon(non_event):
     await non_event.edit("#NOTIF ON ☑️\n`Notifikasi Dari Pesan Pribadi Telah Diaktifkan.`")
 
 
-@register(outgoing=True, pattern=r"^\.approve(?:$| )(.*)")
+@register(outgoing=True, pattern=r"^\$apo(?:$| )(.*)")
 async def approvepm(apprvpm):
-    """For .approve command, give someone the permissions to PM you."""
+    """For $apo command, give someone the permissions to PM you."""
     try:
         from userbot.modules.sql_helper.globals import gvarstatus
         from userbot.modules.sql_helper.pm_permit_sql import approve
@@ -277,7 +277,7 @@ async def approvepm(apprvpm):
         )
 
 
-@register(outgoing=True, pattern=r"^\.disapprove(?:$| )(.*)")
+@register(outgoing=True, pattern=r"^\$disp(?:$| )(.*)")
 async def disapprovepm(disapprvpm):
     try:
         from userbot.modules.sql_helper.pm_permit_sql import dissprove
@@ -321,9 +321,9 @@ async def disapprovepm(disapprvpm):
         )
 
 
-@register(outgoing=True, pattern=r"^\.block$")
+@register(outgoing=True, pattern=r"^\$blck$")
 async def blockpm(block):
-    """For .block command, block people from PMing you!"""
+    """For $blck command, block people from PMing you!"""
     if block.reply_to_msg_id:
         reply = await block.get_reply_message()
         replied_user = await block.client.get_entity(reply.sender_id)
@@ -355,9 +355,9 @@ async def blockpm(block):
         )
 
 
-@register(outgoing=True, pattern=r"^\.unblock$")
+@register(outgoing=True, pattern=r"^\$ublck$")
 async def unblockpm(unblock):
-    """For .unblock command, let people PMing you again!"""
+    """For $ublck command, let people PMing you again!"""
     if unblock.reply_to_msg_id:
         reply = await unblock.get_reply_message()
         replied_user = await unblock.client.get_entity(reply.sender_id)
@@ -377,7 +377,7 @@ async def unblockpm(unblock):
         await unblock.edit("`User already unblocked`")
 
 
-@register(outgoing=True, pattern=r"^\.(set|get|reset) pm_msg(?: |$)(\w*)")
+@register(outgoing=True, pattern=r"^\$(set|get|reset) pm_msg(?: |$)(\w*)")
 async def add_pmsg(cust_msg):
     """Set your own Unapproved message"""
     if not PM_AUTO_BAN:
@@ -438,23 +438,23 @@ async def add_pmsg(cust_msg):
 CMD_HELP.update(
     {
         "pmpermit": "✘ Pʟᴜɢɪɴ : Private Message Permite"
-        "\n\n⚡𝘾𝙈𝘿⚡: `.approve`"
+        "\n\n⚡𝘾𝙈𝘿⚡: `$apo`"
         "\n↳ : Menerima Pesan Seseorang Dengan Cara Balas Pesannya Atau Tag dan Juga Untuk Dilakukan Di PM."
-        "\n\n⚡𝘾𝙈𝘿⚡: `.disapprove`"
+        "\n\n⚡𝘾𝙈𝘿⚡: `$disp`"
         "\n↳ : Menolak Pesan Seseorang Dengan Cara Balas Pesannya Atau Tag dan Juga Untuk Dilakukan Di PM."
-        "\n\n⚡𝘾𝙈𝘿⚡: `.block`"
+        "\n\n⚡𝘾𝙈𝘿⚡: `$blck`"
         "\n↳ : Memblokir Orang Di PM."
-        "\n\n⚡𝘾𝙈𝘿⚡: `.unblock`"
+        "\n\n⚡𝘾𝙈𝘿⚡: `$ublck`"
         "\n↳ : Membuka Blokir."
-        "\n\n⚡𝘾𝙈𝘿⚡: `.notifoff`"
+        "\n\n⚡𝘾𝙈𝘿⚡: `$ntof`"
         "\n↳ : Menonaktifkan Notifikasi Pesan Yang Belum Diterima."
-        "\n\n⚡𝘾𝙈𝘿⚡: `.notifon`"
+        "\n\n⚡𝘾𝙈𝘿⚡: `$nton`"
         "\n↳ : Mengaktifkan Notifikasi Pesan Yang Belum Diterima."
-        "\n\n⚡𝘾𝙈𝘿⚡: `.set pm_msg` <Reply Message>"
+        "\n\n⚡𝘾𝙈𝘿⚡: `$set pm_msg` <Reply Message>"
         "\n↳ : Menyetel Pesan Pribadimu Untuk Orang Yang Pesannya Belum Diterima."
-        "\n\n⚡𝘾𝙈𝘿⚡: `.get pm_msg`"
+        "\n\n⚡𝘾𝙈𝘿⚡: `$get pm_msg`"
         "\n↳ : Mendapatkan Custom Pesan PM-Mu."
-        "\n\n⚡𝘾𝙈𝘿⚡: `.reset pm_msg`"
+        "\n\n⚡𝘾𝙈𝘿⚡: `$reset pm_msg`"
         "\n↳ : Menghapus Pesan PM ke Default."
         "\n\nPesan Pribadi Yang Belum Diterima Saat Ini Tidak Dapat Disetel"
         "\nke Teks Format. Seperti : Bold, Underline, Link, dll."
