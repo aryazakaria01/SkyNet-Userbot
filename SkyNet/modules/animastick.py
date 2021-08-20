@@ -3,8 +3,8 @@
 # Licensed under the Raphielscape Public License, Version 1.d (the "License");
 # you may not use this file except in compliance with the License.
 #
-# Modified by KENZO @SyndicateTwenty4
-# Port by Lynx-Userbot
+# Modified by Arya Zakaria @Badboyanim
+# Port by SkyNet-Userbot
 
 import io
 import textwrap
@@ -23,13 +23,13 @@ from telethon import events
 from telethon.errors.rpcerrorlist import YouBlockedUserError
 from telethon.errors import ChatSendInlineForbiddenError, ChatSendStickersForbiddenError
 
-from userbot.events import register
-from userbot import CMD_HELP, bot
+from SkyNet.events import register
+from SkyNet import CMD_HELP, bot
 
 # Credits Ultroid
 
 
-@register(outgoing=True, pattern=r"^\.honka (.*)")
+@register(outgoing=True, pattern=r"^\$honka (.*)")
 async def honkasays(event):
     await event.edit("`Sedang Memproses, Mohon Tunggu Sebentar...`")
     text = event.pattern_match.group(1)
@@ -66,7 +66,7 @@ async def honkasays(event):
         await event.edit("Mohon Maaf, Tidak Bisa Mengirim Sticker Disini.")
 
 
-@register(outgoing=True, pattern=r"^\.stext (.*)")
+@register(outgoing=True, pattern=r"^\$stext (.*)")
 async def stext(event):
     sticktext = event.pattern_match.group(1)
 
@@ -147,7 +147,7 @@ async def quotess(qotli):
         await qotli.edit()
 
 
-@register(outgoing=True, pattern=r"^\.tiny(?: |$)(.*)", disable_errors=True)
+@register(outgoing=True, pattern=r"^\$tiny(?: |$)(.*)", disable_errors=True)
 async def _(event):
     reply = await event.get_reply_message()
     if not (reply and (reply.media)):
@@ -155,7 +155,7 @@ async def _(event):
         return
     xx = await event.edit("`Proccesing....`")
     ik = await bot.download_media(reply)
-    im1 = Image.open("userbot/utils/styles/Lynx-Userbot.png")
+    im1 = Image.open("userbot/utils/styles/SkyNetUserbot-Button.jpg")
     if ik.endswith(".tgs"):
         await event.client.download_media(reply, "ult.tgs")
         os.system("lottie_convert.py ult.tgs json.json")
@@ -220,7 +220,7 @@ async def _(event):
     os.remove(ik)
 
 
-@register(outgoing=True, pattern=r"^\.imp (.*)")
+@register(outgoing=True, pattern=r"^\$imp (.*)")
 async def f_load(message):
     clrs = {
         "red": 1,
@@ -297,14 +297,14 @@ async def bruh(message, user):
 
 CMD_HELP.update({
     "animastick": "✘ Pʟᴜɢɪɴ : Animated Stickers"
-    "\n\n⚡𝘾𝙈𝘿⚡: `.stext` <Text>"
+    "\n\n⚡𝘾𝙈𝘿⚡: `$stext` <Text>"
     "\n↳ : Mengubah Teks/Kata-Kata, Menjadi Stiker Anda."
-    "\n\n⚡𝘾𝙈𝘿⚡: `.honka` <Text>"
+    "\n\n⚡𝘾𝙈𝘿⚡: `$honka` <Text>"
     "\n↳ : Menampilkan Pesan (Text) di Sticker Animasi."
-    "\n\n⚡𝘾𝙈𝘿⚡: `.q <Reply>`"
+    "\n\n⚡𝘾𝙈𝘿⚡: `$q <Reply>`"
     "\n↳ : Mengubah Text/Pesan Menjadi Sticker."
-    "\n\n⚡𝘾𝙈𝘿⚡: `.tiny`"
+    "\n\n⚡𝘾𝙈𝘿⚡: `$tiny`"
     "\n↳ : Untuk Memperkecil Sticker."
-    "\n\n⚡𝘾𝙈𝘿⚡: `.imp <Text>`"
+    "\n\n⚡𝘾𝙈𝘿⚡: `$imp <Text>`"
     "\n↳ : Mengirim Sticker Impostor (Among US)."
 })
