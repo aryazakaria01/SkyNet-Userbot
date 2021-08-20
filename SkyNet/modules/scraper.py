@@ -42,23 +42,23 @@ from youtube_dl.utils import (
 )
 from youtube_search import YoutubeSearch
 
-from userbot import BOTLOG, BOTLOG_CHATID, CMD_HELP, TEMP_DOWNLOAD_DIRECTORY
-from userbot.events import register
-from userbot.modules.upload_download import get_video_thumb
-from userbot.utils import chrome, googleimagesdownload, progress
-from userbot.utils.FastTelethon import upload_file
+from SkyNet import BOTLOG, BOTLOG_CHATID, CMD_HELP, TEMP_DOWNLOAD_DIRECTORY
+from SkyNet.events import register
+from SkyNet.modules.upload_download import get_video_thumb
+from SkyNet.utils import chrome, googleimagesdownload, progress
+from SkyNet.utils.FastTelethon import upload_file
 
 CARBONLANG = "auto"
 
 
-@register(outgoing=True, pattern=r"^\.crblang (.*)")
+@register(outgoing=True, pattern=r"^\$crblang (.*)")
 async def setlang(prog):
     global CARBONLANG
     CARBONLANG = prog.pattern_match.group(1)
     await prog.edit(f"Language for carbon.now.sh set to {CARBONLANG}")
 
 
-@register(outgoing=True, pattern=r"^\.carbon")
+@register(outgoing=True, pattern=r"^\$carbon")
 async def carbon_api(e):
     """A Wrapper for carbon.now.sh"""
     await e.edit("`Processing...`")
@@ -104,7 +104,7 @@ async def carbon_api(e):
     await e.delete()  # Deleting msg
 
 
-@register(outgoing=True, pattern=r"^\.img (.*)")
+@register(outgoing=True, pattern=r"^\$img (.*)")
 async def img_sampler(event):
     """For .img command, search and return images matching the query."""
     await event.edit("`Processing...`")
@@ -136,7 +136,7 @@ async def img_sampler(event):
     await event.delete()
 
 
-@register(outgoing=True, pattern=r"^\.currency (.*)")
+@register(outgoing=True, pattern=r"^\$currency (.*)")
 async def moni(event):
     input_str = event.pattern_match.group(1)
     input_sgra = input_str.split(" ")
@@ -163,7 +163,7 @@ async def moni(event):
         return await event.edit("`Invalid syntax.`")
 
 
-@register(outgoing=True, pattern=r"^\.google (.*)")
+@register(outgoing=True, pattern=r"^\$google (.*)")
 async def gsearch(q_event):
     """For .google command, do a Google search."""
     match = q_event.pattern_match.group(1)
@@ -200,7 +200,7 @@ async def gsearch(q_event):
         )
 
 
-@register(outgoing=True, pattern=r"^\.wiki (.*)")
+@register(outgoing=True, pattern=r"^\$wiki (.*)")
 async def wiki(wiki_q):
     """For .wiki command, fetch content from Wikipedia."""
     match = wiki_q.pattern_match.group(1)
@@ -230,7 +230,7 @@ async def wiki(wiki_q):
         )
 
 
-@register(outgoing=True, pattern=r"^\.ud (.*)")
+@register(outgoing=True, pattern=r"^\$ud (.*)")
 async def urban_dict(ud_e):
     """For .ud command, fetch content from Urban Dictionary."""
     await ud_e.edit("Processing...")
@@ -283,7 +283,7 @@ async def urban_dict(ud_e):
         await ud_e.edit("No result found for **" + query + "**")
 
 
-@register(outgoing=True, pattern=r"^\.tts(?: |$)([\s\S]*)")
+@register(outgoing=True, pattern=r"^\$tts(?: |$)([\s\S]*)")
 async def text_to_speech(query):
     """For .tts command, a wrapper for Google Text-to-Speech."""
     textx = await query.get_reply_message()
@@ -337,7 +337,7 @@ async def text_to_speech(query):
 
 
 # kanged from Blank-x ;---;
-@register(outgoing=True, pattern=r"^\.imdb (.*)")
+@register(outgoing=True, pattern=r"^\$imdb (.*)")
 async def imdb(e):
     try:
         movie_name = e.pattern_match.group(1)
@@ -434,7 +434,7 @@ async def imdb(e):
         await e.edit("Plox enter **Valid movie name** kthx")
 
 
-@register(outgoing=True, pattern=r"^\.trt(?: |$)([\s\S]*)")
+@register(outgoing=True, pattern=r"^\$trt(?: |$)([\s\S]*)")
 async def translateme(trans):
     """For .trt command, translate the given text using Google Translate."""
     translator = Translator()
@@ -474,7 +474,7 @@ async def translateme(trans):
         )
 
 
-@register(pattern=".lang (trt|tts) (.*)", outgoing=True)
+@register(pattern="$lang (trt|tts) (.*)", outgoing=True)
 async def lang(value):
     """For .lang command, change the default langauge of userbot scrapers."""
     util = value.pattern_match.group(1).lower()
@@ -519,7 +519,7 @@ async def lang(value):
         )
 
 
-@register(outgoing=True, pattern=r"^\.yt (\d*) *(.*)")
+@register(outgoing=True, pattern=r"^\$yt (\d*) *(.*)")
 async def yt_search(event):
     """For .yt command, do a YouTube search from Telegram."""
 
@@ -564,7 +564,7 @@ async def yt_search(event):
     await event.edit(output, link_preview=False)
 
 
-@register(outgoing=True, pattern=r".rip(audio|video( \d{0,4})?) (.*)")
+@register(outgoing=True, pattern=r"$rip(audio|video( \d{0,4})?) (.*)")
 async def download_video(v_url):
     """For .rip command, download media from YouTube and many other sites."""
     dl_type = v_url.pattern_match.group(1).lower()
@@ -759,41 +759,41 @@ def deEmojify(inputString):
 CMD_HELP.update(
     {
         "img": "✘ Pʟᴜɢɪɴ : Image"
-        "\n\n⚡𝘾𝙈𝘿⚡: `.img <Search_Query>`"
+        "\n\n⚡𝘾𝙈𝘿⚡: `$img <Search_Query>`"
         "\n↳ : Does an Image Search on Google and Shows 5 Images.",
         "currency": "✘ Pʟᴜɢɪɴ : Eval"
-        "\n\n⚡𝘾𝙈𝘿⚡: `.currency <Amount> <From> <To>`"
+        "\n\n⚡𝘾𝙈𝘿⚡: `$currency <Amount> <From> <To>`"
         "\n↳ : Converts Various Currencies For You.",
         "carbonow": "✘ Pʟᴜɢɪɴ : Carbon"
-        "\n\n⚡𝘾𝙈𝘿⚡: `.carbon <Text> [or reply]`"
+        "\n\n⚡𝘾𝙈𝘿⚡: `$carbon <Text> [or reply]`"
         "\n↳ : Beautify Your code using carbon.now.sh"
-        "\nUse > `.crblang` <Text> to set Language For Your Code.",
+        "\nUse > `$crblang` <Text> to set Language For Your Code.",
         "google": "✘ Pʟᴜɢɪɴ : Google"
-        "\n\n⚡𝘾𝙈𝘿⚡: `.google <Query>`"
+        "\n\n⚡𝘾𝙈𝘿⚡: `$google <Query>`"
         "\n↳ : Does a Search on Google.",
         "wiki": "✘ Pʟᴜɢɪɴ : Wikipedia"
-        "\n\n⚡𝘾𝙈𝘿⚡: `.wiki <Query>`"
+        "\n\n⚡𝘾𝙈𝘿⚡: `$wiki <Query>`"
         "\n↳ : Does a Search on Wikipedia.",
         "ud": "✘ Pʟᴜɢɪɴ : Urban Dictionary"
-        "\n\n⚡𝘾𝙈𝘿⚡: `.ud <Query>`"
+        "\n\n⚡𝘾𝙈𝘿⚡: `$ud <Query>`"
         "\n↳ : Does a search on Urban Dictionary.",
         "tts": "✘ Pʟᴜɢɪɴ : Google Translate (Voice)"
-        "\n\n⚡𝘾𝙈𝘿⚡: `.tts <Text> [or reply]`"
+        "\n\n⚡𝘾𝙈𝘿⚡: `$tts <Text> [or reply]`"
         "\n↳ : Translates Text to Speech for the Language Which is set."
-        "\nUse >`.lang tts <Language Code>` to set Language for tts. (Default is English.)",
+        "\nUse >`$lang tts <Language Code>` to set Language for tts. (Default is English.)",
         "trt": "✘ Pʟᴜɢɪɴ : Google Translate (Text)"
-        "\n\n⚡𝘾𝙈𝘿⚡: `.trt <text> [or reply]`"
+        "\n\n⚡𝘾𝙈𝘿⚡: `$trt <text> [or reply]`"
         "\n↳ : Translates Text to the Language Which is set."
-        "\nUse >`.lang trt <Language Code>` to set Language for trt. (Default is English)",
+        "\nUse >`$lang trt <Language Code>` to set Language for trt. (Default is English)",
         "imdb": "✘ Pʟᴜɢɪɴ : IMDB"
-        "\n\n⚡𝘾𝙈𝘿⚡: `.imdb <Movie-Name>`"
+        "\n\n⚡𝘾𝙈𝘿⚡: `$imdb <Movie-Name>`"
         "\n↳ : Shows Movie Info and Other Stuff.",
         "youtube": "✘ Pʟᴜɢɪɴ : Youtube"
-        "\n\n⚡𝘾𝙈𝘿⚡: `.yt` `<Count> <Query>`"
+        "\n\n⚡𝘾𝙈𝘿⚡: `$yt` `<Count> <Query>`"
         "\n↳ : Does a YouTube search."
-        "\n\n⚡𝘾𝙈𝘿⚡: `.ripaudio <url>`"
+        "\n\n⚡𝘾𝙈𝘿⚡: `$ripaudio <url>`"
         "\n↳ : Download Videos from YouTube and Convert to Audio."
-        "\n\n⚡𝘾𝙈𝘿⚡: `.ripvideo <quality> <url>` (Quality is Optional)"
+        "\n\n⚡𝘾𝙈𝘿⚡: `$ripvideo <quality> <url>` (Quality is Optional)"
         "\nQuality Examples : `144` `240` `360` `480` `720` `1080` `2160`"
         "\n↳ : Download Videos from YouTube"
         "\n\n[Other supported sites](https://ytdl-org.github.io/youtube-dl/supportedsites.html)",
