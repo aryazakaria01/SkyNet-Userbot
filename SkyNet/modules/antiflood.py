@@ -1,19 +1,19 @@
-# Copyright © 2021 Lynx-Userbot All Rights Reserved.
+# Copyright © 2021 SkyNet-Userbot All Rights Reserved.
 #
 # Licensed under the Raphielscape Public License, Version 1.d (the "License");
 # you may not use this file except in compliance with the License.
 #
 # Credits: Based Plugins From ( @Catuserbot )
-# Ported by KENZO for Lynx-Userbot
+# Ported by Arya Zakaria for SkyNet-Userbot
 
 import asyncio
 from telethon.tl.functions.channels import EditBannedRequest
 from telethon.tl.types import ChatBannedRights
-from userbot.utils.checker import is_admin
-from userbot.modules.sql_helper import antiflood_sql as sql
-from userbot.events import register
-from userbot import bot, CMD_HELP
-from userbot.utils import edit_or_reply
+from SkyNet.utils.checker import is_admin
+from SkyNet.modules.sql_helper import antiflood_sql as sql
+from SkyNet.events import register
+from SkyNet import bot, CMD_HELP
+from SkyNet.utils import edit_or_reply
 
 
 CHAT_FLOOD = sql.__load_flood_settings()
@@ -69,7 +69,7 @@ because he reached the defined flood limit.""",
         )
 
 
-@register(outgoing=True, pattern="^\\.setflood(?: |$)(.*)", groups_only=True)
+@register(outgoing=True, pattern="^\\$setflood(?: |$)(.*)", groups_only=True)
 async def _(event):
     "To Setup Antiflood in a Group to Prevent SPAM"
     input_str = event.pattern_match.group(1)
@@ -84,7 +84,7 @@ async def _(event):
 
 
 CMD_HELP.update({"antiflood": "✘ Pʟᴜɢɪɴ : Anti Flood"
-                 "\n\n⚡𝘾𝙈𝘿⚡: `.setflood <Count>`"
+                 "\n\n⚡𝘾𝙈𝘿⚡: `$setflood <Count>`"
                  "\n↳ : It Warns The User if He Spams The Chat and if You Are an Admin with Proper Rights Then it Mutes Him in That Group."
-                 "\n\n**Example:** `.setflood 5`"
+                 "\n\n**Example:** `$setflood 5`"
                  "\n\n**Note:** To Stop Antiflood, Setflood with High Value Like 999999."})
