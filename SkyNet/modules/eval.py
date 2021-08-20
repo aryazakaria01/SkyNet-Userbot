@@ -14,11 +14,11 @@ from getpass import getuser
 from os import remove
 from sys import executable
 
-from userbot import CMD_HELP, TERM_ALIAS
-from userbot.events import register
+from SkyNet import CMD_HELP, TERM_ALIAS
+from SkyNet.events import register
 
 
-@register(outgoing=True, pattern=r"^\.eval(?: |$|\n)([\s\S]*)")
+@register(outgoing=True, pattern=r"^\$eval(?: |$|\n)([\s\S]*)")
 async def _(event):
     if event.fwd_from:
         return
@@ -77,7 +77,7 @@ async def aexec(code, smessatatus):
     return await locals()["__aexec"](message, reply, message.client)
 
 
-@register(outgoing=True, pattern=r"^\.exec(?: |$|\n)([\s\S]*)")
+@register(outgoing=True, pattern=r"^\$exec(?: |$|\n)([\s\S]*)")
 async def run(run_q):
     """For .exec command, which executes the dynamically created program"""
     code = run_q.pattern_match.group(1)
@@ -141,7 +141,7 @@ async def run(run_q):
         )
 
 
-@register(outgoing=True, pattern=r"^\.term(?: |$|\n)(.*)")
+@register(outgoing=True, pattern=r"^\$term(?: |$|\n)(.*)")
 async def terminal_runner(term):
     """For .term command, runs bash commands and scripts on your server."""
     curruser = TERM_ALIAS if TERM_ALIAS else getuser()
@@ -194,12 +194,12 @@ async def terminal_runner(term):
 
 
 CMD_HELP.update({"eval": "✘ Pʟᴜɢɪɴ : Eval"
-                 "\n\n⚡𝘾𝙈𝘿⚡: `.eval print('world')`"
+                 "\n\n⚡𝘾𝙈𝘿⚡: `$eval print('world')`"
                  "\n↳ : Just Like exec.",
                  "exec": "✘ Pʟᴜɢɪɴ : Exec"
-                 "\n\n⚡𝘾𝙈𝘿⚡: `.exec print('hello')`"
+                 "\n\n⚡𝘾𝙈𝘿⚡: `$exec print('hello')`"
                  "\n↳ : Execute Small Python Scripts.",
                  "term": "✘ Pʟᴜɢɪɴ : Term"
-                 "\n\n⚡𝘾𝙈𝘿⚡: `.term <CMD>`"
+                 "\n\n⚡𝘾𝙈𝘿⚡: `$term <CMD>`"
                  "\n↳ : Run Bash Commands And Scripts on Your Server.",
                  })
