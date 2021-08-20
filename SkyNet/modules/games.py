@@ -1,11 +1,11 @@
 # Based Plugins
 # Ported For Lord-Userbot By liualvinas/Alvin
 # If You Kang It Don't Delete / Warning!! Jangan Hapus Ini!!!
-from userbot import CMD_HELP, bot
-from userbot.events import register
+from SkyNet import CMD_HELP, bot
+from SkyNet.events import register
 
 
-@register(outgoing=True, pattern=r"^\.xogame(?: |$)(.*)")
+@register(outgoing=True, pattern=r"^\$xogame(?: |$)(.*)")
 async def _(event):
     if event.fwd_from:
         return
@@ -21,7 +21,7 @@ async def _(event):
 # Alvin Gans
 
 
-@register(outgoing=True, pattern=r"^\.mod(?: |$)(.*)")
+@register(outgoing=True, pattern=r"^\$mod(?: |$)(.*)")
 async def _(event):
     if event.fwd_from:
         return
@@ -37,7 +37,7 @@ async def _(event):
 
 CMD_HELP.update({
     "games": "✘ Pʟᴜɢɪɴ : Games\
-\n\n⚡𝘾𝙈𝘿⚡: `.xogame`\
+\n\n⚡𝘾𝙈𝘿⚡: `$xogame`\
 \n↳ : Mainkan game XO bersama Temanmu.\
-\n\n⚡𝘾𝙈𝘿⚡: `.mod <Nama App>`\
+\n\n⚡𝘾𝙈𝘿⚡: `$mod <Nama App>`\
 \n↳ : Dapatkan applikasi mod."})
