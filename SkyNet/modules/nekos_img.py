@@ -4,8 +4,8 @@
 
 from aiohttp import ClientSession
 
-from userbot import CMD_HELP
-from userbot.events import register
+from SkyNet import CMD_HELP
+from SkyNet.events import register
 
 
 async def get_nekos_img(args):
@@ -18,10 +18,10 @@ async def get_nekos_img(args):
             return result
 
 
-@register(outgoing=True, pattern=r"^\.nekos(?: |$)(.*)")
+@register(outgoing=True, pattern=r"^\$nekos(?: |$)(.*)")
 async def nekos_media(event):
     args = event.pattern_match.group(1)
-    args_error = "Do `.help nekos` to see available arguments."
+    args_error = "Do `$help nekos` to see available arguments."
     if not args:
         return await event.edit(args_error)
     result = await get_nekos_img(args)
@@ -42,7 +42,7 @@ async def nekos_media(event):
 CMD_HELP.update(
     {
         "nekos": "✘ Pʟᴜɢɪɴ : Nekos Image"
-        "\n\n⚡𝘾𝙈𝘿⚡: `.nekos <Arguments>`"
+        "\n\n⚡𝘾𝙈𝘿⚡: `$nekos <Arguments>`"
         "\n↳ : For Fetching Images From Nekos"
         "\n\nArguments : `8ball`, `anal`, `avatar`, `baka`, `bj`, "
         "`blowjob`, `boobs`, `classic`, `cuddle`, `cum`, "
