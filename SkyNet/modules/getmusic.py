@@ -20,9 +20,9 @@ from userbot import (
     bot,
     lastfm,
 )
-from userbot.events import register
-from userbot.utils import chrome, progress
-from userbot.utils.FastTelethon import upload_file
+from SkyNet.events import register
+from SkyNet.utils import chrome, progress
+from SkyNet.utils.FastTelethon import upload_file
 
 
 async def getmusic(cat):
@@ -52,7 +52,7 @@ async def getmusicvideo(cat):
     os.system(command)
 
 
-@register(outgoing=True, pattern=r"^\.song (.*)")
+@register(outgoing=True, pattern=r"^\$song (.*)")
 async def _(event):
     reply_to_id = event.message.id
     if event.reply_to_msg_id:
@@ -94,7 +94,7 @@ async def _(event):
                             shell=True)
 
 
-@register(outgoing=True, pattern=r"^\.vsong(?: |$)(.*)")
+@register(outgoing=True, pattern=r"^\$vsong(?: |$)(.*)")
 async def _(event):
     reply_to_id = event.message.id
     if event.reply_to_msg_id:
@@ -169,7 +169,7 @@ async def _(event):
         return
 
 
-@register(outgoing=True, pattern=r"^\.smd (?:(now)|(.*) - (.*))")
+@register(outgoing=True, pattern=r"^\$smd (?:(now)|(.*) - (.*))")
 async def _(event):
     if event.fwd_from:
         return
@@ -212,7 +212,7 @@ async def _(event):
         )
 
 
-@register(outgoing=True, pattern=r"^\.net (?:(now)|(.*) - (.*))")
+@register(outgoing=True, pattern=r"^\$net (?:(now)|(.*) - (.*))")
 async def _(event):
     if event.fwd_from:
         return
@@ -254,7 +254,7 @@ async def _(event):
         )
 
 
-@register(outgoing=True, pattern=r"^\.mhb(?: |$)(.*)")
+@register(outgoing=True, pattern=r"^\$mhb(?: |$)(.*)")
 async def _(event):
     if event.fwd_from:
         return
@@ -288,17 +288,17 @@ async def _(event):
 
 
 CMD_HELP.update({"getmusic": "✘ Pʟᴜɢɪɴ : Get Music"
-                 "\n\n⚡𝘾𝙈𝘿⚡: `.song` <Artist - Title>"
+                 "\n\n⚡𝘾𝙈𝘿⚡: `$song` <Artist - Title>"
                  "\n↳ : Finding and Uploading Song."
-                 "\n\n⚡𝘾𝙈𝘿⚡: `.vsong` <Artist - Title>"
+                 "\n\n⚡𝘾𝙈𝘿⚡: `$vsong` <Artist - Title>"
                  "\n↳ : Finding and Uploading Videoclip."
-                 "\n\n⚡𝘾𝙈𝘿⚡: `.smd` <Artist - Title>"
+                 "\n\n⚡𝘾𝙈𝘿⚡: `$smd` <Artist - Title>"
                  "\n↳ : Download Music From Spotify use `@SpotifyMusicDownloaderBot`."
-                 "\n\n⚡𝘾𝙈𝘿⚡: `.smd now`"
+                 "\n\n⚡𝘾𝙈𝘿⚡: `$smd now`"
                  "\n↳ : Download Current LastFM Scrobble use `@SpotifyMusicDownloaderBot`."
-                 "\n\n⚡𝘾𝙈𝘿⚡: `.net` <Artist - Title>"
+                 "\n\n⚡𝘾𝙈𝘿⚡: `$net` <Artist - Title>"
                  "\n↳ : Download Music Use `@WooMaiBot`."
-                 "\n\n⚡𝘾𝙈𝘿⚡: `.net now`"
+                 "\n\n⚡𝘾𝙈𝘿⚡: `$net now`"
                  "\n↳ : Download Current LastFM Scrobble use `@WooMaiBot`."
-                 "\n\n⚡𝘾𝙈𝘿⚡: `.mhb <Spotify/Deezer Link>`"
+                 "\n\n⚡𝘾𝙈𝘿⚡: `$mhb <Spotify/Deezer Link>`"
                  "\n↳ : Download Music From Spotify or Deezer use `@MusicsHunterBot`."})
