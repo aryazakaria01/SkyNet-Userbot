@@ -12,8 +12,8 @@ from pytz import country_names as c_n
 from pytz import country_timezones as c_tz
 from pytz import timezone as tz
 
-from userbot import CMD_HELP, COUNTRY, TZ_NUMBER
-from userbot.events import register
+from SkyNet import CMD_HELP, COUNTRY, TZ_NUMBER
+from SkyNet.events import register
 
 
 async def get_tz(con):
@@ -41,7 +41,7 @@ async def get_tz(con):
         return
 
 
-@register(outgoing=True, pattern="^.time(?: |$)(.*)(?<![0-9])(?: |$)([0-9]+)?")
+@register(outgoing=True, pattern="^$time(?: |$)(.*)(?<![0-9])(?: |$)([0-9]+)?")
 async def time_func(tdata):
     """For .time command, return the time of
        1. The country passed as an argument,
@@ -104,7 +104,7 @@ async def time_func(tdata):
         return
 
 
-@register(outgoing=True, pattern="^.date(?: |$)(.*)(?<![0-9])(?: |$)([0-9]+)?")
+@register(outgoing=True, pattern="^$date(?: |$)(.*)(?<![0-9])(?: |$)([0-9]+)?")
 async def date_func(dat):
     """For .date command, return the date of
        1. The country passed as an argument,
@@ -170,8 +170,8 @@ async def date_func(dat):
 CMD_HELP.update({
     "timedate":
     "✘ Pʟᴜɢɪɴ : Time Date\
-\n\n⚡𝘾𝙈𝘿⚡: `.time` <Country Name/Code> <Timezone Number>\
+\n\n⚡𝘾𝙈𝘿⚡: `$time` <Country Name/Code> <Timezone Number>\
 \n↳ : Get the time of a country. If a country has multiple timezones, it will list all of them and let you select one.\
-\n\n⚡𝘾𝙈𝘿⚡: `.date` <Country Name/Code> <Timezone Number>\
+\n\n⚡𝘾𝙈𝘿⚡: `$date` <Country Name/Code> <Timezone Number>\
 \n↳ : Get the date of a country. If a country has multiple timezones, it will list all of them and let you select one."
 })
