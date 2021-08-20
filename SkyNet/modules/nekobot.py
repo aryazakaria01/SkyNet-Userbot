@@ -10,8 +10,8 @@ from telegraph import exceptions
 from telegraph import upload_file
 from wget import download
 
-from userbot import CMD_HELP, TEMP_DOWNLOAD_DIRECTORY, bot
-from userbot.events import register
+from SkyNet import CMD_HELP, TEMP_DOWNLOAD_DIRECTORY, bot
+from SkyNet.events import register
 
 EMOJI_PATTERN = re.compile(
     "["
@@ -212,7 +212,7 @@ async def get_user_from_event(event):
     return user_obj
 
 
-@register(outgoing=True, pattern=r"^\.trump(?: |$)(.*)")
+@register(outgoing=True, pattern=r"^\$trump(?: |$)(.*)")
 async def trump(event):
     text = event.pattern_match.group(1)
     text = re.sub("&", "", text)
@@ -233,7 +233,7 @@ async def trump(event):
     await purge()
 
 
-@register(outgoing=True, pattern=r"^\.ph(?: |$)(.*)")
+@register(outgoing=True, pattern=r"^\$ph(?: |$)(.*)")
 async def phcomment(event):
     try:
         await event.edit("`Processing..`")
@@ -284,7 +284,7 @@ async def phcomment(event):
     await purge()
 
 
-@register(outgoing=True, pattern=r"^\.qg(?: |$)(.*)")
+@register(outgoing=True, pattern=r"^\$qg(?: |$)(.*)")
 async def qg(event):
     text = event.pattern_match.group(1)
     text = re.sub("&", "", text)
@@ -305,7 +305,7 @@ async def qg(event):
     await purge()
 
 
-@register(outgoing=True, pattern=r"^\.cmm(?: |$)(.*)")
+@register(outgoing=True, pattern=r"^\$cmm(?: |$)(.*)")
 async def cmm(event):
     text = event.pattern_match.group(1)
     text = re.sub("&", "", text)
@@ -326,7 +326,7 @@ async def cmm(event):
     await purge()
 
 
-@register(pattern="^.trap(?: |$)(.*)", outgoing=True)
+@register(pattern="^$trap(?: |$)(.*)", outgoing=True)
 async def nekobot(e):
     input_str = e.pattern_match.group(1)
     input_str = deEmojify(input_str)
@@ -377,7 +377,7 @@ async def nekobot(e):
     await bot.send_file(e.chat_id, file, reply_to=replied)
 
 
-@register(pattern="^.threat(?: |$)(.*)", outgoing=True)
+@register(pattern="^$threat(?: |$)(.*)", outgoing=True)
 async def nekobot(event):
     replied = await event.get_reply_message()
     if not os.path.isdir(TEMP_DOWNLOAD_DIRECTORY):
@@ -419,7 +419,7 @@ async def nekobot(event):
     await bot.send_file(event.chat_id, file, reply_to=replied)
 
 
-@register(pattern="^.trash(?: |$)(.*)", outgoing=True)
+@register(pattern="^$trash(?: |$)(.*)", outgoing=True)
 async def nekobot(event):
     replied = await event.get_reply_message()
     if not os.path.isdir(TEMP_DOWNLOAD_DIRECTORY):
@@ -481,7 +481,7 @@ async def nekobot(event):
     await purge()
 
 
-@register(outgoing=True, pattern="^.fgs ((.*) ; (.*))")
+@register(outgoing=True, pattern="^$fgs ((.*) ; (.*))")
 async def FakeGoogleSearch(event):
     """ Get a user-customised google search meme! """
     input_str = event.pattern_match.group(1)
@@ -519,7 +519,7 @@ async def FakeGoogleSearch(event):
     os.remove('downloads/test.jpg')
 
 
-@register(outgoing=True, pattern=r"^\.kanna(?: |$)(.*)")
+@register(outgoing=True, pattern=r"^\$kanna(?: |$)(.*)")
 async def kanna(event):
     text = event.pattern_match.group(1)
     text = re.sub("&", "", text)
@@ -540,7 +540,7 @@ async def kanna(event):
     await purge()
 
 
-@register(outgoing=True, pattern=r"\.tweet(?: |$)(.*)")
+@register(outgoing=True, pattern=r"\$tweet(?: |$)(.*)")
 async def tweet(event):
     text = event.pattern_match.group(1)
     text = re.sub("&", "", text)
@@ -572,21 +572,21 @@ async def tweet(event):
 CMD_HELP.update(
     {
         "nekobot": "✘ Pʟᴜɢɪɴ : Nekobot"
-        "\n\n⚡𝘾𝙈𝘿⚡: `.fgs [Text Atas] ; [Text Bawah]`"
+        "\n\n⚡𝘾𝙈𝘿⚡: `$fgs [Text Atas] ; [Text Bawah]`"
         "\n↳ : Create Google Memes Custom Text."
-        "\n\n⚡𝘾𝙈𝘿⚡: `.modi` or `.threat` or `.trash` or `.trap` [Text]"
+        "\n\n⚡𝘾𝙈𝘿⚡: `$modi` or `$threat` or `$trash` or `$trap` [Text]"
         "\n↳ : Create Memes (Just for fun)."
-        "\n\n⚡𝘾𝙈𝘿⚡: `.tweet` <Username>.<Tweet>"
+        "\n\n⚡𝘾𝙈𝘿⚡: `$tweet` <Username>.<Tweet>"
         "\n↳ : Create Tweet with Custom Username."
-        "\n\n⚡𝘾𝙈𝘿⚡: `.trump` <Tweet>"
+        "\n\n⚡𝘾𝙈𝘿⚡: `$trump` <Tweet>"
         "\n↳ : Create Tweet for Donald Trump."
-        "\n\n⚡𝘾𝙈𝘿⚡: `.qg` <Tweet>"
+        "\n\n⚡𝘾𝙈𝘿⚡: `$qg` <Tweet>"
         "\n↳ : Create Tweet for `@QoryGore`."
-        "\n\n⚡𝘾𝙈𝘿⚡: `.cmm` <Text>"
+        "\n\n⚡𝘾𝙈𝘿⚡: `$cmm` <Text>"
         "\n↳ : Create Banner for Change My Mind."
-        "\n\n⚡𝘾𝙈𝘿⚡: `.kanna` <Text>"
+        "\n\n⚡𝘾𝙈𝘿⚡: `$kanna` <Text>"
         "\n↳ : Kanna is Writing Your Text."
-        "\n\n⚡𝘾𝙈𝘿⚡: `.ph` <Text/Reply with or w/o Text>"
+        "\n\n⚡𝘾𝙈𝘿⚡: `$ph` <Text/Reply with or w/o Text>"
         "\n↳ : Writing Comment on P*rnhub XD"
     }
 )
