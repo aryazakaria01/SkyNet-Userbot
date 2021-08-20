@@ -6,12 +6,12 @@
 # Port to userbot by @MoveAngel
 
 from telethon.errors.rpcerrorlist import YouBlockedUserError
-from userbot import bot, CMD_HELP
-from userbot.events import register
+from SkyNet import bot, CMD_HELP
+from SkyNet.events import register
 from asyncio.exceptions import TimeoutError
 
 
-@register(outgoing=True, pattern=r"^\.sa(?: |$)(.*)")
+@register(outgoing=True, pattern=r"^\$sa(?: |$)(.*)")
 async def lastname(steal):
     if steal.fwd_from:
         return
@@ -84,6 +84,6 @@ async def lastname(steal):
 
 CMD_HELP.update({
     "sangmata":
-        "⚡𝘾𝙈𝘿⚡: `.sa`\
+        "⚡𝘾𝙈𝘿⚡: `$sa`\
           \n↳ : Mendapatkan Riwayat Nama Pengguna Yang Di Scan."
 })
