@@ -1,9 +1,9 @@
 from time import sleep
-from userbot import CMD_HELP
-from userbot.events import register
+from SkyNet import CMD_HELP
+from SkyNet.events import register
 
 
-@register(outgoing=True, pattern='^.sadboy(?: |$)(.*)')
+@register(outgoing=True, pattern='^$sadboy(?: |$)(.*)')
 async def typewriter(typew):
     typew.pattern_match.group(1)
     sleep(2)
@@ -16,7 +16,7 @@ async def typewriter(typew):
 # Create by myself @localheart
 
 
-@register(outgoing=True, pattern='^.punten(?: |$)(.*)')
+@register(outgoing=True, pattern='^$punten(?: |$)(.*)')
 async def typewriter(typew):
     typew.pattern_match.group(1)
     await typew.edit("`\n┻┳|―-∩`"
@@ -31,7 +31,7 @@ async def typewriter(typew):
 # Create by myself @localheart
 
 
-@register(outgoing=True, pattern='^.pantau(?: |$)(.*)')
+@register(outgoing=True, pattern='^$pantau(?: |$)(.*)')
 async def typewriter(typew):
     typew.pattern_match.group(1)
     await typew.edit("`\n┻┳|―-∩`"
@@ -47,7 +47,7 @@ async def typewriter(typew):
 # Create by myself @localheart
 
 
-@register(outgoing=True, pattern='^.idiot(?: |$)(.*)')
+@register(outgoing=True, pattern='^$idiot(?: |$)(.*)')
 async def typewriter(typew):
     typew.pattern_match.group(1)
     await typew.edit("\n╭╮╱╱╭╮"
@@ -88,7 +88,7 @@ async def typewriter(typew):
 # Create by amiweird @SyndicateTwenty4
 
 
-@register(outgoing=True, pattern=r'^\.santet(?: |$)(.*)')
+@register(outgoing=True, pattern=r'^\$santet(?: |$)(.*)')
 async def typewriter(typew):
     typew.pattern_match.group(1)
     await typew.edit("`Sedang mengaktifkan santet online...`")
@@ -403,12 +403,12 @@ async def typewriter(typew):
 
 CMD_HELP.update({
     "animasi": "✘ Pʟᴜɢɪɴ : Animasi\
-    \n\n⚡𝘾𝙈𝘿⚡: `.sadboy`\
+    \n\n⚡𝘾𝙈𝘿⚡: `$sadboy`\
     \n↳ : Biasalah sadboy hikss\
-    \n\n⚡𝘾𝙈𝘿⚡: `.punten` dan `.pantau`\
+    \n\n⚡𝘾𝙈𝘿⚡: `$punten` dan `$pantau`\
     \n↳ : Coba aja hehehe.\
-    \n\n⚡𝘾𝙈𝘿⚡: `.idiot`\
+    \n\n⚡𝘾𝙈𝘿⚡: `$idiot`\
     \n↳ : u're ediot xixixi.\
-    \n\n⚡𝘾𝙈𝘿⚡: `.santet`\
+    \n\n⚡𝘾𝙈𝘿⚡: `$santet`\
     \n↳ : Santet via Online."
 })
