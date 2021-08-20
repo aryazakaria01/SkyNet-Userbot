@@ -6,11 +6,11 @@
 #
 
 from telethon.errors.rpcerrorlist import YouBlockedUserError
-from userbot import bot, CMD_HELP
-from userbot.events import register
+from SkyNet import bot, CMD_HELP
+from SkyNet.events import register
 
 
-@register(outgoing=True, pattern=r"^\.ttvid(?: |$)(.*)")
+@register(outgoing=True, pattern=r"^\$ttvid(?: |$)(.*)")
 async def _(event):
     if event.fwd_from:
         return
@@ -41,7 +41,7 @@ async def _(event):
 CMD_HELP.update(
     {
         "tiktok": "✘ Pʟᴜɢɪɴ : Tiktok"
-        "\n\n⚡𝘾𝙈𝘿⚡: `.ttvid <Link>`"
+        "\n\n⚡𝘾𝙈𝘿⚡: `$ttvid <Link>`"
         "\n↳ : Download Video Tiktok Tanpa Watermark."
         "\n\nSources `@ttsavebot`"
     }
