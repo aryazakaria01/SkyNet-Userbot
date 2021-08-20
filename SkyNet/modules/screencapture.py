@@ -10,12 +10,12 @@ import io
 from asyncio import sleep
 from re import match
 
-from userbot import CMD_HELP
-from userbot.events import register
-from userbot.utils import chrome, options
+from SkyNet import CMD_HELP
+from SkyNet.events import register
+from SkyNet.utils import chrome, options
 
 
-@register(pattern=r"^\.ss (.*)", outgoing=True)
+@register(pattern=r"^\$ss (.*)", outgoing=True)
 async def capture(url):
     """For .ss command, capture a website's screenshot and send the photo."""
     await url.edit("`Processing...`")
@@ -70,7 +70,7 @@ async def capture(url):
 CMD_HELP.update(
     {
         "ss": "✘ Pʟᴜɢɪɴ : Screenshot"
-        "\n\n⚡𝘾𝙈𝘿⚡: `.ss <URL>`"
+        "\n\n⚡𝘾𝙈𝘿⚡: `$ss <URL>`"
         "\n↳ : Takes a Screenshot of a Website and Sends the Screenshot."
         "\nExample of a valid URL : `https://www.google.com`"
     }
