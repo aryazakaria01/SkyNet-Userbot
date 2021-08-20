@@ -5,13 +5,13 @@
 #
 
 from telethon.tl import functions
-from userbot.events import register
-from userbot import CMD_HELP
+from SkyNet.events import register
+from SkyNet import CMD_HELP
 
 
-@register(outgoing=True, pattern=r"^\.create (b|g|c)(?: |$)(.*)")
+@register(outgoing=True, pattern=r"^\$create (b|g|c)(?: |$)(.*)")
 async def telegraphs(grop):
-    """For .create command, Creating New Group & Channel"""
+    """For $create command, Creating New Group & Channel"""
     if grop.text[0].isalpha() or grop.text[0] in ("/", "#", "@", "!"):
         return
     if grop.fwd_from:
@@ -68,10 +68,10 @@ async def telegraphs(grop):
 CMD_HELP.update({
     "create": "✘ Pʟᴜɢɪɴ : Create a Group\
 \nPenggunaan : Untuk Membuat Channel, Group dan Group Bersama Bot.\
-\n\n⚡𝘾𝙈𝘿⚡: `.create g` <Nama Group>\
+\n\n⚡𝘾𝙈𝘿⚡: `$create g` <Nama Group>\
 \n↳ : Membuat Group Mu.\
-\n\n⚡𝘾𝙈𝘿⚡: `.create b` <Nama Group>\
+\n\n⚡𝘾𝙈𝘿⚡: `$create b` <Nama Group>\
 \n↳ : Membuat Group Bersama Dengan Bot.\
-\n\n⚡𝘾𝙈𝘿⚡: `.create c` <Nama Channel>\
+\n\n⚡𝘾𝙈𝘿⚡: `$create c` <Nama Channel>\
 \n↳ : Membuat Sebuah Channel.\
 "})
