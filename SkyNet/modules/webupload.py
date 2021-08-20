@@ -4,12 +4,12 @@
 
 import asyncio
 import time
-from userbot.events import register
-from userbot import CMD_HELP, bot
-from userbot import TEMP_DOWNLOAD_DIRECTORY
+from SkyNet.events import register
+from SkyNet import CMD_HELP, bot
+from SkyNet import TEMP_DOWNLOAD_DIRECTORY
 
 
-@register(outgoing=True, pattern=r"^\.webupload ?(.+?|) (?:--)(anonfiles|transfer|filebin|anonymousfiles|megaupload|bayfiles)")
+@register(outgoing=True, pattern=r"^\$webupload ?(.+?|) (?:--)(anonfiles|transfer|filebin|anonymousfiles|megaupload|bayfiles)")
 async def _(event):
     if event.fwd_from:
         return
@@ -45,6 +45,6 @@ async def _(event):
 
 CMD_HELP.update({
     "webupload": "✘ Pʟᴜɢɪɴ : Web Upload\
-    \n\n⚡𝘾𝙈𝘿⚡: `.webupload --`(`anonfiles`|`transfer`|`filebin`|`anonymousfiles`|`megaupload`|`bayfiles`)\
+    \n\n⚡𝘾𝙈𝘿⚡: `$webupload --`(`anonfiles`|`transfer`|`filebin`|`anonymousfiles`|`megaupload`|`bayfiles`)\
     \n\n**Example:** reply `.webupload --anonfiles` or `.webupload --filebin` and the file will be uploaded to that website."
 })
