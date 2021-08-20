@@ -10,11 +10,11 @@ from asyncio.exceptions import TimeoutError
 
 from telethon.errors.rpcerrorlist import YouBlockedUserError
 
-from userbot import CMD_HELP, bot
-from userbot.events import register
+from SkyNet import CMD_HELP, bot
+from SkyNet.events import register
 
 
-@register(outgoing=True, pattern=r"^\.wall(?: |$)(.*)")
+@register(outgoing=True, pattern=r"^\$wall(?: |$)(.*)")
 async def _(event):
     try:
         query = event.pattern_match.group(1)
@@ -58,5 +58,5 @@ async def _(event):
 
 
 CMD_HELP.update({"wallpaper": "✘ Pʟᴜɢɪɴ : Wallpaper"
-                 "\n\n⚡𝘾𝙈𝘿⚡: `.wall <Query>`"
+                 "\n\n⚡𝘾𝙈𝘿⚡: `$wall <Query>`"
                  "\n↳ : Mencari Wallpaper Yang Anda Minta."})
