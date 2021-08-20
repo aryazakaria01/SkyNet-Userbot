@@ -12,9 +12,9 @@ from pytz import country_timezones as c_tz
 from pytz import timezone as tz
 from pytz import country_names as c_n
 
-from userbot import CMD_HELP, WEATHER_DEFCITY
-from userbot import OPEN_WEATHER_MAP_APPID as OWM_API
-from userbot.events import register
+from SkyNet import CMD_HELP, WEATHER_DEFCITY
+from SkyNet import OPEN_WEATHER_MAP_APPID as OWM_API
+from SkyNet.events import register
 
 # ===== CONSTANT =====
 if WEATHER_DEFCITY:
@@ -37,7 +37,7 @@ async def get_tz(con):
         return
 
 
-@register(outgoing=True, pattern="^.weather(?: |$)(.*)")
+@register(outgoing=True, pattern="^$weather(?: |$)(.*)")
 async def get_weather(weather):
     """For .weather command, gets the current weather of a city."""
 
@@ -136,6 +136,6 @@ async def get_weather(weather):
 
 CMD_HELP.update({
     "weather": "✘ Pʟᴜɢɪɴ : Weather\
-    \n\n⚡𝘾𝙈𝘿⚡: `.weather` <City> or `.weather` <City>, <Country Name/Code>\
+    \n\n⚡𝘾𝙈𝘿⚡: `$weather` <City> or `.weather` <City>, <Country Name/Code>\
     \n↳ : Gets the Weather of a City."
 })
