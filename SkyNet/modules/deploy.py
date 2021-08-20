@@ -1,13 +1,13 @@
-# © Copyright 2021 Lynx-Userbot LLC Company.
+# © Copyright 2021 SkyNet-Userbot LLC Company.
 # GPL-3.0 License From Github
-# Ported for Lynx-Userbot by @TeamSecret_Kz (KENZO)
+# Ported for SkyNet-Userbot by @CyberSupportGroup (Arya)
 # WARNING !! Don't Delete This Tag if u Kang it This File.
-# Credits by @SyndicateTwenty4 (Axel)
+# Credits by @Badboyanim (Arya)
 
 import asyncio
 
-from userbot import ALIVE_NAME, CMD_HELP
-from userbot.events import register
+from SkyNet import ALIVE_NAME, CMD_HELP
+from SkyNet.events import register
 from platform import uname
 
 # Ported for Lynx by KENZO (Lynx-Userbot)
@@ -16,7 +16,7 @@ DEFAULTUSER = str(ALIVE_NAME) if ALIVE_NAME else uname().node
 # ============================================
 
 
-@register(outgoing=True, pattern="^.deploy ?(.*)")
+@register(outgoing=True, pattern="^$deploy ?(.*)")
 async def _(event):
 
     if event.fwd_from:
@@ -33,7 +33,7 @@ async def _(event):
 
     animation_chars = [
 
-        "Heroku Connecting To Latest Github Build (KENZO-404/Lynx-Userbot)",
+        "Heroku Connecting To Latest Github Build (aryazakaria01/SkyNet-Userbot)",
         f"Build started by user `{DEFAULTUSER}`",
         f"Deploy `535a74f0` by user `{DEFAULTUSER}`",
         "`Restarting Heroku Server...`",
@@ -50,10 +50,10 @@ async def _(event):
         "telethon.network.mtprotosender -\nINFO - Connecting to 91.108.56.146:443/TcpFull...",
         "telethon.network.mtprotosender -\nINFO - Connection to 91.108.56.146:443/TcpFull complete!",
         "telethon.network.mtprotosender -\nINFO - Received response without parent request",
-        "INFO - Lynx-Userbot: Logged in as 557667062",
-        "INFO - Lynx-Userbot: Successfully...",
-        "919852+00:00 app[worker.1]: 919 - Lynx-Userbot -",
-        "INFO - ⚡𝗟𝘆𝗻𝘅-𝙐𝙎𝙀𝙍𝘽𝙊𝙏⚡ ⚙️ V4.0 [TELAH DIAKTIFKAN!]",
+        "INFO - SkyNet-Userbot: Logged in as 557667062",
+        "INFO - SkyNet-Userbot: Successfully...",
+        "919852+00:00 app[worker.1]: 919 - SkyNet-Userbot -",
+        "INFO - 𝐒𝐤𝐲𝐍𝐞𝐭-𝐔𝐬𝐞𝐫𝐛𝐨𝐭 ⚙️ V4.0 [TELAH DIAKTIFKAN!]",
         "**Build Succeeded**"
 
     ]
@@ -66,5 +66,5 @@ async def _(event):
 
 
 CMD_HELP.update({
-    "deploy": "⚡𝘾𝙈𝘿⚡: `.deploy`"
+    "deploy": "⚡𝘾𝙈𝘿⚡: `$deploy`"
     "\n↳ : Untuk Deploy ke Heroku.. <Animasi> :v haha"})
