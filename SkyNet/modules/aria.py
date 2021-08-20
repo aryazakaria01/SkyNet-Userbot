@@ -11,9 +11,9 @@ from subprocess import PIPE, Popen
 import aria2p
 from requests import get
 
-from userbot import CMD_HELP, LOGS, TEMP_DOWNLOAD_DIRECTORY
-from userbot.events import register
-from userbot.utils import humanbytes
+from SkyNet import CMD_HELP, LOGS, TEMP_DOWNLOAD_DIRECTORY
+from SkyNet.events import register
+from SkyNet.utils import humanbytes
 
 
 def subprocess_run(cmd):
@@ -66,7 +66,7 @@ aria2 = aria2p.API(
 aria2.set_global_options({"dir": download_path})
 
 
-@register(outgoing=True, pattern=r"^\.amag(?: |$)(.*)")
+@register(outgoing=True, pattern=r"^\$amag(?: |$)(.*)")
 async def magnet_download(event):
     magnet_uri = event.pattern_match.group(1)
     # Add Magnet URI Into Queue
@@ -82,7 +82,7 @@ async def magnet_download(event):
     await check_progress_for_dl(gid=new_gid, event=event, previous=None)
 
 
-@register(outgoing=True, pattern=r"^\.ator(?: |$)(.*)")
+@register(outgoing=True, pattern=r"^\$ator(?: |$)(.*)")
 async def torrent_download(event):
     torrent_file_path = event.pattern_match.group(1)
     # Add Torrent Into Queue
@@ -96,7 +96,7 @@ async def torrent_download(event):
     await check_progress_for_dl(gid=gid, event=event, previous=None)
 
 
-@register(outgoing=True, pattern=r"^\.aurl(?: |$)(.*)")
+@register(outgoing=True, pattern=r"^\$aurl(?: |$)(.*)")
 async def aurl_download(event):
     uri = [event.pattern_match.group(1)]
     try:  # Add URL Into Queue
@@ -112,7 +112,7 @@ async def aurl_download(event):
         await check_progress_for_dl(gid=new_gid, event=event, previous=None)
 
 
-@register(outgoing=True, pattern=r"^\.aclear(?: |$)(.*)")
+@register(outgoing=True, pattern=r"^\$aclear(?: |$)(.*)")
 async def remove_all(event):
     try:
         removed = aria2.remove_all(force=True)
@@ -127,7 +127,7 @@ async def remove_all(event):
     await sleep(2.5)
 
 
-@register(outgoing=True, pattern=r"^\.apause(?: |$)(.*)")
+@register(outgoing=True, pattern=r"^\$apause(?: |$)(.*)")
 async def pause_all(event):
     # Pause ALL Currently Running Downloads.
     await event.edit("`Pausing downloads...`")
@@ -137,7 +137,7 @@ async def pause_all(event):
     await sleep(2.5)
 
 
-@register(outgoing=True, pattern=r"^\.aresume(?: |$)(.*)")
+@register(outgoing=True, pattern=r"^\$aresume(?: |$)(.*)")
 async def resume_all(event):
     await event.edit("`Resuming downloads...`")
     aria2.resume_all()
@@ -147,7 +147,7 @@ async def resume_all(event):
     await event.delete()
 
 
-@register(outgoing=True, pattern=r"^\.ashow(?: |$)(.*)")
+@register(outgoing=True, pattern=r"^\$ashow(?: |$)(.*)")
 async def show_all(event):
     output = "output.txt"
     downloads = aria2.get_downloads()
@@ -248,11 +248,11 @@ async def check_progress_for_dl(gid, event, previous):
 
 
 CMD_HELP.update({"aria": "✘ Pʟᴜɢɪɴ : Aria"
-                 "\n\n⚡𝘾𝙈𝘿⚡: `.aurl [URL]` / `.amag [Magnet Link]` / `.ator [Path to Torrent File]`"
+                 "\n\n⚡𝘾𝙈𝘿⚡: `$aurl [URL]` / `$amag [Magnet Link]` / `$ator [Path to Torrent File]`"
                  "\n↳ : Downloads The File Into Your Userbot Server Storage."
-                 "\n\n⚡𝘾𝙈𝘿⚡: `.apause (or) .aresume`"
+                 "\n\n⚡𝘾𝙈𝘿⚡: `$apause (or) $aresume`"
                  "\n↳ : Pauses/Resumes On-going Downloads."
-                 "\n\n⚡𝘾𝙈𝘿⚡: `.aclear`"
+                 "\n\n⚡𝘾𝙈𝘿⚡: `$aclear`"
                  "\n↳ : Clears The Download Queue, Deleting All On-going Downloads."
-                 "\n\n⚡𝘾𝙈𝘿⚡: `.ashow`"
+                 "\n\n⚡𝘾𝙈𝘿⚡: `$ashow`"
                  "\n↳ : Shows Progress of The On-going Downloads."})
