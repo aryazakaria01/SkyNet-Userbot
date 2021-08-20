@@ -19,17 +19,17 @@ from telethon.tl.types import (
     MessageMediaPhoto,
 )
 
-from userbot import CMD_HELP, S_PACK_NAME as custompack, bot
-from userbot.events import register
+from SkyNet import CMD_HELP, S_PACK_NAME as custompack, bot
+from SkyNet.events import register
 
 
 KANGING_STR = [
     "Mengambil Sticker Ini Ke Pack Anda",
-    "Lynx Sedang Mengambil Sticker Ini Ke Pack.",
+    "SkyNet Sedang Mengambil Sticker Ini Ke Pack.",
 ]
 
 
-@register(outgoing=True, pattern=r"^\.(?:curry|kang)\s?(.)?")
+@register(outgoing=True, pattern=r"^\$(?:curry|kang)\s?(.)?")
 async def kang(args):
     user = await bot.get_me()
     if not user.username:
@@ -175,7 +175,7 @@ async def kang(args):
                         return await args.edit(
                             "`Sticker Ditambahkan ke Pack Yang Berbeda."
                             "\nIni Pack Yang Baru Saja Anda Buat."
-                            f"\nTekan [⚡𝗟𝘆𝗻𝘅-𝙐𝙎𝙀𝙍𝘽𝙊𝙏⚡](t.me/addstickers/{packname}) Untuk Melihat Sticker Anda",
+                            f"\nTekan [𝐒𝐤𝐲𝐍𝐞𝐭-𝐔𝐬𝐞𝐫𝐛𝐨𝐭](t.me/addstickers/{packname}) Untuk Melihat Sticker Anda",
                             parse_mode="md",
                         )
                 if is_anim:
@@ -242,7 +242,7 @@ async def kang(args):
                 await bot.send_read_acknowledge(conv.chat_id)
 
         await args.edit(
-            f"Sticker Berhasil Ditambahkan.\n Tekan » **[⚡𝗟𝘆𝗻𝘅-𝙐𝙎𝙀𝙍𝘽𝙊𝙏⚡](t.me/addstickers/{packname})** «",
+            f"Sticker Berhasil Ditambahkan.\n Tekan » **[𝐒𝐤𝐲𝐍𝐞𝐭-𝐔𝐬𝐞𝐫𝐛𝐨𝐭](t.me/addstickers/{packname})** «",
             parse_mode="md",
         )
 
@@ -271,7 +271,7 @@ async def resize_photo(photo):
     return image
 
 
-@register(outgoing=True, pattern=r"^\.stkrinfo$")
+@register(outgoing=True, pattern=r"^\$stkrinfo$")
 async def get_pack_info(event):
     if not event.is_reply:
         return await event.edit(
@@ -316,7 +316,7 @@ async def get_pack_info(event):
     await event.edit(OUTPUT)
 
 
-@register(outgoing=True, pattern=r"^\.getsticker$")
+@register(outgoing=True, pattern=r"^\$getsticker$")
 async def sticker_to_png(sticker):
     if not sticker.is_reply:
         await sticker.edit("`NULL Information to Fetch...`")
@@ -347,13 +347,13 @@ async def sticker_to_png(sticker):
 
 
 CMD_HELP.update({"stickers": "✘ Pʟᴜɢɪɴ : Stickers"
-                 "\n\n⚡𝘾𝙈𝘿⚡: `.kang` or `.curry [Emoji('s)]?`"
+                 "\n\n⚡𝘾𝙈𝘿⚡: `$kang` or `$curry [Emoji('s)]?`"
                  "\n↳ : Balas .tikel Ke Sticker Atau Gambar Untuk Menambahkan Ke Pack-Mu"
                  "\nBisa Memilih Emoji Sesuai Pilihanmu."
-                 "\n\n⚡𝘾𝙈𝘿⚡: `.kang` or `.curry  (Emoji['s]]?` [Number]?"
+                 "\n\n⚡𝘾𝙈𝘿⚡: `$kang` or `$curry  (Emoji['s]]?` [Number]?"
                  "\n↳ : Ambil Sticker/Gambar Ke Pack Baru-Mu"
                  "Dan Bisa Pilih Emoji Sticker-Mu. (Deffault Emoji: 🐈)"
-                 "\n\n⚡𝘾𝙈𝘿⚡: `.stkrinfo`"
+                 "\n\n⚡𝘾𝙈𝘿⚡: `$stkrinfo`"
                  "\n↳ : Dapatkan Informasi Pack Sticker."
-                 "\n\n⚡𝘾𝙈𝘿⚡: `.getsticker`"
+                 "\n\n⚡𝘾𝙈𝘿⚡: `$getsticker`"
                  "\n↳ : Reply Ke Sticker Untuk Mendapatkan File 'PNG' Sticker."})
