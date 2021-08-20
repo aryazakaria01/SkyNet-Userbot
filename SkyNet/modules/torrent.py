@@ -11,11 +11,11 @@ import os
 import requests
 from bs4 import BeautifulSoup as bs
 
-from userbot import CMD_HELP, TEMP_DOWNLOAD_DIRECTORY
-from userbot.events import register
+from SkyNet import CMD_HELP, TEMP_DOWNLOAD_DIRECTORY
+from SkyNet.events import register
 
 
-@register(outgoing=True, pattern=r"^\.ts (.*)")
+@register(outgoing=True, pattern=r"^\$ts (.*)")
 async def gengkapak(e):
     await e.edit("`Please wait, fetching results...`")
     query = e.pattern_match.group(1)
@@ -69,7 +69,7 @@ def dogbin(magnets):
     return urls
 
 
-@register(outgoing=True, pattern=r"^.tos(?: |$)(.*)")
+@register(outgoing=True, pattern=r"^$tos(?: |$)(.*)")
 async def tor_search(event):
     if event.fwd_from:
         return
@@ -157,9 +157,9 @@ async def tor_search(event):
 CMD_HELP.update(
     {
         "torrent": "✘ Pʟᴜɢɪɴ : Torrent\
-    \n\n⚡𝘾𝙈𝘿⚡: `.ts` Search Query.\
+    \n\n⚡𝘾𝙈𝘿⚡: `$ts` Search Query.\
     \n↳ : Search for torrent query and post to dogbin.\
-    \n\n⚡𝘾𝙈𝘿⚡: `.tos` Search Query.\
+    \n\n⚡𝘾𝙈𝘿⚡: `$tos` Search Query.\
     \n↳ : Search for torrent magnet from query."
     }
 )
