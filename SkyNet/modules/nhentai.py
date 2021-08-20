@@ -9,12 +9,12 @@ import re
 from hentai import Hentai, Utils
 from natsort import natsorted
 
-from userbot import CMD_HELP
-from userbot.events import register
-from userbot.utils import post_to_telegraph
+from SkyNet import CMD_HELP
+from SkyNet.events import register
+from SkyNet.utils import post_to_telegraph
 
 
-@register(outgoing=True, pattern=r"^\.nhentai(?: |$)(.*)")
+@register(outgoing=True, pattern=r"^\$nhentai(?: |$)(.*)")
 async def _(event):
     if event.fwd_from:
         return
@@ -109,7 +109,7 @@ async def _(event):
 CMD_HELP.update(
     {
         "nhentai": "✘ Pʟᴜɢɪɴ : Hentai"
-        "\n\n⚡𝘾𝙈𝘿⚡: `.nhentai` <Code or Link or `Random`>"
+        "\n\n⚡𝘾𝙈𝘿⚡: `$nhentai` <Code or Link or `Random`>"
         "\n↳ : Search nhentai Code or Link and View on telegra.ph"
     }
 )
