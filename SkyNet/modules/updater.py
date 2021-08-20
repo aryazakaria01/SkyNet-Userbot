@@ -14,14 +14,14 @@ from os import environ, execle, remove
 from git import Repo
 from git.exc import GitCommandError, InvalidGitRepositoryError, NoSuchPathError
 
-from userbot import (
+from SkyNet import (
     CMD_HELP,
     HEROKU_API_KEY,
     HEROKU_APP_NAME,
     UPSTREAM_REPO_BRANCH,
     UPSTREAM_REPO_URL,
 )
-from userbot.events import register
+from SkyNet.events import register
 
 
 async def gen_chlog(repo, diff):
@@ -141,9 +141,9 @@ async def pull(event, repo, ups_rem, ac_br):
     execle(sys.executable, *args, environ)
 
 
-@register(outgoing=True, pattern=r"^\.update( -pull| -push|$)")
+@register(outgoing=True, pattern=r"^\$update( -pull| -push|$)")
 async def upstream(event):
-    "For .update command, check if the bot is up to date, update if specified"
+    "For $update command, check if the bot is up to date, update if specified"
     await event.edit("`Getting information....`")
     conf = event.pattern_match.group(1).strip()
     off_repo = UPSTREAM_REPO_URL
@@ -209,7 +209,7 @@ async def upstream(event):
     if conf == "" and force_update is False:
         await print_changelogs(event, ac_br, changelog)
         await event.delete()
-        return await event.respond('**Command :**\n[ `.update -pull` ] **» Update Now**\n[ `.update -push` ] **» Update Deploy**\n\n`To Update` **Lynx-Userbot.**')
+        return await event.respond('**Command :**\n[ `#update -pull` ] **» Update Now**\n[ `#update -push` ] **» Update Deploy**\n\n`To Update` **SkyNet-Userbot.**')
 
     if force_update:
         await event.edit(
@@ -224,13 +224,13 @@ async def upstream(event):
 CMD_HELP.update(
     {
         "update": "✘ Pʟᴜɢɪɴ : Update Userbot"
-        "\n\n⚡𝘾𝙈𝘿⚡: `.update`"
+        "\n\n⚡𝘾𝙈𝘿⚡: `$update`"
         "\n↳ : Checks if the main userbot repository has any updates."
         "and shows a changelog if so."
-        "\n\n⚡𝘾𝙈𝘿⚡: `.update -pull`"
+        "\n\n⚡𝘾𝙈𝘿⚡: `$update -pull`"
         "\n↳ : Update your userbot, "
         "if there are any updates in your userbot repository."
-        "\n\n⚡𝘾𝙈𝘿⚡: `.update -push`"
+        "\n\n⚡𝘾𝙈𝘿⚡: `$update -push`"
         "\n↳ : Deploy your userbot"
         "\nThis will triggered deploy always, even no updates."
     }
