@@ -2,8 +2,8 @@
 # Ported By liualvinas/Alvin
 
 from telethon import events
-from userbot.events import register
-from userbot import CMD_HELP
+from SkyNet.events import register
+from SkyNet import CMD_HELP
 
 PRINTABLE_ASCII = range(0x21, 0x7F)
 
@@ -18,7 +18,7 @@ def aesthetify(string):
         yield chr(c)
 
 
-@register(outgoing=True, pattern=r"^\.ae(?: |$)(.*)")
+@register(outgoing=True, pattern=r"^\$ae(?: |$)(.*)")
 async def _(event):
     if event.fwd_from:
         return
@@ -30,6 +30,6 @@ async def _(event):
 
 CMD_HELP.update({
     "aeshtetic": "✘ Pʟᴜɢɪɴ : Aesthetic Font\
-    \n\n⚡𝘾𝙈𝘿⚡: `.ae <Text>`\
+    \n\n⚡𝘾𝙈𝘿⚡: `$ae <Text>`\
     \n↳ : Change Fonts."
 })
