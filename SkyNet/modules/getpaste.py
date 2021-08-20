@@ -9,15 +9,15 @@ import os
 import aiohttp
 from aiofile import async_open
 
-from userbot import CMD_HELP, TEMP_DOWNLOAD_DIRECTORY
-from userbot.events import register
+from SkyNet import CMD_HELP, TEMP_DOWNLOAD_DIRECTORY
+from SkyNet.events import register
 
 DOGBIN_URL = "https://del.dog/"
 NEKOBIN_URL = "https://nekobin.com/"
 KATBIN_URL = "https://katb.in/"
 
 
-@register(outgoing=True, pattern=r"^\.paste(?: (k|d)|$)?(?: ([\s\S]+)|$)")
+@register(outgoing=True, pattern=r"^\$paste(?: (k|d)|$)?(?: ([\s\S]+)|$)")
 async def paste(pstl):
     """For .paste command, pastes the text directly to nekobin/dogbin"""
     url_type = pstl.pattern_match.group(1)
@@ -121,7 +121,7 @@ async def paste(pstl):
     await pstl.edit(reply_text, link_preview=False)
 
 
-@register(outgoing=True, pattern=r"^\.getpaste(?: |$)(.*)")
+@register(outgoing=True, pattern=r"^\$getpaste(?: |$)(.*)")
 async def get_dogbin_content(dog_url):
     """For .getpaste command, fetches the content of a dogbin URL."""
     textx = await dog_url.get_reply_message()
@@ -167,9 +167,9 @@ async def get_dogbin_content(dog_url):
 CMD_HELP.update(
     {
         "getpaste": "✘ Pʟᴜɢɪɴ : Get & Paste"
-        "\n\n⚡𝘾𝙈𝘿⚡: `.paste` or `.paste <d/k>` <Text/Reply>"
+        "\n\n⚡𝘾𝙈𝘿⚡: `$paste` or `$paste <d/k>` <Text/Reply>"
         "\n↳ : Paste your text to Nekobin or Dogbin or Katbin"
-        "\n\n⚡𝘾𝙈𝘿⚡: `.getpaste`"
+        "\n\n⚡𝘾𝙈𝘿⚡: `$getpaste`"
         "\n↳ : Gets the content of a paste or shortened url from dogbin (https://del.dog/)"
     }
 )
