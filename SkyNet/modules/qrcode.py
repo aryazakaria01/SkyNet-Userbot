@@ -15,11 +15,11 @@ import qrcode
 from barcode.writer import ImageWriter
 from bs4 import BeautifulSoup
 
-from userbot import CMD_HELP, LOGS
-from userbot.events import register
+from SkyNet import CMD_HELP, LOGS
+from SkyNet.events import register
 
 
-@register(pattern=r"^\.decode$", outgoing=True)
+@register(pattern=r"^\$dec$", outgoing=True)
 async def parseqr(qr_e):
     """For .decode command, get QR Code/BarCode content from the replied photo."""
     downloaded_file_name = await qr_e.client.download_media(
@@ -54,7 +54,7 @@ async def parseqr(qr_e):
     await qr_e.edit(qr_contents)
 
 
-@register(pattern=r".barcode(?: |$)([\s\S]*)", outgoing=True)
+@register(pattern=r"$barc(?: |$)([\s\S]*)", outgoing=True)
 async def bq(event):
     """For .barcode command, genrate a barcode containing the given content."""
     await event.edit("`Processing..`")
@@ -78,7 +78,7 @@ async def bq(event):
         else:
             message = previous_message.message
     else:
-        return event.edit("SYNTAX: `.barcode <long text to include>`")
+        return event.edit("SYNTAX: `$barc <long text to include>`")
 
     bar_code_type = "code128"
     try:
@@ -92,7 +92,7 @@ async def bq(event):
     await event.delete()
 
 
-@register(pattern=r".makeqr(?: |$)([\s\S]*)", outgoing=True)
+@register(pattern=r"$mak(?: |$)([\s\S]*)", outgoing=True)
 async def make_qr(makeqr):
     """For .makeqr command, make a QR Code containing the given content."""
     input_str = makeqr.pattern_match.group(1)
@@ -133,13 +133,13 @@ async def make_qr(makeqr):
 
 
 CMD_HELP.update({"qr": "✘ Pʟᴜɢɪɴ : QR Code"
-                 "\n\n⚡𝘾𝙈𝘿⚡: `.makeqr` <Content>"
+                 "\n\n⚡𝘾𝙈𝘿⚡: `$mak` <Content>"
                  "\n↳ : Make a QR Code From The Given Content."
-                 "\nExample: `.makeqr www.google.com`"
-                 "\nNote: use `.decode <Reply to BarCode/QRcode>` to Get Decoded Content.",
+                 "\nExample: `$mak www.google.com`"
+                 "\nNote: use `$dec <Reply to BarCode/QRcode>` to Get Decoded Content.",
                  "barcode": "✘ Pʟᴜɢɪɴ : BarCode"
-                 "\n\n⚡𝘾𝙈𝘿⚡: `.barcode <Content>`"
+                 "\n\n⚡𝘾𝙈𝘿⚡: `$barc <Content>`"
                  "\n↳ : Make a BarCode From The Given Content."
-                 "\nExample: `.barcode www.google.com`"
+                 "\nExample: `$barc www.google.com`"
                  "\nNote: use `.decode <Reply to BarCode/QRcode>` to Get Decoded Content.",
                  })
