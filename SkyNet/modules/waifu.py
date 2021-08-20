@@ -5,8 +5,8 @@ from asyncio import sleep
 import re
 import random
 
-from userbot import CMD_HELP, bot
-from userbot.events import register
+from SkyNet import CMD_HELP, bot
+from SkyNet.events import register
 
 
 EMOJI_PATTERN = re.compile(
@@ -30,7 +30,7 @@ def deEmojify(inputString: str) -> str:
     return re.sub(EMOJI_PATTERN, '', inputString)
 
 
-@register(outgoing=True, pattern="^.waifu(?: |$)(.*)")
+@register(outgoing=True, pattern="^$waifu(?: |$)(.*)")
 async def waifu(animu):
     #"""Generate random waifu sticker with the text!"""
 
@@ -61,6 +61,6 @@ async def waifu(animu):
 
 CMD_HELP.update({
     "waifu": "✘ Pʟᴜɢɪɴ : Waifu\
-    \n\n⚡𝘾𝙈𝘿⚡: `.waifu` <Text>\
+    \n\n⚡𝘾𝙈𝘿⚡: `$waifu` <Text>\
     \n↳ : For Custom Stickers."
 })
