@@ -1,8 +1,6 @@
 # Copyright (C) 2020 TeamUltroid
 # Ported by X_ImFine
-# Recode by @mrismanaziz
-# RecodeV2 by @PacarFerdilla
-# RecodeV3 Team Lynx-Userbot ᴀxᴇʟ.ᴀʟ
+# Recode by @Badboyanim
 
 import asyncio
 import os
@@ -11,9 +9,9 @@ from datetime import datetime
 from telethon import events
 from telethon.tl import functions, types
 
-from userbot.events import register
+from SkyNet.events import register
 
-from userbot import (  # noqa pylint: disable=unused-import isort:skip
+from SkyNet import (  # noqa pylint: disable=unused-import isort:skip
     AFKREASON,
     ALIVE_NAME,
     BOTLOG,
@@ -142,7 +140,7 @@ async def on_afk(event):
 
 
 @register(
-    outgoing=True, pattern=r"^\.busy(?: |$)(.*)", disable_errors=True
+    outgoing=True, pattern=r"^\$busy(?: |$)(.*)", disable_errors=True
 )  # pylint:disable=E0602
 async def _(event):
     if event.fwd_from:
@@ -250,7 +248,7 @@ async def _(event):
 
 CMD_HELP.update({
     "busy": "✘ Pʟᴜɢɪɴ : Busy.\
-\n\n⚡𝘾𝙈𝘿⚡: `.busy` <Alasan/Reason> & <Reply Image/Gambar>\
+\n\n⚡𝘾𝙈𝘿⚡: `$busy` <Alasan/Reason> & <Reply Image/Gambar>\
 \n↳ : Lakukan Ketika Anda Sedang Sibuk.\nSiapapun Yang Balas, Tag, Atau Chat Kamu,\
 Mereka Akan Tau Alasan Kamu Sibuk.\n\nSystem Ini Bisa Dilakukan Dan Dibatalkan Dimanapun.\
 "
