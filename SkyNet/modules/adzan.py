@@ -2,13 +2,13 @@ import json
 
 import requests
 
-from userbot import CMD_HELP
-from userbot.events import register
+from SkyNet import CMD_HELP
+from SkyNet.events import register
 
 PLACE = ""
 
 
-@register(pattern=r"^\.adzan(?: |$)(.*)")
+@register(pattern=r"^\$adzan(?: |$)(.*)")
 async def get_adzan(adzan):
     if not adzan.pattern_match.group(1):
         LOCATION = PLACE
@@ -54,5 +54,5 @@ async def get_adzan(adzan):
 
 
 CMD_HELP.update({"adzan": "✘ Pʟᴜɢɪɴ : `Adzan`"
-                 "\n\n⚡𝘾𝙈𝘿⚡: `.adzan` <Kota>"
+                 "\n\n⚡𝘾𝙈𝘿⚡: `$adzan` <Kota>"
                  "\n↳ : Memberikan Informasi Waktu Sholat."})
