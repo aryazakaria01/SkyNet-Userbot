@@ -5,12 +5,12 @@
 #
 """Userbot module containing commands for keeping notes."""
 
-from userbot import BOTLOG_CHATID, CMD_HELP
-from userbot.events import register
+from SkyNet import BOTLOG_CHATID, CMD_HELP
+from SkyNet.events import register
 from asyncio import sleep
 
 
-@register(outgoing=True, pattern=r"\.notes$")
+@register(outgoing=True, pattern=r"\$notes$")
 async def notes_active(event):
     """For .notes command, list all of the notes saved in a chat."""
     try:
@@ -27,7 +27,7 @@ async def notes_active(event):
     await event.edit(message)
 
 
-@register(outgoing=True, pattern=r"^.clear (\w*)")
+@register(outgoing=True, pattern=r"^$clear (\w*)")
 async def remove_notes(event):
     """For .clear command, clear note with the given name."""
     try:
@@ -43,7 +43,7 @@ async def remove_notes(event):
             "`Successfully deleted note:` **{}**".format(notename))
 
 
-@register(outgoing=True, pattern=r"^.save (\w*)")
+@register(outgoing=True, pattern=r"^$save (\w*)")
 async def add_note(event):
     """For .save command, saves notes in a chat."""
     try:
@@ -117,7 +117,7 @@ async def incom_note(event):
         pass
 
 
-@register(outgoing=True, pattern=r"\.rmbotnotes (.*)")
+@register(outgoing=True, pattern=r"\$rmbotnotes (.*)")
 async def kick_marie_notes(event):
     """For .rmbotnotes command, allows you to kick all Marie(or her clones) notes from a chat."""
     bot_type = event.pattern_match.group(1).lower()
@@ -146,12 +146,12 @@ CMD_HELP.update({
     "notes": "✘ Pʟᴜɢɪɴ : Notes"
     "\n\n#<notename>"
     "\n**Usage :** Gets the Specified Note."
-    "\n\n⚡𝘾𝙈𝘿⚡: `.save` <Notename> <Notedata> or reply to a message with .save <Notename>"
+    "\n\n⚡𝘾𝙈𝘿⚡: `$save` <Notename> <Notedata> or reply to a message with .save <Notename>"
     "\n↳ : Saves the replied message as a note with the notename. (Works with pics, docs, and stickers too!)"
-    "\n\n⚡𝘾𝙈𝘿⚡: `.notes`"
+    "\n\n⚡𝘾𝙈𝘿⚡: `$notes`"
     "\n↳ : Gets all saved notes in a chat."
-    "\n\n⚡𝘾𝙈𝘿⚡: `.clear` <Notename>"
+    "\n\n⚡𝘾𝙈𝘿⚡: `$clear` <Notename>"
     "\n↳ : Deletes the specified note."
-    "\n\n⚡𝘾𝙈𝘿⚡: `.rmbotnotes` <marie/rose>"
+    "\n\n⚡𝘾𝙈𝘿⚡: `$rmbotnotes` <marie/rose>"
     "\n↳ : Removes All Notes of Admin Bots (Currently Supported: Marie, Rose and their clones.) in the chat."
 })
