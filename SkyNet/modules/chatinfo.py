@@ -6,7 +6,7 @@
 
 from asyncio.exceptions import TimeoutError
 from asyncio import sleep
-from userbot import ALIVE_NAME, BOTLOG, BOTLOG_CHATID, CMD_HELP, bot
+from SkyNet import ALIVE_NAME, BOTLOG, BOTLOG_CHATID, CMD_HELP, bot
 from datetime import datetime
 from telethon import functions
 from emoji import emojize
@@ -21,12 +21,12 @@ from telethon.errors import (
     ChannelPublicGroupNaError)
 from telethon.utils import get_input_location
 from telethon.tl.types import ChannelParticipantAdmin, ChannelParticipantsBots
-from userbot.events import register
-from userbot.modules.admin import get_user_from_event
+from SkyNet.events import register
+from SkyNet.modules.admin import get_user_from_event
 from telethon.utils import pack_bot_file_id
 
 
-@register(outgoing=True, pattern=r"^\.getid(?: |$)(.*)")
+@register(outgoing=True, pattern=r"^\$getid(?: |$)(.*)")
 async def _(event):
     if event.fwd_from:
         return
@@ -42,7 +42,7 @@ async def _(event):
         await event.edit("ID Grup: `{}`".format(str(event.chat_id)))
 
 
-@register(outgoing=True, pattern=r"^\.link(?: |$)(.*)")
+@register(outgoing=True, pattern=r"^\$link(?: |$)(.*)")
 async def permalink(mention):
     """For .link command, generates a link to the user's PM with a custom text."""
     user, custom = await get_user_from_event(mention)
@@ -56,7 +56,7 @@ async def permalink(mention):
         await mention.edit(f"[{tag}](tg://user?id={user.id})")
 
 
-@register(outgoing=True, pattern=r"^\.getbot(?: |$)(.*)")
+@register(outgoing=True, pattern=r"^\$getbot(?: |$)(.*)")
 async def _(event):
     if event.fwd_from:
         return
@@ -86,7 +86,7 @@ async def _(event):
     await event.edit(mentions)
 
 
-@register(outgoing=True, pattern=r"^\.logit(?: |$)([\s\S]*)")
+@register(outgoing=True, pattern=r"^\$logit(?: |$)([\s\S]*)")
 async def log(log_text):
     """For .log command, forwards a message or the command argument to the bot logs group."""
     if BOTLOG:
@@ -107,14 +107,14 @@ async def log(log_text):
     await log_text.delete()
 
 
-@register(outgoing=True, pattern=r"^\.exit$")
+@register(outgoing=True, pattern=r"^\$exit$")
 async def exit(leave):
     """Basically it's .kickme command"""
     await leave.edit(f"#Succeeded ✅\n`{ALIVE_NAME} Has left the group...`")
     await leave.client.kick_participant(leave.chat_id, 'me')
 
 
-@register(outgoing=True, pattern=r"^\.unmutechat$")
+@register(outgoing=True, pattern=r"^\$unmutechat$")
 async def unmute_chat(unm_e):
     """For .unmutechat command, unmute a muted chat."""
     try:
@@ -128,7 +128,7 @@ async def unmute_chat(unm_e):
     await unm_e.delete()
 
 
-@register(outgoing=True, pattern=r"^\.mutechat$")
+@register(outgoing=True, pattern=r"^\$mutechat$")
 async def mute_chat(mute_e):
     """For .mutechat command, mute any chat."""
     try:
@@ -173,7 +173,7 @@ async def sedNinja(event):
         await event.delete()
 
 
-@register(outgoing=True, pattern=r"^\.regexninja (on|off)$")
+@register(outgoing=True, pattern=r"^\$regexninja (on|off)$")
 async def sedNinjaToggle(event):
     """Aktifkan Atau Nonaktifkan Modul Regex Ninja."""
     global regexNinja
@@ -189,7 +189,7 @@ async def sedNinjaToggle(event):
         await event.delete()
 
 
-@register(pattern=r"^\.chatinfo(?: |$)(.*)", outgoing=True)
+@register(pattern=r"^\$chatinfo(?: |$)(.*)", outgoing=True)
 async def info(event):
     await event.edit("`Menganalisis Obrolan Ini...`")
     chat = await get_chatinfo(event)
@@ -394,7 +394,7 @@ async def fetch_info(chat, event):
     return caption
 
 
-@register(outgoing=True, pattern=r"^\.invite(?: |$)(.*)")
+@register(outgoing=True, pattern=r"^\$invite(?: |$)(.*)")
 async def _(event):
     if event.fwd_from:
         return
@@ -436,7 +436,7 @@ async def _(event):
             await event.delete()
 
 
-@register(outgoing=True, pattern=r"^\.sa(?: |$)(.*)")
+@register(outgoing=True, pattern=r"^\$sa(?: |$)(.*)")
 async def lastname(steal):
     if steal.fwd_from:
         return
@@ -510,26 +510,26 @@ async def lastname(steal):
 CMD_HELP.update({
     "chatinfo":
     "✘ Pʟᴜɢɪɴ : Chat Info\
-\n\n⚡𝘾𝙈𝘿⚡: `.getid`\
+\n\n⚡𝘾𝙈𝘿⚡: `$getid`\
 \n↳ : Dapatkan ID dari media Telegram mana pun, atau pengguna mana pun\
-\n\n⚡𝘾𝙈𝘿⚡: `.getbot`\
+\n\n⚡𝘾𝙈𝘿⚡: `$getbot`\
 \n↳ : Dapatkan Bot dalam obrolan apa pun.\
-\n\n⚡𝘾𝙈𝘿⚡: `.logit`\
+\n\n⚡𝘾𝙈𝘿⚡: `$logit`\
 \n↳ : Meneruskan pesan yang telah Anda balas di grup log bot Anda.\
-\n\n⚡𝘾𝙈𝘿⚡: `.exit`\
+\n\n⚡𝘾𝙈𝘿⚡: `$exit`\
 \n↳ : Keluar dari Group.\
-\n\n⚡𝘾𝙈𝘿⚡: `.unmutechat`\
+\n\n⚡𝘾𝙈𝘿⚡: `$unmutechat`\
 \n↳ : Membuka obrolan yang dibisukan.\
-\n\n⚡𝘾𝙈𝘿⚡: `.mutechat`\
+\n\n⚡𝘾𝙈𝘿⚡: `$mutechat`\
 \n↳ : Memungkinkan Anda membisukan obrolan apa pun.\
-\n\n⚡𝘾𝙈𝘿⚡: `.link` <username/userid>: <opsional teks> (atau) balas pesan seseorang dengan .link <teks opsional>\
+\n\n⚡𝘾𝙈𝘿⚡: `$link` <username/userid>: <opsional teks> (atau) balas pesan seseorang dengan .link <teks opsional>\
 \n↳ : Buat tautan permanen ke profil pengguna dengan teks ubahsuaian opsional.\
-\n\n⚡𝘾𝙈𝘿⚡: `.regexninja` enable/disabled\
+\n\n⚡𝘾𝙈𝘿⚡: `$regexninja` enable/disabled\
 \n↳ : Mengaktifkan/menonaktifkan modul ninja regex secara global.\
 \nModul Regex Ninja membantu menghapus pesan pemicu bot regex.\
-\n\n⚡𝘾𝙈𝘿⚡: `.chatinfo [opsional: <reply/tag/chat id/invite link>]`\
+\n\n⚡𝘾𝙈𝘿⚡: `$chatinfo [opsional: <reply/tag/chat id/invite link>]`\
 \n↳ : Mendapatkan info obrolan. Beberapa info mungkin dibatasi karena izin yang hilang..\
-\n\n⚡𝘾𝙈𝘿⚡: `.invite` \
+\n\n⚡𝘾𝙈𝘿⚡: `$invite` \
 \n↳ : Menambahkan pengguna ke obrolan, bukan ke pesan pribadi.\
-\n\n⚡𝘾𝙈𝘿⚡: `.sa` <Reply>\
+\n\n⚡𝘾𝙈𝘿⚡: `$sa` <Reply>\
 \n↳ : Mendapatkan Riwayat Nama Pengguna Yang Di Scan."})
