@@ -15,14 +15,14 @@ from zipfile import ZIP_DEFLATED, BadZipFile, ZipFile, is_zipfile
 from natsort import os_sorted
 from rarfile import BadRarFile, RarFile, is_rarfile
 
-from userbot import CMD_HELP, TEMP_DOWNLOAD_DIRECTORY
-from userbot.events import register
-from userbot.utils import humanbytes
+from SkyNet import CMD_HELP, TEMP_DOWNLOAD_DIRECTORY
+from SkyNet.events import register
+from SkyNet.utils import humanbytes
 
 MAX_MESSAGE_SIZE_LIMIT = 4095
 
 
-@register(outgoing=True, pattern=r"^\.ls(?: |$)(.*)")
+@register(outgoing=True, pattern=r"^\$ls(?: |$)(.*)")
 async def lst(event):
     if event.fwd_from:
         return
@@ -122,7 +122,7 @@ async def lst(event):
         await event.edit(msg)
 
 
-@register(outgoing=True, pattern=r"^\.rm(?: |$)(.*)")
+@register(outgoing=True, pattern=r"^\$rm(?: |$)(.*)")
 async def rmove(event):
     """Removing Directory/File"""
     cat = event.pattern_match.group(1)
@@ -139,7 +139,7 @@ async def rmove(event):
     await event.edit(f"Removed `{cat}`")
 
 
-@register(outgoing=True, pattern=r"^\.rn ([^|]+)\|([^|]+)")
+@register(outgoing=True, pattern=r"^\$rn ([^|]+)\|([^|]+)")
 async def rname(event):
     """Renaming Directory/File"""
     cat = str(event.pattern_match.group(1)).strip()
@@ -152,7 +152,7 @@ async def rname(event):
     await event.edit(f"Renamed `{cat}` to `{new_path}`")
 
 
-@register(outgoing=True, pattern=r"^\.zip (.*)")
+@register(outgoing=True, pattern=r"^\$zip (.*)")
 async def zip_file(event):
     if event.fwd_from:
         return
@@ -201,7 +201,7 @@ async def zip_file(event):
         await event.edit("`404: Not Found`")
 
 
-@register(outgoing=True, pattern=r"^\.unzip (.*)")
+@register(outgoing=True, pattern=r"^\$unzip (.*)")
 async def unzip_file(event):
     if event.fwd_from:
         return
@@ -244,15 +244,15 @@ async def unzip_file(event):
 CMD_HELP.update(
     {
         "file": "✘ Pʟᴜɢɪɴ : File Manager"
-        "\n\n⚡𝘾𝙈𝘿⚡: `.ls` <Directory>"
+        "\n\n⚡𝘾𝙈𝘿⚡: `$ls` <Directory>"
         "\n↳ : Get List File Inside Directory."
-        "\n\n⚡𝘾𝙈𝘿⚡: `.rm` <Directory/File>"
+        "\n\n⚡𝘾𝙈𝘿⚡: `$rm` <Directory/File>"
         "\n↳ : Remove File or Directory"
-        "\n\n⚡𝘾𝙈𝘿⚡: `.rn` <Directory/File> | <New Name>"
+        "\n\n⚡𝘾𝙈𝘿⚡: `$rn` <Directory/File> | <New Name>"
         "\n↳ : Rename File or Directory"
-        "\n\n⚡𝘾𝙈𝘿⚡: `.zip` <File/Folder Path> | <Zip Name> (Optional)"
+        "\n\n⚡𝘾𝙈𝘿⚡: `$zip` <File/Folder Path> | <Zip Name> (Optional)"
         "\n↳ : For Zipping File or Folder."
-        "\n\n⚡𝘾𝙈𝘿⚡: `.unzip` <Path to ZIP File>"
+        "\n\n⚡𝘾𝙈𝘿⚡: `$unzip` <Path to ZIP File>"
         "\n↳ : For Extracting Archive File"
         "\nOnly Support ZIP, TAR, and RAR File!"
     }
