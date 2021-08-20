@@ -34,8 +34,8 @@ from telethon.tl.types import (
     PeerChat,
 )
 
-from userbot import BOTLOG, BOTLOG_CHATID, CMD_HELP, bot
-from userbot.events import register
+from SkyNet import BOTLOG, BOTLOG_CHATID, CMD_HELP, bot
+from SkyNet.events import register
 
 # =================== CONSTANT ===================
 PP_TOO_SMOL = "`The image is too small`"
@@ -81,9 +81,9 @@ UNMUTE_RIGHTS = ChatBannedRights(until_date=None, send_messages=False)
 # ================================================
 
 
-@register(outgoing=True, disable_errors=True, pattern=r"^\.setgpic$")
+@register(outgoing=True, disable_errors=True, pattern=r"^\$setgpic$")
 async def set_group_photo(gpic):
-    """For .setgpic command, changes the picture of a group"""
+    """For $setgpic command, changes the picture of a group"""
     if not gpic.is_group:
         await gpic.edit("`I don't think this is a group.`")
         return
@@ -117,7 +117,7 @@ async def set_group_photo(gpic):
             await gpic.edit(PP_ERROR)
 
 
-@register(outgoing=True, disable_errors=True, pattern=r"^\.promote(?: |$)(.*)")
+@register(outgoing=True, disable_errors=True, pattern=r"^\$promote(?: |$)(.*)")
 async def promote(promt):
     """For .promote command, promotes the replied/tagged person"""
     # Get targeted chat
@@ -170,7 +170,7 @@ async def promote(promt):
         )
 
 
-@register(outgoing=True, disable_errors=True, pattern=r"^\.demote(?: |$)(.*)")
+@register(outgoing=True, disable_errors=True, pattern=r"^\$demote(?: |$)(.*)")
 async def demote(dmod):
     """For .demote command, demotes the replied/tagged person"""
     # Admin right check
@@ -220,7 +220,7 @@ async def demote(dmod):
         )
 
 
-@register(outgoing=True, disable_errors=True, pattern=r"^\.ban(?: |$)(.*)")
+@register(outgoing=True, disable_errors=True, pattern=r"^\$ban(?: |$)(.*)")
 async def ban(bon):
     """For .ban command, bans the replied/tagged person"""
     # Here laying the sanity check
@@ -272,7 +272,7 @@ async def ban(bon):
         )
 
 
-@register(outgoing=True, disable_errors=True, pattern=r"^\.unban(?: |$)(.*)")
+@register(outgoing=True, disable_errors=True, pattern=r"^\$unban(?: |$)(.*)")
 async def nothanos(unbon):
     """For .unban command, unbans the replied/tagged person"""
     # Here laying the sanity check
@@ -309,7 +309,7 @@ async def nothanos(unbon):
         await unbon.edit("`Uh oh my unban logic broke!`")
 
 
-@register(outgoing=True, pattern=r"^\.mute(?: |$)(.*)")
+@register(outgoing=True, pattern=r"^\$mute(?: |$)(.*)")
 async def spider(spdr):
     """
     This function is basically muting peeps
@@ -370,7 +370,7 @@ async def spider(spdr):
             pass
 
 
-@register(outgoing=True, disable_errors=True, pattern=r"^\.unmute(?: |$)(.*)")
+@register(outgoing=True, disable_errors=True, pattern=r"^\$unmute(?: |$)(.*)")
 async def unmoot(unmot):
     """For .unmute command, unmute the replied/tagged person"""
     # Admin or creator check
@@ -458,7 +458,7 @@ async def muter(moot):
             await moot.delete()
 
 
-@register(outgoing=True, pattern=r"^\.all$")
+@register(outgoing=True, pattern=r"^\$all$")
 async def tagaso(event):
     """For .all command, mention all of the member in the group chat"""
     if event.fwd_from:
@@ -471,9 +471,9 @@ async def tagaso(event):
     await bot.send_message(chat, mentions, reply_to=event.message.reply_to_msg_id)
 
 
-@register(outgoing=True, pattern=r"^\.zombies(?: |$)(.*)", groups_only=False)
+@register(outgoing=True, pattern=r"^\$zombies(?: |$)(.*)", groups_only=False)
 async def rm_deletedacc(show):
-    """For .zombies command, list all the ghost/deleted/zombie accounts in a chat."""
+    """For $zombies command, list all the ghost/deleted/zombie accounts in a chat."""
 
     con = show.pattern_match.group(1).lower()
     del_u = 0
@@ -489,7 +489,7 @@ async def rm_deletedacc(show):
         if del_u > 0:
             del_status = (
                 f"`Found` **{del_u}** `ghost/deleted/zombie account(s) in this group,"
-                "\nclean them by using .zombies clean`")
+                "\nclean them by using $zombies clean`")
         return await show.edit(del_status)
 
     # Here laying the sanity check
@@ -540,9 +540,9 @@ async def rm_deletedacc(show):
         )
 
 
-@register(outgoing=True, disable_errors=True, pattern=r"^\.admins$")
+@register(outgoing=True, disable_errors=True, pattern=r"^\$admins$")
 async def get_admin(show):
-    """For .admins command, list all of the admins of the chat."""
+    """For $admins command, list all of the admins of the chat."""
     info = await show.client.get_entity(show.chat_id)
     title = info.title if info.title else "this chat"
     mentions = f"<b>Admins in {title}:</b> \n"
@@ -560,9 +560,9 @@ async def get_admin(show):
     await show.edit(mentions, parse_mode="html")
 
 
-@register(outgoing=True, disable_errors=True, pattern=r"^\.pin(?: |$)(.*)")
+@register(outgoing=True, disable_errors=True, pattern=r"^\$pin(?: |$)(.*)")
 async def pin(msg):
-    """For .pin command, pins the replied/tagged message on the top the chat."""
+    """For $pin command, pins the replied/tagged message on the top the chat."""
     # Admin or creator check
     chat = await msg.get_chat()
     admin = chat.admin_rights
@@ -603,9 +603,9 @@ async def pin(msg):
         )
 
 
-@register(outgoing=True, disable_errors=True, pattern=r"^\.kick(?: |$)(.*)")
+@register(outgoing=True, disable_errors=True, pattern=r"^\$kick(?: |$)(.*)")
 async def kick(usr):
-    """For .kick command, kicks the replied/tagged person from the group."""
+    """For $kick command, kicks the replied/tagged person from the group."""
     # Admin or creator check
     chat = await usr.get_chat()
     admin = chat.admin_rights
@@ -643,9 +643,9 @@ async def kick(usr):
         )
 
 
-@register(outgoing=True, disable_errors=True, pattern=r"^\.users ?(.*)")
+@register(outgoing=True, disable_errors=True, pattern=r"^\$users ?(.*)")
 async def get_users(show):
-    """For .users command, list all of the users in a chat."""
+    """For $users command, list all of the users in a chat."""
     info = await show.client.get_entity(show.chat_id)
     title = info.title if info.title else "this chat"
     mentions = "Users in {}: \n".format(title)
@@ -735,9 +735,9 @@ async def get_user_from_id(user, event):
     return user_obj
 
 
-@register(outgoing=True, disable_errors=True, pattern=r"^\.usersdel ?(.*)")
+@register(outgoing=True, disable_errors=True, pattern=r"^\$usersdel ?(.*)")
 async def get_usersdel(show):
-    """For .usersdel command, list all of the deleted users in a chat."""
+    """For $usersdel command, list all of the deleted users in a chat."""
     info = await show.client.get_entity(show.chat_id)
     title = info.title if info.title else "this chat"
     mentions = "deletedUsers in {}: \n".format(title)
@@ -829,9 +829,9 @@ async def get_userdel_from_id(user, event):
     return user_obj
 
 
-@register(outgoing=True, pattern=r"^\.bots$", groups_only=True)
+@register(outgoing=True, pattern=r"^\$bots$", groups_only=True)
 async def get_bots(show):
-    """For .bots command, list all of the bots of the chat."""
+    """For $bots command, list all of the bots of the chat."""
     info = await show.client.get_entity(show.chat_id)
     title = info.title if info.title else "this chat"
     mentions = f"<b>Bots in {title}:</b>\n"
@@ -866,7 +866,7 @@ async def get_bots(show):
         remove("botlist.txt")
 
 
-@register(outgoing=True, pattern=r"^\.lock ?(.*)")
+@register(outgoing=True, pattern=r"^\$lock ?(.*)")
 async def locks(event):
     input_str = event.pattern_match.group(1).lower()
     peer_id = event.chat_id
@@ -954,7 +954,7 @@ async def locks(event):
         return
 
 
-@register(outgoing=True, pattern=r"^\.unlock ?(.*)")
+@register(outgoing=True, pattern=r"^\$unlock ?(.*)")
 async def rem_locks(event):
     input_str = event.pattern_match.group(1).lower()
     peer_id = event.chat_id
@@ -1042,13 +1042,13 @@ async def rem_locks(event):
         )
 
 
-@register(outgoing=True, pattern=r"^\.allkick(?: |$)(.*)")
+@register(outgoing=True, pattern=r"^\$allkick(?: |$)(.*)")
 async def allkick(event):
     opts = event.pattern_match.group(1).strip()
-    lynxuser = await event.get_chat()
-    lynxget = await event.client.get_me()
-    admin = lynxuser.admin_rights
-    creator = lynxuser.creator
+    skynetuser = await event.get_chat()
+    skynetget = await event.client.get_me()
+    admin = skynetuser.admin_rights
+    creator = skynetuser.creator
     sensitive = ["s", "silent"]
 
     if not admin and not creator:
@@ -1057,7 +1057,7 @@ async def allkick(event):
     await event.edit("`in Process...`")
     everyone = await event.client.get_participants(event.chat_id)
     for user in everyone:
-        if user.id == lynxget.id:
+        if user.id == skynetget.id:
             pass
         try:
             is_silent = None if opts in sensitive else True
@@ -1071,36 +1071,36 @@ async def allkick(event):
 CMD_HELP.update(
     {
         "admin": "✘ Pʟᴜɢɪɴ : Administrator Group"
-        "\n\n⚡𝘾𝙈𝘿⚡: `.promote` <Username/Reply> <Nama Title (Optional)>"
+        "\n\n⚡𝘾𝙈𝘿⚡: `$promote` <Username/Reply> <Nama Title (Optional)>"
         "\n↳ : Mempromosikan Member Sebagai Admin. (u/Owner)"
-        "\n\n⚡𝘾𝙈𝘿⚡: `.demote` <Username/Reply>"
+        "\n\n⚡𝘾𝙈𝘿⚡: `$demote` <Username/Reply>"
         "\n↳ : Menurunkan Posisi Admin Sebagai Member. (u/Owner)"
-        "\n\n⚡𝘾𝙈𝘿⚡: `.ban` <Username/Reply> <Alasan(Optional)>"
+        "\n\n⚡𝘾𝙈𝘿⚡: `$ban` <Username/Reply> <Alasan(Optional)>"
         "\n↳ : Memblokir Seseorang, Secara Pribadi Maupun Group."
-        "\n\n⚡𝘾𝙈𝘿⚡: `.unban <Username/Reply>`"
+        "\n\n⚡𝘾𝙈𝘿⚡: `$unban <Username/Reply>`"
         "\n↳ : Menghapus Blokir."
-        "\n\n⚡𝘾𝙈𝘿⚡: `.mute` <Username/Reply> <Alasan(Optional)>"
+        "\n\n⚡𝘾𝙈𝘿⚡: `$mute` <Username/Reply> <Alasan(Optional)>"
         "\n↳ : Membisukan Seseorang Di Group, Bisa Ke Admin Juga. :v"
-        "\n\n⚡𝘾𝙈𝘿⚡: `.unmute` <Username/Reply>"
+        "\n\n⚡𝘾𝙈𝘿⚡: `$unmute` <Username/Reply>"
         "\n↳ : Membuka bisu orang yang dibisukan."
-        "\n\n⚡𝘾𝙈𝘿⚡: `.zombies`"
+        "\n\n⚡𝘾𝙈𝘿⚡: `$zombies`"
         "\n↳ : Untuk Mencari Akun Terhapus di Dalam Group."
-        "Gunakan `.zombies clean` Untuk Membersihkan Akun Terhapus di Group."
-        "\n\n⚡𝘾𝙈𝘿⚡: `.all`"
+        "Gunakan `$zombies clean` Untuk Membersihkan Akun Terhapus di Group."
+        "\n\n⚡𝘾𝙈𝘿⚡: `$all`"
         "\n↳ : Tag Semua Member Dalam Group, Membutuhkan Bot @MentionBot."
-        "\n\n⚡𝘾𝙈𝘿⚡: `.admins`"
+        "\n\n⚡𝘾𝙈𝘿⚡: `$admins`"
         "\n↳ : Melihat Daftar Admin di Group."
-        "\n\n⚡𝘾𝙈𝘿⚡: `.bots`"
+        "\n\n⚡𝘾𝙈𝘿⚡: `$bots`"
         "\n↳ : Melihat Daftar Bot Dalam Group."
-        "\n\n⚡𝘾𝙈𝘿⚡: `.users` or `.usersdel` <Nama Member>"
+        "\n\n⚡𝘾𝙈𝘿⚡: `$users` or `$usersdel` <Nama Member>"
         "\n↳ : Mendapatkan Daftar Pengguna Dalamm Group."
-        "\n\n⚡𝘾𝙈𝘿⚡: `.setgpic` <Reply ke Gambar>"
+        "\n\n⚡𝘾𝙈𝘿⚡: `$setgpic` <Reply ke Gambar>"
         "\n↳ : Mengganti Photo Profile Group."
-        "\n\n⚡𝘾𝙈𝘿⚡: `.allkick`"
+        "\n\n⚡𝘾𝙈𝘿⚡: `$allkick`"
         "\n↳ : Mengeluarkan Semua Member Di Dalam Group. (Only Owner)"
-        "\n\n⚡𝘾𝙈𝘿⚡: `.allunban`"
+        "\n\n⚡𝘾𝙈𝘿⚡: `$allunban`"
         "\n↳ : Menghapus/Membatalkan Semua Orang Yang Telah Di Ban Di Dalam Group."
-        "\n\n⚡𝘾𝙈𝘿⚡: `.lock <all atau Jenis>` atau `.unlock <all atau Jenis>`"
+        "\n\n⚡𝘾𝙈𝘿⚡: `$lock <all atau Jenis>` atau `$unlock <all atau Jenis>`"
         "\n↳ : Memungkinkan Anda mengunci atau membuka kunci, beberapa jenis pesan dalam obrolan."
         "\n[Anda Harus Jadi Admin Grup Untuk Menggunakan Perintah!]"
         "\n\nJenis pesan yang bisa dikunci atau dibuka adalah:"
