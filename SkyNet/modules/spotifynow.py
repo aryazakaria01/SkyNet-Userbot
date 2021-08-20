@@ -5,11 +5,11 @@ from asyncio.exceptions import TimeoutError as TOError
 
 from telethon.errors.rpcerrorlist import YouBlockedUserError
 
-from userbot import CMD_HELP, TEMP_DOWNLOAD_DIRECTORY, bot
-from userbot.events import register
+from SkyNet import CMD_HELP, TEMP_DOWNLOAD_DIRECTORY, bot
+from SkyNet.events import register
 
 
-@register(outgoing=True, pattern=r"^\.spotnow( s$|$)(.*)")
+@register(outgoing=True, pattern=r"^\$spotnow( s$|$)(.*)")
 async def _(event):
     if event.fwd_from:
         return
@@ -73,9 +73,9 @@ async def _(event):
 CMD_HELP.update(
     {
         "spotifynow": "✘ Pʟᴜɢɪɴ : Spotify"
-        "\n\n⚡𝘾𝙈𝘿⚡: `.spotnow`"
+        "\n\n⚡𝘾𝙈𝘿⚡: `$spotnow`"
         "\n↳ : Show what you're listening on spotify."
-        "\n\n⚡𝘾𝙈𝘿⚡: `.spotnow s`"
+        "\n\n⚡𝘾𝙈𝘿⚡: `$spotnow s`"
         "\n↳ : Same, but send as sticker"
         "\n\nUsing `@SpotifyNowBot`"
     }
