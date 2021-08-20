@@ -10,11 +10,11 @@ import textwrap
 
 from PIL import Image, ImageDraw, ImageFont
 from telethon.tl.types import InputMessagesFilterDocument
-from userbot.events import register
-from userbot import CMD_HELP
+from SkyNet.events import register
+from SkyNet import CMD_HELP
 
 
-@register(outgoing=True, pattern="^.cs(?: |$)(.*)")
+@register(outgoing=True, pattern="^$cs(?: |$)(.*)")
 async def sticklet(event):
     R = random.randint(0, 256)
     G = random.randint(0, 256)
@@ -91,6 +91,6 @@ async def get_font_file(client, channel_id):
 
 CMD_HELP.update({
     "csticker": "✘ Pʟᴜɢɪɴ : Create Sticker"
-    "\n\n⚡𝘾𝙈𝘿⚡: `.cs` <Text>"
+    "\n\n⚡𝘾𝙈𝘿⚡: `$cs` <Text>"
     "\n↳ : Create Sticker [Random RGB]"
 })
