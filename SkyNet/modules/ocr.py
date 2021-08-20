@@ -7,8 +7,8 @@ import os
 
 import requests
 
-from userbot import CMD_HELP, OCR_SPACE_API_KEY, TEMP_DOWNLOAD_DIRECTORY, bot
-from userbot.events import register
+from SkyNet import CMD_HELP, OCR_SPACE_API_KEY, TEMP_DOWNLOAD_DIRECTORY, bot
+from SkyNet.events import register
 
 
 async def ocr_space_file(
@@ -41,7 +41,7 @@ async def ocr_space_file(
     return r.json()
 
 
-@register(pattern=r".ocr (.*)", outgoing=True)
+@register(pattern=r"$ocr (.*)", outgoing=True)
 async def ocr(event):
     if not OCR_SPACE_API_KEY:
         return await event.edit(
@@ -65,6 +65,6 @@ async def ocr(event):
 
 
 CMD_HELP.update({"ocr": "✘ Pʟᴜɢɪɴ : OCR Space"
-                 "\n\n⚡𝘾𝙈𝘿⚡: `.ocr <Language>`"
+                 "\n\n⚡𝘾𝙈𝘿⚡: `$ocr <Language>`"
                  "\n↳ : Reply to an Image or Sticker to Extract Text From it."
                  "\n\nGet Language Codes From [HERE](https://ocr.space/OCRAPI#PostParameters)"})
