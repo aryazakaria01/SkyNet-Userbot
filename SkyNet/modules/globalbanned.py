@@ -18,9 +18,9 @@ from telethon.tl.types import (
     MessageEntityMentionName,
 )
 import userbot.modules.sql_helper.globalban_sql as gban_sql
-from userbot.utils import edit_delete, edit_or_reply
-from userbot.events import register
-from userbot import (
+from SkyNet.utils import edit_delete, edit_or_reply
+from SkyNet.events import register
+from SkyNet import (
     ALIVE_NAME,
     BOTLOG,
     BOTLOG_CHATID,
@@ -113,7 +113,7 @@ async def get_user_from_event(event, uevent=None, secondgroup=None):
     return user_obj, extra
 
 
-@register(outgoing=True, pattern=r"^\.gban(?: |$)(.*)")
+@register(outgoing=True, pattern=r"^\$gban(?: |$)(.*)")
 async def gban(event):
     if event.fwd_from:
         return
@@ -163,11 +163,11 @@ async def gban(event):
     timetaken = (end - start).seconds
     if reason:
         await gbun.edit(
-            f"╭─━━━━━━━━━━━━━━━━─╮\nㅤ  ㅤ[⚡𝗟𝘆𝗻𝘅-𝙐𝙎𝙀𝙍𝘽𝙊𝙏⚡](t.me/LynxUserbot)\n╭─━━━━━━━━━━━━━━━━─╯\n**│• GBAN By :** `{ALIVE_NAME}`\n**│• User Account :** [{user.first_name}](tg://user?id={user.id})\n**│• Jumlah :** `{count}` **Group, Dalam** `{timetaken}` **Detik**\n**│• Reason :** `{reason}`\n**│• Action :** `GBanned` ✅\n╰━━━━━━━━━━━━━━━━━━╯"
+            f"╭─━━━━━━━━━━━━━━━━─╮\nㅤ  ㅤ[𝐒𝐤𝐲𝐍𝐞𝐭-𝐔𝐬𝐞𝐫𝐛𝐨𝐭](t.me/CyberSupportGroup)\n╭─━━━━━━━━━━━━━━━━─╯\n**│• GBAN By :** `{ALIVE_NAME}`\n**│• User Account :** [{user.first_name}](tg://user?id={user.id})\n**│• Jumlah :** `{count}` **Group, Dalam** `{timetaken}` **Detik**\n**│• Reason :** `{reason}`\n**│• Action :** `GBanned` ✅\n╰━━━━━━━━━━━━━━━━━━╯"
         )
     else:
         await gbun.edit(
-            f"╭─━━━━━━━━━━━━━━━━─╮\nㅤ  ㅤ[⚡𝗟𝘆𝗻𝘅-𝙐𝙎𝙀𝙍𝘽𝙊𝙏⚡](t.me/LynxUserbot)\n╭─━━━━━━━━━━━━━━━━─╯\n**│• GBAN By :** `{ALIVE_NAME}`\n**│• User Account :** [{user.first_name}](tg://user?id={user.id})\n**│• Jumlah :** `{count}` **Group, Dalam** `{timetaken}` **Detik**\n**│• Action :** `GBanned` ✅\n╰━━━━━━━━━━━━━━━━━━╯"
+            f"╭─━━━━━━━━━━━━━━━━─╮\nㅤ  ㅤ[𝐒𝐤𝐲𝐍𝐞𝐭-𝐔𝐬𝐞𝐫𝐛𝐨𝐭](t.me/CyberSupportGroup)\n╭─━━━━━━━━━━━━━━━━─╯\n**│• GBAN By :** `{ALIVE_NAME}`\n**│• User Account :** [{user.first_name}](tg://user?id={user.id})\n**│• Jumlah :** `{count}` **Group, Dalam** `{timetaken}` **Detik**\n**│• Action :** `GBanned` ✅\n╰━━━━━━━━━━━━━━━━━━╯"
         )
 
     if BOTLOG and count != 0:
@@ -201,7 +201,7 @@ async def gban(event):
             pass
 
 
-@register(outgoing=True, pattern=r"^\.ungban(?: |$)(.*)")
+@register(outgoing=True, pattern=r"^\$ungban(?: |$)(.*)")
 async def ungban(event):
     if event.fwd_from:
         return
@@ -241,11 +241,11 @@ async def ungban(event):
     timetaken = (end - start).seconds
     if reason:
         await ungbun.edit(
-            f"╭─━━━━━━━━━━━━━━━━─╮\nㅤ  ㅤ[⚡𝗟𝘆𝗻𝘅-𝙐𝙎𝙀𝙍𝘽𝙊𝙏⚡](t.me/LynxUserbot)\n╭─━━━━━━━━━━━━━━━━─╯\n**│• UNGBAN By :** `{ALIVE_NAME}`\n**│• User Account :** [{user.first_name}](tg://user?id={user.id})\n**│• Jumlah :** `{count}` **Group, Dalam** `{timetaken}` **Detik**\n**│• Reason :** `{reason}`\n**│• Action :** `GBanned` ❌\n╰━━━━━━━━━━━━━━━━━━╯"
+            f"╭─━━━━━━━━━━━━━━━━─╮\nㅤ  ㅤ[𝐒𝐤𝐲𝐍𝐞𝐭-𝐔𝐬𝐞𝐫𝐛𝐨𝐭](t.me/CyberSupportGroup)\n╭─━━━━━━━━━━━━━━━━─╯\n**│• UNGBAN By :** `{ALIVE_NAME}`\n**│• User Account :** [{user.first_name}](tg://user?id={user.id})\n**│• Jumlah :** `{count}` **Group, Dalam** `{timetaken}` **Detik**\n**│• Reason :** `{reason}`\n**│• Action :** `GBanned` ❌\n╰━━━━━━━━━━━━━━━━━━╯"
         )
     else:
         await ungbun.edit(
-            f"╭─━━━━━━━━━━━━━━━━─╮\nㅤ  ㅤ[⚡𝗟𝘆𝗻𝘅-𝙐𝙎𝙀𝙍𝘽𝙊𝙏⚡](t.me/LynxUserbot)\n╭─━━━━━━━━━━━━━━━━─╯\n**│• UNGBAN By :** `{ALIVE_NAME}`\n**│• User Account :** [{user.first_name}](tg://user?id={user.id})\n**│• Jumlah :** `{count}` **Group, Dalam** `{timetaken}` **Detik**\n**│• Action :** `GBanned` ❌\n╰━━━━━━━━━━━━━━━━━━╯"
+            f"╭─━━━━━━━━━━━━━━━━─╮\nㅤ  ㅤ[𝐒𝐤𝐲𝐍𝐞𝐭-𝐔𝐬𝐞𝐫𝐛𝐨𝐭](t.me/CyberSupportGroup)\n╭─━━━━━━━━━━━━━━━━─╯\n**│• UNGBAN By :** `{ALIVE_NAME}`\n**│• User Account :** [{user.first_name}](tg://user?id={user.id})\n**│• Jumlah :** `{count}` **Group, Dalam** `{timetaken}` **Detik**\n**│• Action :** `GBanned` ❌\n╰━━━━━━━━━━━━━━━━━━╯"
         )
 
     if BOTLOG and count != 0:
@@ -272,7 +272,7 @@ async def ungban(event):
             )
 
 
-@register(outgoing=True, pattern=r"^\.listgban$")
+@register(outgoing=True, pattern=r"^\$listgban$")
 async def gablist(event):
     if event.fwd_from:  # This is created by catuserbot
         return
