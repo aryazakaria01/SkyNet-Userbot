@@ -1,17 +1,17 @@
-# BASED FROM ULTROID PORTED FOR LYNX USERBOT BY ALVIN / @LIUALVINAS
+# BASED FROM ULTROID PORTED FOR SKYNET USERBOT BY ALVIN / @LIUALVINAS
 # THANKS ULTROID
 # DONT REMOVE THIS
 # ALVIN GANTENG
 # @LORDUSERBOT_GROUP
 
 from telethon import events
-from userbot import CMD_HELP, bot
-from userbot.events import register
+from SkyNet import CMD_HELP, bot
+from SkyNet.events import register
 from telethon.errors.rpcerrorlist import YouBlockedUserError
 import asyncio
 
 
-@register(outgoing=True, pattern=r"^\.tm(?: |$)(.*)")
+@register(outgoing=True, pattern=r"^\$tm(?: |$)(.*)")
 async def _(event):
     chat = "@TempMailBot"
     lynx = await event.edit("`Sedang Memprosess...`\nMohon Tunggu Sebentar.")
@@ -31,12 +31,12 @@ async def _(event):
         except YouBlockedUserError:
             await lynx.edit("`Mohon Maaf, Silahkan Buka` @TempMailBot `Lalu Tekan Start dan Coba Lagi.`")
             return
-        await event.edit(f"**Lynx TempMail** : `{response.message.message}`\n\n[CLICK HERE, FOR VERIFICATION]({lynxuserbot})")
+        await event.edit(f"**SkyNet TempMail** : `{response.message.message}`\n\n[CLICK HERE, FOR VERIFICATION]({lynxuserbot})")
 
 
 # Alvin Ganteng
 # Ported For Lynx-Userbot From Ultroid
 
 CMD_HELP.update({"tempmail": "✘ Pʟᴜɢɪɴ : Temp Mail"
-                 "\n\n⚡𝘾𝙈𝘿⚡: `.tm`"
+                 "\n\n⚡𝘾𝙈𝘿⚡: `$tm`"
                  "\n↳ : Dapatkan Email Gratis, Dari Temp Mail."})
