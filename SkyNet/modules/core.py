@@ -1,7 +1,4 @@
-# Recode By @mrismanaziz
-# @SharingUserbot
-# RecodeV2 By @PacarFerdilla
-# @KingUserbotSupport
+# Recode By @Badboyanim
 
 import importlib
 import logging
@@ -9,8 +6,8 @@ import os
 import sys
 from pathlib import Path
 
-from userbot import CMD_HELP, LOGS, bot  # pylint:disable=E0602
-from userbot.events import register
+from SkyNet import CMD_HELP, LOGS, bot  # pylint:disable=E0602
+from SkyNet.events import register
 
 DELETE_TIMEOUT = 5
 
@@ -41,7 +38,7 @@ def load_module(shortname):
         LOGS.info("Sukses Menambahkan Plugin " + shortname)
 
 
-@register(outgoing=True, pattern=r"^\.install$")
+@register(outgoing=True, pattern=r"^\$install$")
 async def _(event):
     if event.fwd_from:
         return
@@ -74,7 +71,7 @@ async def _(event):
 CMD_HELP.update(
     {
         "install": "✘ Pʟᴜɢɪɴ : Install Plugin\
-        \n\n⚡𝘾𝙈𝘿⚡ : `.install` <Reply ke File Plugins>\
+        \n\n⚡𝘾𝙈𝘿⚡ : `$install` <Reply ke File Plugins>\
         \n↳ : Untuk Menginstall Plugins Userbot Secara Instan.\
     "
     }
