@@ -1,11 +1,11 @@
 # Copyright (C) 2020 KenHV
 
-from userbot import CMD_HELP, bot
-from userbot.events import register
+from SkyNet import CMD_HELP, bot
+from SkyNet.events import register
 from sqlalchemy.exc import IntegrityError
 
 
-@register(outgoing=True, disable_edited=True, pattern=r"^\.fban(?: |$)(.*)")
+@register(outgoing=True, disable_edited=True, pattern=r"^\$fban(?: |$)(.*)")
 async def fban(event):
     """Bans a user from connected federations."""
     try:
@@ -77,7 +77,7 @@ async def fban(event):
     )
 
 
-@register(outgoing=True, disable_edited=True, pattern=r"^\.unfban(?: |$)(.*)")
+@register(outgoing=True, disable_edited=True, pattern=r"^\$unfban(?: |$)(.*)")
 async def unfban(event):
     """Unbans a user from connected federations."""
     try:
@@ -147,7 +147,7 @@ async def unfban(event):
     )
 
 
-@register(outgoing=True, pattern=r"^\.addf(?: |$)(.*)")
+@register(outgoing=True, pattern=r"^\$addf(?: |$)(.*)")
 async def addf(event):
     """Adds current chat to connected federations."""
     try:
@@ -168,7 +168,7 @@ async def addf(event):
     await event.edit("**Added this group to federations list!**")
 
 
-@register(outgoing=True, pattern=r"^\.delf$")
+@register(outgoing=True, pattern=r"^\$delf$")
 async def delf(event):
     """Removes current chat from connected federations."""
     try:
@@ -180,7 +180,7 @@ async def delf(event):
     await event.edit("**Removed this group from federations list!**")
 
 
-@register(outgoing=True, pattern=r"^\.listf$")
+@register(outgoing=True, pattern=r"^\$listf$")
 async def listf(event):
     """List all connected federations."""
     try:
@@ -200,7 +200,7 @@ async def listf(event):
     await event.edit(msg)
 
 
-@register(outgoing=True, disable_edited=True, pattern=r"^\.clearf$")
+@register(outgoing=True, disable_edited=True, pattern=r"^\$clearf$")
 async def delf(event):
     """Removes all chats from connected federations."""
     try:
@@ -212,15 +212,15 @@ async def delf(event):
     await event.edit("**Disconnected from all connected federations!**")
 
 
-CMD_HELP.update({"federations": ">`.fban <id/username> <reason>`"
+CMD_HELP.update({"federations": ">`$fban <id/username> <reason>`"
                  "\nUsage: Bans user from connected federations."
                  "\nYou can reply to the user whom you want to fban or manually pass the username/id."
-                 "\n\n`>.unfban <id/username> <reason>`"
+                 "\n\n`>$unfban <id/username> <reason>`"
                  "\nUsage: Same as fban but unbans the user"
-                 "\n\n>`.addf <name>`"
+                 "\n\n>`$addf <name>`"
                  "\nUsage: Adds current group and stores it as <name> in connected federations."
                  "\nAdding one group is enough for one federation."
-                 "\n\n>`.delf`"
+                 "\n\n>`$delf`"
                  "\nUsage: Removes current group from connected federations."
-                 "\n\n>`.listf`"
+                 "\n\n>`$listf`"
                  "\nUsage: Lists all connected federations by specified name."})
