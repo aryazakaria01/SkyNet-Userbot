@@ -26,8 +26,8 @@ from telethon.tl.types import (
 )
 from telethon.utils import is_image, is_video
 
-from userbot import CMD_HELP
-from userbot.events import register
+from SkyNet import CMD_HELP
+from SkyNet.events import register
 
 jikan = Jikan()
 
@@ -250,7 +250,7 @@ async def formatJSON(outData):
     return msg
 
 
-@register(outgoing=True, pattern=r"^\.anilist ?(.*)")
+@register(outgoing=True, pattern=r"^\$anilist ?(.*)")
 async def anilist(event):
     if event.fwd_from:
         return
@@ -260,7 +260,7 @@ async def anilist(event):
     await event.edit(msg, link_preview=True)
 
 
-@register(outgoing=True, pattern=r"^\.anime ?(.*)")
+@register(outgoing=True, pattern=r"^\$anime ?(.*)")
 async def search_anime(message):
     search_query = message.pattern_match.group(1)
     await message.get_reply_message()
@@ -282,7 +282,7 @@ async def search_anime(message):
         )
 
 
-@register(outgoing=True, pattern=r"^\.manga ?(.*)")
+@register(outgoing=True, pattern=r"^\$manga ?(.*)")
 async def search_manga(message):
     search_query = message.pattern_match.group(1)
     await message.get_reply_message()
@@ -298,7 +298,7 @@ async def search_manga(message):
     )
 
 
-@register(outgoing=True, pattern=r"^\.a(kaizoku|kayo) ?(.*)")
+@register(outgoing=True, pattern=r"^\$a(kaizoku|kayo) ?(.*)")
 async def site_search(event):
     message = await event.get_reply_message()
     search_query = event.pattern_match.group(2)
@@ -347,7 +347,7 @@ async def site_search(event):
             await event.edit(result, parse_mode="HTML")
 
 
-@register(outgoing=True, pattern=r"^\.char ?(.*)")
+@register(outgoing=True, pattern=r"^\$char ?(.*)")
 async def character(event):
     message = await event.get_reply_message()
     search_query = event.pattern_match.group(1)
@@ -397,7 +397,7 @@ async def character(event):
     )
 
 
-@register(outgoing=True, pattern=r"^\.upcoming$")
+@register(outgoing=True, pattern=r"^\$upcoming$")
 async def upcoming(message):
     rep = "<b>Upcoming anime</b>\n"
     later = jikan.season_later()
@@ -411,7 +411,7 @@ async def upcoming(message):
         await message.edit(rep, parse_mode="html")
 
 
-@register(outgoing=True, pattern=r"^\.whatanime$")
+@register(outgoing=True, pattern=r"^\$whatanime$")
 async def whatanime(e):
     media = e.media
     if not media:
@@ -498,19 +498,19 @@ def is_gif(file):
 CMD_HELP.update(
     {
         "anime": "✘ Pʟᴜɢɪɴ : Anime"
-        "\n\n⚡𝘾𝙈𝘿⚡: `.anilist` <anime title>"
+        "\n\n⚡𝘾𝙈𝘿⚡: `$anilist` <anime title>"
         "\n↳ : Get anime information from anilist."
-        "\n\n⚡𝘾𝙈𝘿⚡: `.anime` <anime title>"
+        "\n\n⚡𝘾𝙈𝘿⚡: `$anime` <anime title>"
         "\n↳ : Returns with anime information from MyAnimeList."
-        "\n\n⚡𝘾𝙈𝘿⚡: `.manga` <manga title>"
+        "\n\n⚡𝘾𝙈𝘿⚡: `$manga` <manga title>"
         "\n↳ : Returns with manga information from MyAnimeList."
-        "\n\n⚡𝘾𝙈𝘿⚡: `.akaizoku` or `.akayo` <anime title>"
+        "\n\n⚡𝘾𝙈𝘿⚡: `$akaizoku` or `$akayo` <anime title>"
         "\n↳ : Returns with the anime download link."
-        "\n\n⚡𝘾𝙈𝘿⚡: `.char` <character name>"
+        "\n\n⚡𝘾𝙈𝘿⚡: `$char` <character name>"
         "\n↳ : Returns with character information."
-        "\n\n⚡𝘾𝙈𝘿⚡: `.upcoming`"
+        "\n\n⚡𝘾𝙈𝘿⚡: `$upcoming`"
         "\n↳ : Returns with upcoming anime information."
-        "\n\n⚡𝘾𝙈𝘿⚡: `.whatanime` <reply to a media>"
+        "\n\n⚡𝘾𝙈𝘿⚡: `$whatanime` <reply to a media>"
         "\n↳ : Find anime from media file."
         "\nNotes: You must reply to uncropped anime scene (Not 100% accurate)."
     }
