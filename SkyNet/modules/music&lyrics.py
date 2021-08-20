@@ -24,8 +24,8 @@ from youtube_dl.utils import (
     XAttrMetadataError,
 )
 from youtubesearchpython import SearchVideos
-from userbot.events import register
-from userbot import CMD_HELP, DEFAULTUSER
+from SkyNet.events import register
+from SkyNet import CMD_HELP, DEFAULTUSER
 
 
 # Fixes Bug by @Spidy
@@ -37,7 +37,7 @@ a3 = base64.b64decode(
     "QUl6YVN5RGRPS253blB3VklRX2xiSDVzWUU0Rm9YakFLSVFWMERR").decode("ascii")
 
 
-@register(outgoing=True, pattern=r"^\.music (.*)")
+@register(outgoing=True, pattern=r"^\$music (.*)")
 async def download_video(event):
     a = event.text
     if len(a) >= 5 and a[5] == "s":
@@ -143,10 +143,10 @@ Connected to server...
         pass
 
 
-@register(outgoing=True, pattern=r"^\.lyrics (.*)")
+@register(outgoing=True, pattern=r"^\$lyrics (.*)")
 async def original(event):
     if not event.pattern_match.group(1):
-        return await event.edit("Beri Saya Sebuah Judul Lagu Untuk Mencari Lirik.\n**Contoh** : `.lyrics` <Judul Lagu>")
+        return await event.edit("Beri Saya Sebuah Judul Lagu Untuk Mencari Lirik.\n**Contoh** : `$lyrics` <Judul Lagu>")
     kenzo = event.pattern_match.group(1)
     event = await event.edit("`🔍 Sedang Mencari Lirik Lagu...`")
     dc = random.randrange(1, 3)
@@ -166,9 +166,9 @@ async def original(event):
 CMD_HELP.update(
     {
         "music&lyrics": "✘ Pʟᴜɢɪɴ : Music & Lyrics\
-         \n\n⚡𝘾𝙈𝘿⚡: `.music` <Penyanyi/Band - Judul Lagu>\
+         \n\n⚡𝘾𝙈𝘿⚡: `$music` <Penyanyi/Band - Judul Lagu>\
          \n↳ : Mengunduh Sebuah Lagu Yang Anda Inginkan.\
-         \n\n⚡𝘾𝙈𝘿⚡: `.lyrics` <Penyanyi/Band - Judul Lagu>\
+         \n\n⚡𝘾𝙈𝘿⚡: `$lyrics` <Penyanyi/Band - Judul Lagu>\
          \n↳ : Mencari Lirik Lagu Yang Anda Inginkan."
     }
 )
