@@ -1,10 +1,10 @@
 import aiohttp
 
-from userbot import CMD_HELP
-from userbot.events import register
+from SkyNet import CMD_HELP
+from SkyNet.events import register
 
 
-@register(pattern=r".git (.*)", outgoing=True)
+@register(pattern=r"$git (.*)", outgoing=True)
 async def github(event):
     URL = f"https://api.github.com/users/{event.pattern_match.group(1)}"
     await event.get_chat()
@@ -48,6 +48,6 @@ async def github(event):
 
 CMD_HELP.update({
     "github": "✘ Pʟᴜɢɪɴ : Github Info"
-    "\n\n⚡𝘾𝙈𝘿⚡: `.git <Github Username>`"
-    "\n↳ : Like .whois but for GitHub Usernames."
+    "\n\n⚡𝘾𝙈𝘿⚡: `$git <Github Username>`"
+    "\n↳ : Like $whois but for GitHub Usernames."
 })
