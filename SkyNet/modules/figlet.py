@@ -5,11 +5,11 @@
 #
 
 import pyfiglet
-from userbot import CMD_HELP
-from userbot.events import register
+from SkyNet import CMD_HELP
+from SkyNet.events import register
 
 
-@register(outgoing=True, pattern=r"^\.fg(?: |$)(.*)")
+@register(outgoing=True, pattern=r"^\$fg(?: |$)(.*)")
 async def figlet(e):
     if e.fwd_from:
         return
@@ -50,8 +50,8 @@ async def figlet(e):
 
 CMD_HELP.update({
     "figlet": "✘ Pʟᴜɢɪɴ : Figlet"
-    "\n\n⚡𝘾𝙈𝘿⚡: `.fg` TEXT.STYLE"
+    "\n\n⚡𝘾𝙈𝘿⚡: `$fg` TEXT.STYLE"
     "\n↳ : Enhance ur text to strip line with anvil."
-    "\n\nExample : `.fg Okay.3D`"
+    "\n\nExample : `$fg Okay.3D`"
     "\nSTYLE List: `slant`| `3D`| `5line`| `alpha`| `banner`| `doh`| `iso`| `letter`| `allig`| `dotm`| `bubble`| `bulb`| `digi`"
 })
