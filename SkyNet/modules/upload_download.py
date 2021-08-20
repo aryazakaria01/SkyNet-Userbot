@@ -22,10 +22,10 @@ from natsort import os_sorted
 from pySmartDL import SmartDL
 from telethon.tl.types import DocumentAttributeAudio, DocumentAttributeVideo
 
-from userbot import CMD_HELP, LOGS, TEMP_DOWNLOAD_DIRECTORY
-from userbot.events import register
-from userbot.utils import humanbytes, progress
-from userbot.utils.FastTelethon import download_file, upload_file
+from SkyNet import CMD_HELP, LOGS, TEMP_DOWNLOAD_DIRECTORY
+from SkyNet.events import register
+from SkyNet.utils import humanbytes, progress
+from SkyNet.utils.FastTelethon import download_file, upload_file
 
 
 async def run_cmd(cmd: list) -> (bytes, bytes):
@@ -40,9 +40,9 @@ async def run_cmd(cmd: list) -> (bytes, bytes):
     return t_resp, e_resp
 
 
-@register(pattern=r"^\.dl(?: |$)(.*)", outgoing=True)
+@register(pattern=r"^\$dl(?: |$)(.*)", outgoing=True)
 async def download(target_file):
-    """For .download command, download files to the userbot's server."""
+    """For $download command, download files to the userbot's server."""
     await target_file.edit("`Processing...`")
     input_str = target_file.pattern_match.group(1)
     replied = await target_file.get_reply_message()
@@ -183,7 +183,7 @@ async def get_video_thumb(file, output):
         return None
 
 
-@register(pattern=r"^\.up (.*)", outgoing=True)
+@register(pattern=r"^\$up (.*)", outgoing=True)
 async def upload(event):
     if event.fwd_from:
         return
@@ -343,11 +343,11 @@ async def upload(event):
 CMD_HELP.update(
     {
         "download": "✘ Pʟᴜɢɪɴ : Downloads"
-        "\n\n⚡𝘾𝙈𝘿⚡: `.dl` <Link> | <Filename> (Optional)"
+        "\n\n⚡𝘾𝙈𝘿⚡: `$dl` <Link> | <Filename> (Optional)"
         "\n↳ : Downloads File From URL to The Server."
-        "\n\n⚡𝘾𝙈𝘿⚡: `.dl` <Reply to File>"
+        "\n\n⚡𝘾𝙈𝘿⚡: `$dl` <Reply to File>"
         "\n↳ : Downloads File From the Replied File/Media."
-        "\n\n⚡𝘾𝙈𝘿⚡: `.up` <File/Folder Path in Server>"
+        "\n\n⚡𝘾𝙈𝘿⚡: `$up` <File/Folder Path in Server>"
         "\n↳ : Uploads a Locally Stored File/Folder to The Chat."
     }
 )
