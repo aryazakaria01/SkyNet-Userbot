@@ -12,11 +12,11 @@ import os
 import requests
 from telethon.tl.types import MessageMediaPhoto
 
-from userbot import CMD_HELP, REM_BG_API_KEY, TEMP_DOWNLOAD_DIRECTORY
-from userbot.events import register
+from SkyNet import CMD_HELP, REM_BG_API_KEY, TEMP_DOWNLOAD_DIRECTORY
+from SkyNet.events import register
 
 
-@register(outgoing=True, pattern=r"^\.rbg(?: |$)(.*)")
+@register(outgoing=True, pattern=r"^\$rbg(?: |$)(.*)")
 async def kbg(remob):
     """For .rbg command, Remove Image Background."""
     if REM_BG_API_KEY is None:
@@ -105,5 +105,5 @@ async def ReTrieveURL(input_url):
 
 
 CMD_HELP.update({"rbg": "✘ Pʟᴜɢɪɴ : Remove Background (Image)"
-                 "\n\n⚡𝘾𝙈𝘿⚡: `.rbg <Link to Image> or Reply to any Image (Warning: does not work on stickers.)`"
+                 "\n\n⚡𝘾𝙈𝘿⚡: `$rbg <Link to Image> or Reply to any Image (Warning: does not work on stickers.)`"
                  "\n↳ : Removes the Background of Images, Using remove.bg API"})
