@@ -5,7 +5,7 @@ from random import choice, randint
 from telethon.events import StopPropagation
 from telethon.tl.functions.account import UpdateProfileRequest
 
-from userbot import (  # pylint:disable=E0602
+from SkyNet import (  # pylint:disable=E0602
     AFKREASON,
     BOTLOG,
     BOTLOG_CHATID,
@@ -17,7 +17,7 @@ from userbot import (  # pylint:disable=E0602
     PM_AUTO_BAN,
     bot,
 )
-from userbot.events import register
+from SkyNet.events import register
 
 # ========================= CONSTANTS ============================
 AFKSTR = [
@@ -55,9 +55,9 @@ def func():
 # =================================================================
 
 
-@register(outgoing=True, pattern="^.off(?: |$)(.*)", disable_errors=True)
+@register(outgoing=True, pattern="^$off(?: |$)(.*)", disable_errors=True)
 async def set_afk(afk_e):
-    """For .afk command, allows you to inform people that you are afk when they message you"""
+    """For $afk command, allows you to inform people that you are afk when they message you"""
     message = afk_e.text  # pylint:disable=E0602
     string = afk_e.pattern_match.group(1)
     global ISAFK
@@ -278,7 +278,7 @@ async def afk_on_pm(sender):
 
 CMD_HELP.update({
     "offline": "✘ Pʟᴜɢɪɴ : Offline\
-    \n\n⚡𝘾𝙈𝘿⚡: `.off` <Reason/Alasan Off>\
+    \n\n⚡𝘾𝙈𝘿⚡: `$off` <Reason/Alasan Off>\
     \n↳ : Sama Seperti Plugin Busy, Lakukan ketika ingin OFF.\nSiapapun Yang Balas, Tag, Atau Chat Kamu\
     Mereka Akan Tau Alasan Kamu OFF.\n\nNoted: OFF Bisa Dilakukan Dan Dibatalkan Dimanapun."
 })
