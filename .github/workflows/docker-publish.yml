@@ -8,7 +8,7 @@ on:
     # Publish semver tags as releases.
     tags: [ 'v*.*.*' ]
   pull_request:
-    branches: [ Lynx-Userbot ]
+    branches: [ main ]
 
 env:
   # ............
