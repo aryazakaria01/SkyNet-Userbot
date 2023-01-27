@@ -48,7 +48,7 @@ requests
 search-engine-parser
 speedtest-cli
 spamwatch
-SQLAlchemy==1.4.36
+SQLAlchemy==2.0.0
 telethon
 telethon-tgcrypto
 telethon-session-sqlalchemy
